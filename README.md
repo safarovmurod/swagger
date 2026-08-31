@@ -31,24 +31,42 @@ REST API интернет-магазина детских товаров + со�
 
 ## Формат ответа
 
-У каждого ответа один и тот же конверт — поле `data`:
+У каждого ответа один конверт — `data`, `errors`, `statusCode`:
 
 ```js
-const { data } = await axios.get('https://swagger-wheat.vercel.app/api/products');
-console.log(data.data);        // массив товаров
-console.log(data.totalCount);  // 780
+const { data } = await axios.get('https://swagger-wheat.vercel.app/api/products?pageSize=20');
+data.data.map(p => p.name);   // data — массив, сразу готов к перебору
+data.totalCount;              // 780
+data.errors;                  // []
+data.statusCode;              // 200
 ```
 
 | Ответ | Тело |
 |---|---|
-| Список | `{ "data": [ … ], "totalCount": 780, "page": 1, "pageSize": 20, "totalPages": 39, "hasPrevious": false, "hasNext": true }` |
-| Один объект | `{ "data": { "id": 11, "name": "…" } }` |
-| Ошибка | `{ "data": null, "message": "Товар 999 не найден" }` |
+| Список | `{ "data": [ … ], "errors": [], "statusCode": 200, "totalCount": 780, "page": 1, "pageSize": 20, "totalPages": 39, "hasPrevious": false, "hasNext": true }` |
+| Одна запись | `{ "data": { "id": 11, … }, "errors": [], "statusCode": 200 }` |
+| Ошибка | `{ "data": null, "errors": ["Товар 999 не найден"], "statusCode": 404 }` |
 
-Вложенные списки устроены так же: в `/api/avtokresla` товары лежат
-в `data.data.products.data`, а рядом — пагинация этого списка.
-Единственное исключение — `/api/swagger.json`: это сама спецификация
-OpenAPI, её оборачивать нельзя, иначе её перестанут понимать инструменты.
+**Где `data` — массив.** Везде, где эндпоинт отдаёт список: `/api/products`,
+`/api/categories`, `/api/subcategories`, `/api/blog`, `/api/promotions`,
+а также каталог и отзывы — `/api/avtokresla`, `/api/avtokresla/gruppa-1`,
+`/api/categories/{id}`, `/api/subcategories/{id}`, `/api/products/{id}/reviews`.
+В этих ответах описание категории и подкатегории лежит рядом с массивом,
+в полях `category` и `subcategory` — отдельный запрос за описанием не нужен.
+
+```js
+const { data } = await axios.get(`${API}/avtokresla/gruppa-1`);
+data.data.map(p => p.name);        // товары подкатегории
+data.subcategory.description;      // описание подкатегории
+data.category.info.howToChoose;    // справка по категории
+```
+
+**Где `data` — объект.** Только у одиночных записей: `/api/products/{id}`,
+`/api/blog/{id}`, `/api/promotions/{id}`, а также у ответов POST, PUT и DELETE.
+
+Единственное исключение из конверта — `/api/swagger.json`: это сама
+спецификация OpenAPI, её оборачивать нельзя, иначе её перестанут понимать
+Swagger UI, Postman и генераторы клиентов.
 
 ## Эндпоинты
 
