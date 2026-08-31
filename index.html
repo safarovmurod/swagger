@@ -456,10 +456,13 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       fExcerpt: 'Анонс', fContent: 'Текст', fDiscount: 'Скидка, %', fDateStart: 'Начало',
       fDateEnd: 'Окончание', fAuthor: 'Автор', fRating: 'Оценка 1-5', fPros: 'Достоинства',
       fCons: 'Недостатки', fComment: 'Комментарий', fProductId: 'id товара',
+      fReading: 'Время чтения, мин',
       cInStock: 'в наличии', cIsNew: 'новинка', cIsPromo: 'акция', cIsActive: 'активна',
       needId: 'Укажите id записи', needName: 'Заполните обязательные поля',
-      blogList: 'Все статьи блога', blogOne: 'Статья по id',
+      blogList: 'Все статьи блога', blogOne: 'Статья по id или slug',
       promoList: 'Все акции', promoOne: 'Акция по id или slug',
+      byDate: 'по дате', byReading: 'по времени чтения', fullText: 'полный текст',
+      category: 'категория', anyCategory: 'любая',
       catsIn: 'подкатегорий', endpoints: 'запросов на странице'
     },
     en: {
@@ -485,10 +488,13 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       fExcerpt: 'Excerpt', fContent: 'Content', fDiscount: 'Discount, %', fDateStart: 'Start',
       fDateEnd: 'End', fAuthor: 'Author', fRating: 'Rating 1-5', fPros: 'Pros',
       fCons: 'Cons', fComment: 'Comment', fProductId: 'product id',
+      fReading: 'Reading time, min',
       cInStock: 'in stock', cIsNew: 'new', cIsPromo: 'promo', cIsActive: 'active',
       needId: 'Enter the record id', needName: 'Fill in the required fields',
-      blogList: 'All blog posts', blogOne: 'Post by id',
+      blogList: 'All blog posts', blogOne: 'Post by id or slug',
       promoList: 'All promotions', promoOne: 'Promotion by id or slug',
+      byDate: 'by date', byReading: 'by reading time', fullText: 'full text',
+      category: 'category', anyCategory: 'any',
       catsIn: 'subcategories', endpoints: 'requests on the page'
     }
   };
@@ -563,13 +569,16 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
   }
 
   /* ---------- сборка строки запроса ---------- */
-  var SORTS = [
-    ['', 'byPopular'], ['price', 'byPrice'], ['rating', 'byRating'],
-    ['name', 'byName'], ['discount', 'byDiscount']
-  ];
+  var SORTS = {
+    products: [['', 'byPopular'], ['price', 'byPrice'], ['rating', 'byRating'],
+               ['name', 'byName'], ['discount', 'byDiscount']],
+    blog: [['', 'byPopular'], ['date', 'byDate'], ['title', 'byName'], ['readingTime', 'byReading']],
+    promo: [['', 'byPopular'], ['discount', 'byDiscount']],
+    list: [['', 'byPopular']]
+  };
 
   function controlsHtml(kind) {
-    var sort = SORTS.map(function (s) {
+    var sort = (SORTS[kind] || SORTS.list).map(function (s) {
       return '<option value="' + s[0] + '">' + esc(T(s[1])) + '</option>';
     }).join('');
     var html =
@@ -593,6 +602,13 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
         '<label class="check"><input type="checkbox" data-q="onlyPromo" value="true">' + esc(T('promoOnly')) + '</label>' +
         '<label class="check"><input type="checkbox" data-q="isNew" value="true">' + esc(T('newOnly')) + '</label>' +
         '<label class="check"><input type="checkbox" data-q="inStock" value="true">' + esc(T('inStock')) + '</label>';
+    }
+    if (kind === 'blog' || kind === 'promo') {
+      html += '<div class="ctl w-md"><label>' + esc(T('category')) + '</label>' +
+        '<select data-q="categoryId"><option value="">' + esc(T('anyCategory')) + '</option>' +
+        state.cats.map(function (c) { return '<option value="' + c.id + '">' + esc(c.name) + '</option>'; }).join('') +
+        '</select></div>' +
+        '<label class="check"><input type="checkbox" data-q="full" value="true">' + esc(T('fullText')) + '</label>';
     }
     return html;
   }
@@ -758,7 +774,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
         '<span class="cat-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span>' +
       '</button>' +
       '<div class="cat-body" hidden>' +
-        reqHtml({ base: '/api/promotions', kind: 'list', name: T('promoList') }) +
+        reqHtml({ base: '/api/promotions', kind: 'promo', name: T('promoList') }) +
         reqHtml({ base: '/api/promotions/{id}', kind: 'one', name: T('promoOne'),
                   idParam: 'id', idLabel: 'id / slug', idExample: 'akciya-avtokresla' }) +
       '</div></article>';
@@ -771,9 +787,9 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
         '<span class="cat-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span>' +
       '</button>' +
       '<div class="cat-body" hidden>' +
-        reqHtml({ base: '/api/blog', kind: 'list', name: T('blogList') }) +
+        reqHtml({ base: '/api/blog', kind: 'blog', name: T('blogList') }) +
         reqHtml({ base: '/api/blog/{id}', kind: 'one', name: T('blogOne'),
-                  idParam: 'id', idLabel: 'id', idExample: '1' }) +
+                  idParam: 'id', idLabel: 'id / slug', idExample: 'kak-vybrat-krovatku' }) +
       '</div></article>';
 
     return promo + blog;
@@ -812,10 +828,11 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       checks: [['isActive', 'cIsActive', true]]
     },
     blog: {
-      label: 'secBlog', path: '/api/blog', idExample: '1',
-      fields: [['title', 'fTitle', 'text', true], ['excerpt', 'fExcerpt', 'text'],
-               ['date', 'fDateStart', 'date'], ['image', 'fImage', 'text'],
-               ['content', 'fContent', 'area']],
+      label: 'secBlog', path: '/api/blog', idExample: 'kak-vybrat-krovatku',
+      fields: [['title', 'fTitle', 'text', true], ['slug', 'fSlug', 'text'],
+               ['excerpt', 'fExcerpt', 'text'], ['date', 'fDateStart', 'date'],
+               ['readingTime', 'fReading', 'number'], ['categoryId', 'fCategory', 'category'],
+               ['image', 'fImage', 'text'], ['content', 'fContent', 'area']],
       checks: []
     },
     review: {
