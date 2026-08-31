@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "public": true,
+  "rewrites": [
+    { "source": "/swagger", "destination": "/public/index.html" },
+    { "source": "/api/swagger.json", "destination": "/api/swagger.json" },
+    { "source": "/api/categories", "destination": "/api/categories/index" },
+    { "source": "/api/categories/:id", "destination": "/api/categories/[id]" },
+    { "source": "/api/products", "destination": "/api/products/index" },
+    { "source": "/api/products/:id", "destination": "/api/products/[id]" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+      ]
+    }
+  ]
+}
