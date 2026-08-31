@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Карапуз API — Swagger UI</title>
+<link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui.css">
+<style>
+  body { margin: 0; }
+  .topbar { display: none; }
+  .custom-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 16px 24px;
+    font-family: -apple-system, sans-serif;
+  }
+  .custom-header h1 { margin: 0; font-size: 22px; }
+  .custom-header p { margin: 4px 0 0; opacity: 0.9; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="custom-header">
+  <h1>🧸 Карапуз API — Интернет-магазин товаров для детей</h1>
+  <p>CRUD: категории, товары, отзывы, блог, акции. С фильтрами, поиском, пагинацией и сортировкой.</p>
+</div>
+<div id="swagger-ui"></div>
+<script src="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui-bundle.js"></script>
+<script>
+window.onload = function() {
+  window.ui = SwaggerUIBundle({
+    url: '/api/swagger.json',
+    dom_id: '#swagger-ui',
+    deepLinking: true,
+    presets: [SwaggerUIBundle.presets.apis],
+    layout: 'BaseLayout',
+    docExpansion: 'none',
+    operationsSorter: 'alpha',
+    tagsSorter: 'alpha'
+  });
+};
+</script>
+</body>
+</html>
