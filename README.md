@@ -1,197 +1,88 @@
-# ToDo WebApi — ASP.NET Core + Swagger
+# Kids Shop API — Интернет-магазин товаров для детей
 
-A complete REST API for managing ToDo items and categories, with **CRUD, Search, Pagination, Filtering, and Sorting** — plus auto-generated Swagger UI documentation.
+REST API с категориями, товарами, ценами, описаниями и изображениями. Готово к деплою на Vercel.
 
-> Барои идораи корҳо ва категорияҳо — API-и пурра бо Swagger UI.
-> Complete backend with GET, POST, PUT, DELETE, Search, Pagination.
+## 🚀 Deploy to Vercel (2 минуты)
 
----
-
-## 🚀 Quick Start
-
-### Option A — Run with .NET CLI
+### Способ 1 — Через CLI
 
 ```bash
-cd ToDoApi
-dotnet restore
-dotnet run
+cd kids-shop-api
+npm i -g vercel        # установить Vercel CLI
+vercel                 # deploy (первый раз — вход)
+vercel --prod          # production deploy
 ```
 
-Then open: **http://localhost:5000/swagger**
+### Способ 2 — Через GitHub
 
-### Option B — Run with Docker
+1. Загрузи папку `kids-shop-api` на GitHub
+2. Зайди на [vercel.com](https://vercel.com) → New Project
+3. Выбери репозиторий → Deploy
+
+### Способ 3 — Перетаскивание
+
+1. Зайди на [vercel.com/new](https://vercel.com/new)
+2. Перетащи папку `kids-shop-api`
+
+---
+
+## 📋 Endpoints
+
+| Method | URL | Description |
+|--------|-----|-------------|
+| GET | `/api/categories` | Все категории (pagination, search) |
+| GET | `/api/categories/{id}` | Категория по ID + товары |
+| GET | `/api/products` | Все товары (pagination, search, filter, sort) |
+| GET | `/api/products/{id}` | Товар по ID |
+| GET | `/api/swagger.json` | OpenAPI спецификация |
+| GET | `/swagger` | Swagger UI (документация) |
+
+---
+
+## 🔍 Примеры запросов
 
 ```bash
-docker build -t todo-api .
-docker run -p 8080:8080 todo-api
-```
+# Все категории
+GET https://your-app.vercel.app/api/categories
 
-Then open: **http://localhost:8080/swagger**
+# Категории с поиском
+GET https://your-app.vercel.app/api/categories?search=игрушки
 
----
+# Товары с пагинацией
+GET https://your-app.vercel.app/api/products?page=1&pageSize=5
 
-## 📋 API Endpoints
+# Товары по категории
+GET https://your-app.vercel.app/api/products?categoryId=1
 
-### Category
+# Поиск товаров
+GET https://your-app.vercel.app/api/products?search=конструктор
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/categories` | Get all categories |
-| GET | `/api/categories/{id}` | Get category by ID |
-| POST | `/api/categories` | Create a new category |
-| PUT | `/api/categories/{id}` | Update a category |
-| DELETE | `/api/categories?ids=1,2,3` | Delete multiple categories |
-| DELETE | `/api/categories/{id}` | Delete one category |
+# Сортировка по цене
+GET https://your-app.vercel.app/api/products?sortBy=price&sortDir=asc
 
-### ToDo — with Search + Pagination
+# Только в наличии
+GET https://your-app.vercel.app/api/products?inStock=true
 
-| Method | Endpoint | Query Params |
-|--------|----------|--------------|
-| GET | `/api/to-dos` | `?page=1&pageSize=5&search=keyword&categoryId=1&completed=false&sortBy=createdat&sortDir=desc` |
-| GET | `/api/to-dos/{id}` | — |
-| POST | `/api/to-dos` | Body: `{title, description, categoryId}` |
-| PUT | `/api/to-dos/{id}` | Body: `{title?, description?, categoryId?}` |
-| PUT | `/api/to-dos/completed` | Body: `{todoId, completed}` |
-| DELETE | `/api/to-dos?ids=1,2` | Delete multiple |
-| DELETE | `/api/to-dos/{id}` | Delete one |
-
----
-
-## 🔍 Search + Pagination Example
-
-```
-GET /api/to-dos?page=1&pageSize=5&search=meeting&categoryId=1&completed=false&sortBy=createdat&sortDir=desc
-```
-
-**Response:**
-
-```json
-{
-  "items": [
-    {
-      "id": 1,
-      "title": "Team meeting",
-      "description": "Weekly sync",
-      "completed": false,
-      "createdAt": "2026-08-31T12:00:00Z",
-      "categoryId": 1,
-      "categoryName": "Work"
-    }
-  ],
-  "totalCount": 12,
-  "page": 1,
-  "pageSize": 5,
-  "totalPages": 3,
-  "hasPrevious": false,
-  "hasNext": true
-}
-```
-
-### Query Parameters
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `page` | int | 1 | Page number (starts at 1) |
-| `pageSize` | int | 5 | Items per page |
-| `search` | string? | — | Search in title + description |
-| `categoryId` | int? | — | Filter by category |
-| `completed` | bool? | — | Filter by completion status |
-| `sortBy` | string | createdat | Sort: `title` or `createdat` |
-| `sortDir` | string | desc | Sort direction: `asc` or `desc` |
-
----
-
-## 📁 Project Structure
-
-```
-ToDoApi/
-├── Program.cs                    # App setup + Swagger config
-├── ToDoApi.csproj                # NuGet packages
-├── appsettings.json              # Config
-├── Dockerfile                    # Docker support
-├── .gitignore
-├── LICENSE
-├── Properties/
-│   └── launchSettings.json       # Launch settings
-├── Data/
-│   ├── AppDbContext.cs           # EF Core DbContext
-│   └── SeedData.cs               # Seed data (12 todos, 3 categories)
-├── Models/
-│   ├── Category.cs               # Category model
-│   └── ToDo.cs                   # ToDo model
-├── DTOs/
-│   ├── CategoryDtos.cs           # Category DTOs
-│   └── ToDoDtos.cs               # ToDo DTOs + PaginationParams + PagedResult
-└── Controllers/
-    ├── CategoriesController.cs   # Category CRUD
-    └── ToDosController.cs        # ToDo CRUD + Search + Pagination
+# Swagger UI
+https://your-app.vercel.app/swagger
 ```
 
 ---
 
-## ⚙️ Configuration
+## 📊 Данные
 
-### Switch from InMemory to SQL Server
-
-In `Program.cs`, replace:
-
-```csharp
-// InMemory (for testing)
-builder.Services.AddDbContext<AppDbContext>(opt =>
-    opt.UseInMemoryDatabase("ToDoDb"));
-```
-
-With:
-
-```csharp
-// SQL Server
-builder.Services.AddDbContext<AppDbContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
-```
-
-Then add the EF Core SQL Server package:
-
-```bash
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-```
-
-### Add a Migration (when using SQL Server)
-
-```bash
-dotnet tool install --global dotnet-ef    # one-time
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
+- **8 категорий**: Игрушки, Одежда, Обувь, Книги, Детская комната, Гигиена, Питание, Спорт
+- **25 товаров** с: name, description, price, oldPrice, image, rating, inStock, ageGroup
+- Все изображения — Unsplash (бесплатные)
 
 ---
 
-## ✅ Features
+## 🎨 Использование с Figma
 
-- ✅ **GET** — retrieve all or by ID
-- ✅ **POST** — create new items
-- ✅ **PUT** — update items (full + partial)
-- ✅ **DELETE** — single or multiple IDs
-- ✅ **Search** — keyword search in title + description
-- ✅ **Pagination** — page + pageSize with metadata
-- ✅ **Filter** — by category and completion status
-- ✅ **Sort** — by title or creation date, ascending/descending
-- ✅ **Swagger UI** — auto-generated docs with examples
-- ✅ **JWT Auth** — Bearer token support in Swagger
-- ✅ **Seed Data** — 12 todos and 3 categories ready to test
-- ✅ **Docker** — containerized for easy deployment
-- ✅ **CORS** — enabled for frontend integration
-
----
-
-## 🛠 Tech Stack
-
-- **ASP.NET Core 8.0** Web API
-- **Entity Framework Core** (InMemory for dev, SQL Server ready)
-- **Swashbuckle.AspNetCore** (Swagger UI)
-- **JWT Bearer** authentication ready
-
----
-
-## 📄 License
-
-MIT — see [LICENSE](LICENSE)
+1. Открой Swagger UI: `https://your-app.vercel.app/swagger`
+2. Нажми на любой endpoint → Try it out → Execute
+3. Получи JSON-ответ с данными
+4. В Figma используй данные для заполнения дизайна:
+   - Категории → секции на главной
+   - Товары → карточки товаров
+   - Изображения → `<img src="...">` или Image fill
