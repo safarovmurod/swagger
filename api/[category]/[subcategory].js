@@ -3,13 +3,28 @@
 // с описанием и справкой info возвращается здесь же, отдельный запрос не нужен.
 const { categories, products, jsonRes, paginate, lightProduct } = require('../_helpers');
 
+// Та же страховка: /api/products/12, /api/blog/3 и подобные всегда попадают
+// в свой обработчик, даже если хостинг сопоставит их с динамическим маршрутом.
+const DELEGATE = {
+  products: '../products/[id].js',
+  categories: '../categories/[id].js',
+  subcategories: '../subcategories/[id].js',
+  promotions: '../promotions/[id].js',
+  blog: '../blog/[id].js'
+};
+
 module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return jsonRes(res, 200, {});
-  if (req.method !== 'GET') return jsonRes(res, 405, { message: 'Метод не поддерживается' });
 
   const q = req.query || {};
   const catKey = String(q.category || '');
   const subKey = String(q.subcategory || '');
+  if (DELEGATE[catKey]) {
+    req.query = Object.assign({}, q, { id: subKey });
+    return require(DELEGATE[catKey])(req, res);
+  }
+
+  if (req.method !== 'GET') return jsonRes(res, 405, { message: 'Метод не поддерживается' });
 
   const cat = categories.find(c => c.slug === catKey || c.id === parseInt(catKey));
   if (!cat) return jsonRes(res, 404, { message: `Категория «${catKey}» не найдена` });

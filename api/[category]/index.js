@@ -2,12 +2,24 @@
 // Категория целиком: описание, справка info, список подкатегорий и все её товары.
 const { categories, products, jsonRes, paginate, lightProduct } = require('../_helpers');
 
+// Страховка на случай, если хостинг отдаст статический путь в динамический
+// маршрут: /api/products и соседей всегда обслуживают их собственные файлы.
+const DELEGATE = {
+  products: '../products/index.js',
+  categories: '../categories/index.js',
+  subcategories: '../subcategories/index.js',
+  promotions: '../promotions/index.js',
+  blog: '../blog/index.js'
+};
+
 module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return jsonRes(res, 200, {});
-  if (req.method !== 'GET') return jsonRes(res, 405, { message: 'Метод не поддерживается' });
 
   const q = req.query || {};
   const key = String(q.category || '');
+  if (DELEGATE[key]) return require(DELEGATE[key])(req, res);
+
+  if (req.method !== 'GET') return jsonRes(res, 405, { message: 'Метод не поддерживается' });
   const cat = categories.find(c => c.slug === key || c.id === parseInt(key));
   if (!cat) return jsonRes(res, 404, { message: `Категория «${key}» не найдена` });
 
