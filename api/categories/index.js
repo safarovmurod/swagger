@@ -8,9 +8,11 @@ module.exports = async (req, res) => {
     const q = req.query || {};
     let result = categories.map(c => ({
       ...c,
+      url: `/api/${c.slug}`,
       productCount: products.filter(p => p.categoryId === c.id).length,
-      subcategories: (q.withSubcategories === 'false') ? undefined : c.subcategories.map(s => ({
+      subcategories: c.subcategories.map(s => ({
         ...s,
+        url: `/api/${c.slug}/${s.slug}`,
         productCount: products.filter(p => p.subcategoryId === s.id).length
       }))
     }));

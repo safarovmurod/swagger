@@ -26,7 +26,10 @@ const ROUTES = [
   ['/api/blog', 'api/blog/index.js'],
   ['/api/blog/:id', 'api/blog/[id].js'],
   ['/api/promotions', 'api/promotions/index.js'],
-  ['/api/promotions/:id', 'api/promotions/[id].js']
+  ['/api/promotions/:id', 'api/promotions/[id].js'],
+  // динамические — только после всех статических, как и на Vercel
+  ['/api/:category', 'api/[category]/index.js'],
+  ['/api/:category/:subcategory', 'api/[category]/[subcategory].js']
 ];
 
 const MIME = {

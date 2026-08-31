@@ -61,11 +61,24 @@ products.forEach(p => {
   });
 });
 
-// --- по 20 товаров в подкатегории (в «Акциях» — 10) ---
+// --- по 20 товаров в каждой подкатегории ---
 subcategories.forEach(s => {
   const n = products.filter(p => p.subcategoryId === s.id).length;
-  const expected = s.categoryId === 1 ? 10 : 20;
-  if (n !== expected) fail(`Подкатегория ${s.id} «${s.name}»: ${n} товаров вместо ${expected}`);
+  if (n !== 20) fail(`Подкатегория ${s.id} «${s.name}»: ${n} товаров вместо 20`);
+});
+
+// --- slug категории не должен перекрывать служебные пути /api/... ---
+const RESERVED = ['products', 'categories', 'subcategories', 'promotions', 'blog', 'swagger.json', 'swagger'];
+const seenSlugs = new Set();
+categories.forEach(c => {
+  if (RESERVED.includes(c.slug)) fail(`Категория ${c.id} «${c.name}»: slug «${c.slug}» перекрывает служебный путь /api/${c.slug}`);
+  if (seenSlugs.has(c.slug)) fail(`Дублирующийся slug категории: ${c.slug}`);
+  seenSlugs.add(c.slug);
+  const subSlugs = new Set();
+  c.subcategories.forEach(sc => {
+    if (subSlugs.has(sc.slug)) fail(`Категория «${c.name}»: дублирующийся slug подкатегории ${sc.slug}`);
+    subSlugs.add(sc.slug);
+  });
 });
 
 // --- акции: по одной на категорию ---

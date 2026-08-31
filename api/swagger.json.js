@@ -68,6 +68,7 @@ module.exports = (req, res) => {
     },
     servers: [{ url: baseUrl, description: 'Текущий сервер' }],
     tags: [
+      { name: 'Catalog', description: 'Категории и подкатегории по читаемым адресам: /api/avtokresla/gruppa-1', 'x-en': { description: 'Categories and subcategories at readable URLs: /api/avtokresla/gruppa-1' } },
       { name: 'Categories', description: 'Категории каталога и их подкатегории', 'x-en': { description: 'Catalog categories and their subcategories' } },
       { name: 'Subcategories', description: 'Подкатегории и массив товаров каждой из них', 'x-en': { description: 'Subcategories and the product array of each' } },
       { name: 'Products', description: 'Товары: фильтры, поиск, сортировка, CRUD', 'x-en': { description: 'Products: filters, search, sorting, CRUD' } },
@@ -76,6 +77,54 @@ module.exports = (req, res) => {
       { name: 'Blog', description: 'Статьи блога магазина', 'x-en': { description: 'Store blog posts' } }
     ],
     paths: {
+      '/api/{category}': {
+        get: {
+          tags: ['Catalog'],
+          summary: 'Категория целиком по своему адресу',
+          'x-en': { summary: 'Whole category at its own URL', description: 'Readable URL: /api/avtokresla, /api/kolyaski. Returns the category, its info block, subcategories and products.' },
+          description: 'Читаемый адрес: /api/avtokresla, /api/kolyaski, /api/detskaya-mebel. Возвращает саму категорию, справку info, список подкатегорий и товары — отдельный запрос за описанием не нужен.',
+          parameters: [
+            pathParam('category', 'slug категории: akcii, detskaya-mebel, kolyaski, avtokresla, odezhda, kormlenie, gigiena-i-uhod, umnye-igrushki', 'Category slug'),
+            q('subcategory', 'string', 'Оставить товары только этой подкатегории (slug или id)', 'Keep products of this subcategory only'),
+            q('search', 'string', 'Поиск по названию, бренду и описанию', 'Search by name, brand and description'),
+            q('brand', 'string', 'Бренды через запятую', 'Comma-separated brands'),
+            q('onlyPromo', 'boolean', 'Только акционные товары', 'Promo products only'),
+            q('isNew', 'boolean', 'Только новинки', 'New arrivals only'),
+            q('inStock', 'boolean', 'Наличие на складе', 'Stock availability'),
+            q('priceMin', 'integer', 'Цена от, ₽', 'Minimum price, RUB'),
+            q('priceMax', 'integer', 'Цена до, ₽', 'Maximum price, RUB'),
+            q('sortBy', 'string', 'price, rating, name, discount', 'price, rating, name, discount', { enum: ['price', 'rating', 'name', 'discount'] }),
+            q('sortDir', 'string', 'asc или desc', 'asc or desc', { enum: ['asc', 'desc'] }),
+            q('light', 'boolean', 'true — короткие карточки товаров', 'true — short product cards'),
+            ...PAGING
+          ],
+          responses: { ...ok('CategoryFeed', 'Категория с товарами', 'Category with products'), ...notFound }
+        }
+      },
+      '/api/{category}/{subcategory}': {
+        get: {
+          tags: ['Catalog'],
+          summary: 'Подкатегория целиком по своему адресу',
+          'x-en': { summary: 'Whole subcategory at its own URL', description: 'Readable URL: /api/avtokresla/gruppa-1. Returns the subcategory, its 20 products and the parent category with its info.' },
+          description: 'Читаемый адрес: /api/avtokresla/gruppa-1, /api/detskaya-mebel/krovatki. Возвращает подкатегорию, её 20 товаров и родительскую категорию со справкой info.',
+          parameters: [
+            pathParam('category', 'slug категории, например avtokresla', 'Category slug'),
+            pathParam('subcategory', 'slug подкатегории, например gruppa-1', 'Subcategory slug'),
+            q('search', 'string', 'Поиск по названию, бренду и описанию', 'Search by name, brand and description'),
+            q('brand', 'string', 'Бренды через запятую', 'Comma-separated brands'),
+            q('onlyPromo', 'boolean', 'Только акционные товары', 'Promo products only'),
+            q('isNew', 'boolean', 'Только новинки', 'New arrivals only'),
+            q('inStock', 'boolean', 'Наличие на складе', 'Stock availability'),
+            q('priceMin', 'integer', 'Цена от, ₽', 'Minimum price, RUB'),
+            q('priceMax', 'integer', 'Цена до, ₽', 'Maximum price, RUB'),
+            q('sortBy', 'string', 'price, rating, name, discount', 'price, rating, name, discount', { enum: ['price', 'rating', 'name', 'discount'] }),
+            q('sortDir', 'string', 'asc или desc', 'asc or desc', { enum: ['asc', 'desc'] }),
+            q('light', 'boolean', 'true — короткие карточки товаров', 'true — short product cards'),
+            ...PAGING
+          ],
+          responses: { ...ok('SubcategoryFeed', 'Подкатегория с товарами', 'Subcategory with products'), ...notFound }
+        }
+      },
       '/api/categories': {
         get: {
           tags: ['Categories'],
@@ -84,8 +133,7 @@ module.exports = (req, res) => {
           description: 'Возвращает все категории. У каждой — вложенный массив подкатегорий и количество товаров.',
           parameters: [
             ...PAGING,
-            q('search', 'string', 'Поиск по названию и описанию категории', 'Search by category name and description'),
-            q('withSubcategories', 'boolean', 'false — не возвращать подкатегории', 'false — omit subcategories')
+            q('search', 'string', 'Поиск по названию и описанию категории', 'Search by category name and description')
           ],
           responses: ok('CategoryPage', 'Список категорий', 'List of categories')
         },
@@ -505,6 +553,18 @@ module.exports = (req, res) => {
             title: { type: 'string' }, excerpt: { type: 'string' }, content: { type: 'string' },
             image: { type: 'string' }, date: { type: 'string' }
           }
+        },
+        CategoryFeed: {
+          allOf: [{ $ref: '#/components/schemas/Category' },
+            { type: 'object', properties: { products: { $ref: '#/components/schemas/ProductPage' } } }]
+        },
+        SubcategoryFeed: {
+          allOf: [{ $ref: '#/components/schemas/Subcategory' },
+            { type: 'object', properties: {
+              url: { type: 'string', example: '/api/avtokresla/gruppa-1' },
+              category: { $ref: '#/components/schemas/Category' },
+              products: { $ref: '#/components/schemas/ProductPage' }
+            } }]
         },
         CategoryPage: {
           allOf: [{ $ref: '#/components/schemas/Pagination' },
