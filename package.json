@@ -1,0 +1,13 @@
+{
+  "name": "kids-shop-api",
+  "version": "1.0.0",
+  "description": "Интернет-магазин товаров для детей — REST API с Swagger UI",
+  "main": "api/categories/index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": ["api", "swagger", "kids-shop", "ecommerce"],
+  "author": "safarovmurod",
+  "license": "MIT"
+}
