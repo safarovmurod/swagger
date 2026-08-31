@@ -1,7 +1,8 @@
 {
   "rewrites": [
     { "source": "/swagger", "destination": "/index.html" },
-    { "source": "/docs", "destination": "/index.html" }
+    { "source": "/docs", "destination": "/index.html" },
+    { "source": "/api/swagger.json", "destination": "/api/swagger" }
   ],
   "headers": [
     {

@@ -1,6 +1,6 @@
 {
   "name": "karapuz-api",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Карапуз — API интернет-магазина товаров для детей: категории, подкатегории, товары, отзывы, акции и блог",
   "license": "MIT",
   "private": true,
@@ -9,5 +9,5 @@
     "generate": "node scripts/generate-dataset.js",
     "check": "node scripts/check.js"
   },
-  "engines": { "node": ">=18" }
+  "engines": { "node": "22.x" }
 }

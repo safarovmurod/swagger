@@ -136,24 +136,34 @@ blog.forEach(b => {
   });
 });
 
-// --- спецификация: каждый путь должен иметь обработчик ---
-const fs = require('fs'), path = require('path');
+// --- спецификация: каждый путь должен разбираться роутером ---
+const { resolve, KNOWN_PATHS } = require('../lib/router');
 const specPaths = [];
 const collector = {
   setHeader() {}, end(json) { const spec = JSON.parse(json); specPaths.push(...Object.keys(spec.paths)); }
 };
-require('../api/swagger.json.js')({ headers: { host: 'localhost:3000' } }, collector);
+require('../lib/handlers/swagger.js')({ headers: { host: 'localhost:3000' } }, collector);
+
 specPaths.forEach(sp => {
-  const file = path.join(__dirname, '..',
-    sp.replace(/\{(\w+)\}/g, '[$1]').replace(/^\/api\/([^/]+)$/, 'api/$1/index') + '.js');
-  const alt = path.join(__dirname, '..', sp.slice(1) + '.js');
-  if (!fs.existsSync(file) && !fs.existsSync(alt)) fail(`Для пути ${sp} нет файла-обработчика (${path.relative(path.join(__dirname, '..'), file)})`);
+  const segments = sp.replace(/^\/api\/?/, '').split('/').filter(Boolean)
+    .map(seg => seg.replace(/^\{.+\}$/, '1'));
+  if (!resolve(segments)) fail(`Путь ${sp} из спецификации не разбирается роутером`);
 });
+KNOWN_PATHS.forEach(kp => {
+  if (kp === '/api/swagger.json') return;
+  if (!specPaths.includes(kp)) warn(`Маршрут ${kp} есть в роутере, но не описан в спецификации`);
+});
+
+// --- на бесплатном тарифе Vercel не больше 12 serverless-функций ---
+const apiDir = require('path').join(__dirname, '..', 'api');
+const fnCount = require('fs').readdirSync(apiDir)
+  .filter(f => f.endsWith('.js') && !f.startsWith('_')).length;
+if (fnCount > 12) fail(`serverless-функций ${fnCount} — на бесплатном тарифе Vercel деплой упадёт (лимит 12)`);
 
 // --- итог ---
 const subCount = subcategories.length;
 console.log(`Категорий: ${categories.length}  подкатегорий: ${subCount}  товаров: ${products.length}  акций: ${promotions.length}  статей: ${blog.length}`);
-console.log(`Путей в спецификации: ${specPaths.length}`);
+console.log(`Путей в спецификации: ${specPaths.length}  serverless-функций: ${fnCount} из 12`);
 warns.forEach(w => console.log('⚠  ' + w));
 if (errors.length) {
   console.log(`\n✘ Найдено ошибок: ${errors.length}`);

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // ============================================================
-// Локальный сервер для разработки: повторяет маршрутизацию Vercel
-// (файлы из /api → эндпоинты) и раздаёт статику из корня проекта.
+// Локальный сервер для разработки: вызывает ту же единственную функцию
+// api/[...path].js, что и Vercel, и раздаёт статику из корня проекта.
 //   node scripts/dev-server.js        → http://localhost:3000
 //   PORT=8080 node scripts/dev-server.js
 // ============================================================
@@ -12,43 +12,13 @@ const { URL } = require('url');
 
 const ROOT = path.join(__dirname, '..');
 const PORT = process.env.PORT || 3000;
-
-// путь → обработчик; :param попадает в req.query
-const ROUTES = [
-  ['/api/swagger.json', 'api/swagger.json.js'],
-  ['/api/categories', 'api/categories/index.js'],
-  ['/api/categories/:id', 'api/categories/[id].js'],
-  ['/api/subcategories', 'api/subcategories/index.js'],
-  ['/api/subcategories/:id', 'api/subcategories/[id].js'],
-  ['/api/products', 'api/products/index.js'],
-  ['/api/products/:id/reviews', 'api/products/[id]/reviews.js'],
-  ['/api/products/:id', 'api/products/[id].js'],
-  ['/api/blog', 'api/blog/index.js'],
-  ['/api/blog/:id', 'api/blog/[id].js'],
-  ['/api/promotions', 'api/promotions/index.js'],
-  ['/api/promotions/:id', 'api/promotions/[id].js'],
-  // динамические — только после всех статических, как и на Vercel
-  ['/api/:category', 'api/[category]/index.js'],
-  ['/api/:category/:subcategory', 'api/[category]/[subcategory].js']
-];
+const apiHandler = require(path.join(ROOT, 'api', '[...path].js'));
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.svg': 'image/svg+xml',
   '.json': 'application/json; charset=utf-8', '.js': 'text/javascript; charset=utf-8',
   '.css': 'text/css; charset=utf-8', '.ico': 'image/x-icon', '.png': 'image/png'
 };
-
-function match(pattern, pathname) {
-  const a = pattern.split('/').filter(Boolean);
-  const b = pathname.split('/').filter(Boolean);
-  if (a.length !== b.length) return null;
-  const params = {};
-  for (let i = 0; i < a.length; i++) {
-    if (a[i].startsWith(':')) params[a[i].slice(1)] = decodeURIComponent(b[i]);
-    else if (a[i] !== b[i]) return null;
-  }
-  return params;
-}
 
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
@@ -59,13 +29,12 @@ const server = http.createServer(async (req, res) => {
     res.end(JSON.stringify(data));
   };
 
-  for (const [pattern, file] of ROUTES) {
-    const params = match(pattern, pathname);
-    if (!params) continue;
-    req.query = { ...Object.fromEntries(url.searchParams), ...params };
+  // все /api/* уходят в ту же функцию, что и на Vercel
+  if (pathname === '/api' || pathname.startsWith('/api/')) {
+    const segments = pathname.split('/').filter(Boolean).slice(1).map(decodeURIComponent);
+    req.query = { ...Object.fromEntries(url.searchParams), path: segments };
     try {
-      const handler = require(path.join(ROOT, file));
-      return await handler(req, res);
+      return await apiHandler(req, res);
     } catch (err) {
       console.error(err);
       res.statusCode = 500;

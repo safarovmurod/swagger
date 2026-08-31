@@ -97,6 +97,11 @@ REST API интернет-магазина детских товаров + со�
 
 ## Разработка
 
+На бесплатном тарифе Vercel деплой ограничен 12 serverless-функциями, поэтому
+все эндпоинты обслуживает один обработчик `api/[...path].js`, а маршрутизация
+живёт в `lib/router.js` — тот же роутер использует локальный сервер.
+`npm run check` следит, чтобы функций в `/api` не стало больше 12.
+
 ```bash
 npm run dev        # http://localhost:3000 — API + страница документации
 npm run generate   # пересобрать lib/dataset.json из описания каталога
@@ -111,14 +116,18 @@ npm run check      # проверить целостность данных и �
 
 ```
 api/
-  swagger.json.js          OpenAPI 3.0.3, двуязычная
-  _helpers.js              CORS, пагинация, разбор тела
-  categories/              index.js, [id].js
-  subcategories/           index.js, [id].js
-  products/                index.js, [id].js, [id]/reviews.js
-  promotions/              index.js, [id].js
-  blog/                    index.js, [id].js
+  [...path].js             единственная serverless-функция: все /api/* маршруты
 lib/
+  router.js                разбор пути → нужный обработчик
+  handlers/
+    _helpers.js            CORS, пагинация, разбор тела
+    swagger.js             OpenAPI 3.0.3, двуязычная
+    catalog/               category.js, subcategory.js — читаемые адреса
+    categories/            list.js, item.js
+    subcategories/         list.js, item.js
+    products/              list.js, item.js, reviews.js
+    promotions/            list.js, item.js
+    blog/                  list.js, item.js
   catalog.js               бренды и страны, авторы отзывов, пулы изображений
   copy.js                  тексты: справка категорий, акции, описания подкатегорий
   tree.js                  8 категорий → 37 подкатегорий с описанием товаров
