@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
 
   const productId = parseInt(req.query.id);
   const product = products.find(p => p.id === productId);
-  if (!product) return jsonRes(res, 404, { message: `Product ${productId} not found` });
+  if (!product) return jsonRes(res, 404, { message: `Товар ${productId} не найден` });
 
   // GET /api/products/:id/reviews
   if (req.method === 'GET') {
@@ -23,8 +23,8 @@ module.exports = async (req, res) => {
   // POST /api/products/:id/reviews — add review
   if (req.method === 'POST') {
     const body = await getBody(req);
-    if (!body.author) return jsonRes(res, 400, { message: 'Author is required' });
-    if (!body.comment) return jsonRes(res, 400, { message: 'Comment is required' });
+    if (!body.author) return jsonRes(res, 400, { message: 'Поле author обязательно' });
+    if (!body.comment) return jsonRes(res, 400, { message: 'Поле comment обязательно' });
 
     const review = {
       id: product.reviews.length > 0 ? Math.max(...product.reviews.map(r => r.id)) + 1 : 1,
@@ -38,10 +38,10 @@ module.exports = async (req, res) => {
 
     product.reviews.push(review);
     product.reviewCount = product.reviews.length;
-    product.rating = product.reviews.reduce((s, r) => s + r.rating, 0) / product.reviews.length;
+    product.rating = Math.round((product.reviews.reduce((s, r) => s + r.rating, 0) / product.reviews.length) * 10) / 10;
 
     return jsonRes(res, 201, review);
   }
 
-  return jsonRes(res, 405, { message: 'Method not allowed' });
+  return jsonRes(res, 405, { message: 'Метод не поддерживается' });
 };

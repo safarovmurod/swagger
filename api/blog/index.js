@@ -1,4 +1,4 @@
-const { blog, jsonRes, paginate, getBody } = require('../_helpers');
+const { blog, jsonRes, paginate, getBody, nextId } = require('../_helpers');
 
 module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return jsonRes(res, 200, {});
@@ -18,15 +18,15 @@ module.exports = async (req, res) => {
       result = result.map(({ content, ...rest }) => rest);
     }
 
-    return jsonRes(res, 200, paginate(result, q.page, q.pageSize));
+    return jsonRes(res, 200, paginate(result, q.page, q.pageSize, 12));
   }
 
   // POST /api/blog — create
   if (req.method === 'POST') {
     const body = await getBody(req);
-    if (!body.title) return jsonRes(res, 400, { message: 'Title is required' });
+    if (!body.title) return jsonRes(res, 400, { message: 'Поле title обязательно' });
     const newPost = {
-      id: Math.max(...blog.map(b => b.id)) + 1,
+      id: nextId(blog),
       title: body.title,
       excerpt: body.excerpt || '',
       date: body.date || new Date().toISOString().split('T')[0],
@@ -37,5 +37,5 @@ module.exports = async (req, res) => {
     return jsonRes(res, 201, newPost);
   }
 
-  return jsonRes(res, 405, { message: 'Method not allowed' });
+  return jsonRes(res, 405, { message: 'Метод не поддерживается' });
 };

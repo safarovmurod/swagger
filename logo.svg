@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Softclub">
+  <path d="M52 6 H24 L6 24 h28 z" fill="currentColor"/>
+  <path d="M12 58 h28 l18-18 H30 z" fill="currentColor" opacity=".72"/>
+  <path d="M34 24 H6 l10 10 h28 z" fill="currentColor" opacity=".45"/>
+</svg>

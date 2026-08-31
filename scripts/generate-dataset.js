@@ -1,0 +1,233 @@
+#!/usr/bin/env node
+// ============================================================
+// Генератор датасета магазина «Карапуз».
+// Читает lib/tree.js + lib/catalog.js и собирает lib/dataset.json:
+// 8 категорий, 37 подкатегорий, 730 товаров, 8 акций, 12 статей блога.
+// Генерация детерминированная (сид фиксирован) — повторный запуск
+// даёт побайтово тот же файл.
+//   node scripts/generate-dataset.js
+// ============================================================
+const fs = require('fs');
+const path = require('path');
+const { categories: tree } = require('../lib/tree');
+const { BRAND_COUNTRY, AUTHORS, PROS, CONS, COMMENTS } = require('../lib/catalog');
+
+// --- детерминированный ГПСЧ (mulberry32) ---
+function rng(seed) {
+  let a = seed >>> 0;
+  return function () {
+    a = (a + 0x6D2B79F5) >>> 0;
+    let t = a;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+const rand = rng(20260831);
+const pick = (arr) => arr[Math.floor(rand() * arr.length)];
+const pickN = (arr, n) => {
+  const copy = [...arr];
+  const take = Math.min(n, copy.length);
+  const out = [];
+  while (out.length < take) out.push(copy.splice(Math.floor(rand() * copy.length), 1)[0]);
+  return out;
+};
+const int = (min, max) => min + Math.floor(rand() * (max - min + 1));
+
+// --- транслитерация для slug ---
+const TRANSLIT = {
+  а:'a',б:'b',в:'v',г:'g',д:'d',е:'e',ё:'e',ж:'zh',з:'z',и:'i',й:'y',к:'k',л:'l',м:'m',
+  н:'n',о:'o',п:'p',р:'r',с:'s',т:'t',у:'u',ф:'f',х:'h',ц:'c',ч:'ch',ш:'sh',щ:'sch',
+  ъ:'',ы:'y',ь:'',э:'e',ю:'yu',я:'ya'
+};
+function slugify(str) {
+  return str.toLowerCase().split('').map(ch => TRANSLIT[ch] !== undefined ? TRANSLIT[ch] : ch)
+    .join('').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+}
+
+// --- цена: округляем «по-магазинному» ---
+function priceIn([min, max]) {
+  const v = min + rand() * (max - min);
+  if (v < 1000) return Math.round(v / 10) * 10;
+  if (v < 10000) return Math.round(v / 50) * 50;
+  return Math.round(v / 100) * 100;
+}
+
+// --- отзывы ---
+function makeReviews(count) {
+  const authors = pickN(AUTHORS, count);
+  return authors.map((author, i) => ({
+    id: i + 1,
+    author,
+    date: `20${int(19, 25)}-${String(int(1, 12)).padStart(2, '0')}-${String(int(1, 28)).padStart(2, '0')}`,
+    rating: rand() < 0.62 ? 5 : (rand() < 0.75 ? 4 : 3),
+    pros: pick(PROS),
+    cons: pick(CONS),
+    comment: pick(COMMENTS)
+  })).sort((a, b) => a.date.localeCompare(b.date)).map((r, i) => ({ ...r, id: i + 1 }));
+}
+
+// --- сборка ---
+const products = [];
+const outCategories = [];
+let pid = 1;
+
+for (const cat of tree) {
+  const subcategories = [];
+
+  for (const sub of cat.subcategories) {
+    const total = sub.count || 20;
+
+    // уникальные пары бренд+линейка
+    const combos = [];
+    for (const brand of sub.brands) for (const line of sub.lines) combos.push({ brand, line });
+    const chosen = pickN(combos, total);
+
+    for (const { brand, line } of chosen) {
+      const country = BRAND_COUNTRY[brand] || 'Россия';
+      const name = `${sub.type} ${brand} ${line}, ${country}`;
+      const isAkcii = cat.id === 1;
+      const isPromo = isAkcii ? true : rand() < 0.32;
+      const price = priceIn(sub.price);
+      const discount = isPromo ? int(10, 35) : 0;
+      const oldPrice = isPromo ? Math.round((price / (1 - discount / 100)) / 10) * 10 : null;
+
+      const imgId = pick(sub.img);
+      const image = `https://images.unsplash.com/photo-${imgId}?w=600&q=80`;
+      const others = sub.img.filter(x => x !== imgId);
+      const images = [
+        image,
+        `https://images.unsplash.com/photo-${imgId}?w=900&q=80&fit=crop`,
+        `https://images.unsplash.com/photo-${others.length ? pick(others) : imgId}?w=900&q=80`
+      ];
+
+      const characteristics = {};
+      for (const [key, values] of Object.entries(sub.chars)) characteristics[key] = pick(values);
+      characteristics['Бренд'] = brand;
+      characteristics['Страна производства'] = country;
+
+      const feats = pickN(sub.features, 3);
+      const description = `${sub.type} ${brand} ${line} — ${feats[0].charAt(0).toLowerCase()}${feats[0].slice(1)}. ${feats[1]}. ${feats[2]}.`;
+
+      const reviews = makeReviews(rand() < 0.18 ? 0 : int(1, 4));
+      const rating = reviews.length
+        ? Math.round((reviews.reduce((s, r) => s + r.rating, 0) / reviews.length) * 10) / 10
+        : 0;
+
+      products.push({
+        id: pid,
+        name,
+        slug: `${slugify(`${sub.type}-${brand}-${line}`)}-${pid}`,
+        price,
+        oldPrice,
+        discount,
+        categoryId: cat.id,
+        categoryName: cat.name,
+        categorySlug: cat.slug,
+        subcategoryId: sub.id,
+        subcategoryName: sub.name,
+        subcategorySlug: sub.slug,
+        article: `Арт. ${String(100000 + pid * 7).slice(0, 6)}-${String(pid).padStart(4, '0')}`,
+        brand,
+        country,
+        image,
+        images,
+        description,
+        characteristics,
+        colorOptions: pickN(sub.colors, Math.min(sub.colors.length, int(2, 4))),
+        materials: pickN(sub.materials, Math.min(sub.materials.length, int(1, 3))),
+        ageGroup: sub.age,
+        rating,
+        reviewCount: reviews.length,
+        inStock: rand() < 0.92,
+        isNew: rand() < 0.22,
+        isPromo,
+        reviews
+      });
+      pid++;
+    }
+
+    subcategories.push({
+      id: sub.id,
+      name: sub.name,
+      slug: sub.slug,
+      categoryId: cat.id,
+      productCount: total
+    });
+  }
+
+  outCategories.push({
+    id: cat.id,
+    name: cat.name,
+    slug: cat.slug,
+    description: cat.description,
+    image: cat.image,
+    productCount: products.filter(p => p.categoryId === cat.id).length,
+    subcategories
+  });
+}
+
+// ============================================================
+// АКЦИИ — по одной на каждую категорию (8 штук), с полным текстом
+// ============================================================
+const PROMO_META = {
+  1: { title: 'Неделя скидок: готовые наборы для малыша', short: 'Готовые наборы для новорождённого по цене ниже, чем покупать по отдельности.' },
+  2: { title: 'Детская мебель со скидкой до 30%', short: 'Кроватки, комоды, шкафы и колыбели — со скидкой до 30% на складские остатки.' },
+  3: { title: 'Коляски: смена сезона, цены снижены', short: 'Прогулочные коляски и трансформеры прошлой коллекции — по сниженным ценам.' },
+  4: { title: 'Автокресла со скидкой — безопасность дешевле', short: 'Кресла всех весовых групп с краш-тестами ADAC по акции.' },
+  5: { title: 'Детская одежда: второй товар со скидкой', short: 'Комплекты, костюмы и комбинезоны для мальчиков и девочек по акции.' },
+  6: { title: 'Всё для кормления — вкусные скидки', short: 'Бутылочки, молокоотсосы, стульчики, посуда и детское питание со скидкой.' },
+  7: { title: 'Гигиена и уход: подгузники и косметика по акции', short: 'Подгузники большими упаковками и уходовая косметика по специальной цене.' },
+  8: { title: 'Умные игрушки — скидки к новому сезону', short: 'Развивающие, музыкальные и интерактивные игрушки со скидкой.' }
+};
+
+const promotions = outCategories.map((cat, i) => {
+  const promoProducts = products.filter(p => p.categoryId === cat.id && p.isPromo);
+  const list = promoProducts.slice(0, 12);
+  const maxDiscount = list.length ? Math.max(...list.map(p => p.discount)) : 15;
+  const meta = PROMO_META[cat.id];
+  const start = `2026-0${(i % 9) + 1}-01`;
+  const end = `2026-0${(i % 9) + 1}-28`;
+
+  return {
+    id: i + 1,
+    slug: `akciya-${cat.slug}`,
+    title: meta.title,
+    description: meta.short,
+    content:
+      `${meta.title}.\n\n` +
+      `${meta.short} В акции участвуют товары категории «${cat.name}» — всего ${promoProducts.length} позиций, ` +
+      `максимальная скидка ${maxDiscount}%.\n\n` +
+      `Как получить скидку: добавьте акционный товар в корзину — цена пересчитается автоматически, промокод вводить не нужно. ` +
+      `Акция действует с ${start} по ${end} или до окончания складских остатков.\n\n` +
+      `Условия: скидка не суммируется с другими акциями и подарочными сертификатами. ` +
+      `Товар можно вернуть в течение 14 дней при сохранении товарного вида и упаковки. ` +
+      `Доставка по городу бесплатная при заказе от 5000 ₽.`,
+    image: cat.image,
+    discount: maxDiscount,
+    categoryId: cat.id,
+    categoryName: cat.name,
+    dateStart: start,
+    dateEnd: end,
+    date: start,
+    isActive: true,
+    productCount: list.length,
+    products: list.map(p => p.id)
+  };
+});
+
+// ============================================================
+// БЛОГ
+// ============================================================
+const blog = require('../lib/blog-posts.json');
+
+const dataset = { categories: outCategories, products, promotions, blog };
+const outPath = path.join(__dirname, '..', 'lib', 'dataset.json');
+fs.writeFileSync(outPath, JSON.stringify(dataset, null, 1) + '\n', 'utf8');
+
+const bySub = {};
+products.forEach(p => { bySub[p.subcategoryId] = (bySub[p.subcategoryId] || 0) + 1; });
+console.log(`✔ lib/dataset.json — ${outCategories.length} категорий, ` +
+  `${outCategories.reduce((s, c) => s + c.subcategories.length, 0)} подкатегорий, ` +
+  `${products.length} товаров, ${promotions.length} акций, ${blog.length} статей блога`);
+console.log('  товаров в подкатегориях:', [...new Set(Object.values(bySub))].sort((a, b) => a - b).join(', '));

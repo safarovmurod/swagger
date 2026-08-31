@@ -1,36 +1,50 @@
-const { categories, products, jsonRes, getBody } = require('../_helpers');
+const { categories, products, jsonRes, paginate, getBody, lightProduct } = require('../_helpers');
 
 module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return jsonRes(res, 200, {});
 
-  const id = parseInt(req.query.id);
+  const q = req.query || {};
+  const key = q.id;
+  const cat = categories.find(c => c.id === parseInt(key) || c.slug === key);
 
-  // GET /api/categories/:id
+  // GET /api/categories/:id — категория + подкатегории + товары (с пагинацией)
   if (req.method === 'GET') {
-    const cat = categories.find(c => c.id === id);
-    if (!cat) return jsonRes(res, 404, { message: `Category ${id} not found` });
-    const catProducts = products.filter(p => p.categoryId === id);
-    return jsonRes(res, 200, { ...cat, productCount: catProducts.length, products: catProducts });
+    if (!cat) return jsonRes(res, 404, { message: `Категория ${key} не найдена` });
+    let catProducts = products.filter(p => p.categoryId === cat.id);
+    if (q.subcategoryId) catProducts = catProducts.filter(p => p.subcategoryId === parseInt(q.subcategoryId));
+    if (q.light !== 'false') catProducts = catProducts.map(lightProduct);
+
+    return jsonRes(res, 200, {
+      id: cat.id,
+      name: cat.name,
+      slug: cat.slug,
+      description: cat.description,
+      image: cat.image,
+      productCount: products.filter(p => p.categoryId === cat.id).length,
+      subcategories: cat.subcategories.map(s => ({
+        ...s,
+        productCount: products.filter(p => p.subcategoryId === s.id).length
+      })),
+      products: paginate(catProducts, q.page, q.pageSize, 20)
+    });
   }
 
   // PUT /api/categories/:id
   if (req.method === 'PUT') {
-    const cat = categories.find(c => c.id === id);
-    if (!cat) return jsonRes(res, 404, { message: `Category ${id} not found` });
+    if (!cat) return jsonRes(res, 404, { message: `Категория ${key} не найдена` });
     const body = await getBody(req);
-    if (body.name) cat.name = body.name;
-    if (body.description) cat.description = body.description;
-    if (body.image) cat.image = body.image;
+    ['name', 'slug', 'description', 'image'].forEach(f => { if (body[f] !== undefined) cat[f] = body[f]; });
+    if (Array.isArray(body.subcategories)) cat.subcategories = body.subcategories;
     return jsonRes(res, 200, cat);
   }
 
   // DELETE /api/categories/:id
   if (req.method === 'DELETE') {
-    const idx = categories.findIndex(c => c.id === id);
-    if (idx < 0) return jsonRes(res, 404, { message: `Category ${id} not found` });
+    const idx = categories.findIndex(c => c.id === parseInt(key) || c.slug === key);
+    if (idx < 0) return jsonRes(res, 404, { message: `Категория ${key} не найдена` });
     const deleted = categories.splice(idx, 1)[0];
-    return jsonRes(res, 200, { message: `Category ${id} deleted`, deleted });
+    return jsonRes(res, 200, { message: `Категория ${deleted.id} удалена`, deleted });
   }
 
-  return jsonRes(res, 405, { message: 'Method not allowed' });
+  return jsonRes(res, 405, { message: 'Метод не поддерживается' });
 };

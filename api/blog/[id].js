@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
 
   // GET /api/blog/:id
   if (req.method === 'GET') {
-    if (!post) return jsonRes(res, 404, { message: `Blog post ${id} not found` });
+    if (!post) return jsonRes(res, 404, { message: `Статья ${id} не найдена` });
 
     // Find next post for navigation
     const idx = blog.findIndex(b => b.id === id);
@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
 
   // PUT /api/blog/:id
   if (req.method === 'PUT') {
-    if (!post) return jsonRes(res, 404, { message: `Blog post ${id} not found` });
+    if (!post) return jsonRes(res, 404, { message: `Статья ${id} не найдена` });
     const body = await getBody(req);
     if (body.title) post.title = body.title;
     if (body.excerpt) post.excerpt = body.excerpt;
@@ -31,10 +31,10 @@ module.exports = async (req, res) => {
   // DELETE /api/blog/:id
   if (req.method === 'DELETE') {
     const idx = blog.findIndex(b => b.id === id);
-    if (idx < 0) return jsonRes(res, 404, { message: `Blog post ${id} not found` });
+    if (idx < 0) return jsonRes(res, 404, { message: `Статья ${id} не найдена` });
     const deleted = blog.splice(idx, 1)[0];
-    return jsonRes(res, 200, { message: `Blog post ${id} deleted`, deleted });
+    return jsonRes(res, 200, { message: `Статья ${id} удалена`, deleted });
   }
 
-  return jsonRes(res, 405, { message: 'Method not allowed' });
+  return jsonRes(res, 405, { message: 'Метод не поддерживается' });
 };

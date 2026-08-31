@@ -1,38 +1,45 @@
-const { categories, products, jsonRes, paginate } = require('../_helpers');
+const { categories, products, jsonRes, paginate, getBody, nextId } = require('../_helpers');
 
 module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return jsonRes(res, 200, {});
 
-  // GET /api/categories
+  // GET /api/categories — все категории с подкатегориями
   if (req.method === 'GET') {
-    const { page, pageSize, search } = req.query;
+    const q = req.query || {};
     let result = categories.map(c => ({
       ...c,
-      productCount: products.filter(p => p.categoryId === c.id).length
+      productCount: products.filter(p => p.categoryId === c.id).length,
+      subcategories: (q.withSubcategories === 'false') ? undefined : c.subcategories.map(s => ({
+        ...s,
+        productCount: products.filter(p => p.subcategoryId === s.id).length
+      }))
     }));
-    if (search) {
-      const s = search.toLowerCase();
-      result = result.filter(c => c.name.toLowerCase().includes(s) || c.description.toLowerCase().includes(s));
+
+    if (q.search) {
+      const s = String(q.search).toLowerCase();
+      result = result.filter(c =>
+        c.name.toLowerCase().includes(s) || c.description.toLowerCase().includes(s));
     }
-    return jsonRes(res, 200, paginate(result, page, pageSize));
+
+    return jsonRes(res, 200, paginate(result, q.page, q.pageSize, 20));
   }
 
-  // POST /api/categories — create
+  // POST /api/categories — создать категорию
   if (req.method === 'POST') {
-    const { getBody } = require('../_helpers');
     const body = await getBody(req);
-    if (!body.name) return jsonRes(res, 400, { message: 'Name is required' });
+    if (!body.name) return jsonRes(res, 400, { message: 'Поле name обязательно' });
     const newCat = {
-      id: Math.max(...categories.map(c => c.id)) + 1,
+      id: nextId(categories),
       name: body.name,
-      slug: body.slug || body.name.toLowerCase().replace(/\s+/g, '-'),
+      slug: body.slug || String(body.name).toLowerCase().replace(/\s+/g, '-'),
       description: body.description || '',
       image: body.image || '',
+      productCount: 0,
       subcategories: body.subcategories || []
     };
     categories.push(newCat);
     return jsonRes(res, 201, newCat);
   }
 
-  return jsonRes(res, 405, { message: 'Method not allowed' });
+  return jsonRes(res, 405, { message: 'Метод не поддерживается' });
 };
