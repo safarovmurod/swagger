@@ -1,4 +1,4 @@
-const { categories, products } = require('../data');
+const { categories, products } = require('../_lib/data');
 
 module.exports = (req, res) => {
   // CORS — ҳар кас метавонад дархост кунад
