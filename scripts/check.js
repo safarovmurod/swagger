@@ -138,11 +138,16 @@ blog.forEach(b => {
   if (blogSlugs.has(b.slug)) fail(`Дублирующийся slug статьи: ${b.slug}`);
   blogSlugs.add(b.slug);
   if (b.content.length < 600) fail(`Статья ${b.id} «${b.title}»: текст всего ${b.content.length} символов — это заготовка, а не статья`);
+  if (!b.images || b.images.length < 2) fail(`Статья ${b.id} «${b.title}»: нужно минимум две иллюстрации`);
+  if (!b.quote) fail(`Статья ${b.id} «${b.title}»: нет выделенной цитаты`);
+  if (!b.tags || !b.tags.length) fail(`Статья ${b.id} «${b.title}»: нет тегов`);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(b.date)) fail(`Статья ${b.id}: дата «${b.date}» не в формате ГГГГ-ММ-ДД`);
   if (!(b.readingTime > 0)) fail(`Статья ${b.id}: не указано время чтения`);
   if (b.categoryId && !catIds.has(b.categoryId)) fail(`Статья ${b.id}: неизвестная категория ${b.categoryId}`);
 });
+if (blog.length < 24) fail(`Статей в блоге ${blog.length} — на сайте их две страницы по 12, нужно минимум 24`);
 uniq('Текст статьи', blog.map(b => ({ text: b.content, owner: b.title })));
+uniq('Цитата статьи', blog.map(b => ({ text: b.quote, owner: b.title })));
 uniq('Анонс статьи', blog.map(b => ({ text: b.excerpt, owner: b.title })));
 
 // --- спецификация: каждый путь должен разбираться роутером ---
