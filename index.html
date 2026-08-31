@@ -1108,7 +1108,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
   fetch('/api/categories?pageSize=50', { headers: { Accept: 'application/json' } })
     .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(function (data) {
-      state.cats = data.items || [];
+      state.cats = (data && (data.data || data.items)) || [];
       applyLang(state.lang);
     })
     .catch(function (err) {
