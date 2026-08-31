@@ -12,7 +12,7 @@ const { URL } = require('url');
 
 const ROOT = path.join(__dirname, '..');
 const PORT = process.env.PORT || 3000;
-const apiHandler = require(path.join(ROOT, 'api', '[...path].js'));
+const apiHandler = require(path.join(ROOT, 'lib', 'api-entry.js'));
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.svg': 'image/svg+xml',
