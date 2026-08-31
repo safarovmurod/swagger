@@ -87,6 +87,35 @@ promotions.forEach(pr => {
   });
 });
 
+// --- тексты не должны повторяться от категории к категории ---
+function uniq(label, values) {
+  const seen = new Map();
+  values.forEach(function (v) {
+    const key = String(v.text || '').trim();
+    if (!key) return;
+    if (seen.has(key)) fail(`${label}: одинаковый текст у «${seen.get(key)}» и «${v.owner}»`);
+    else seen.set(key, v.owner);
+  });
+}
+uniq('Текст акции', promotions.map(p => ({ text: p.content, owner: p.categoryName })));
+uniq('Описание акции', promotions.map(p => ({ text: p.description, owner: p.categoryName })));
+uniq('Заголовок акции', promotions.map(p => ({ text: p.title, owner: p.categoryName })));
+uniq('Описание категории', categories.map(c => ({ text: c.description, owner: c.name })));
+uniq('Справка категории', categories.map(c => ({ text: c.info && c.info.note, owner: c.name })));
+uniq('Условия доставки', categories.map(c => ({ text: c.info && c.info.delivery, owner: c.name })));
+uniq('Описание подкатегории', categories.flatMap(c => c.subcategories.map(sc => ({ text: sc.description, owner: c.name + ' / ' + sc.name }))));
+
+categories.forEach(c => {
+  if (!c.info) fail(`Категория ${c.id} «${c.name}»: нет блока info`);
+  else ['note', 'howToChoose', 'delivery', 'warranty', 'payment'].forEach(f => {
+    if (!c.info[f]) fail(`Категория ${c.id} «${c.name}»: пустое info.${f}`);
+  });
+  c.subcategories.forEach(sc => {
+    if (!sc.description) fail(`Подкатегория ${sc.id} «${sc.name}»: нет описания`);
+    else if (sc.description.length < 60) fail(`Подкатегория ${sc.id} «${sc.name}»: слишком короткое описание`);
+  });
+});
+
 // --- блог ---
 blog.forEach(b => {
   ['title', 'excerpt', 'content', 'image', 'date'].forEach(f => {

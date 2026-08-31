@@ -21,6 +21,7 @@ module.exports = async (req, res) => {
       description: cat.description,
       image: cat.image,
       productCount: products.filter(p => p.categoryId === cat.id).length,
+      info: cat.info,
       subcategories: cat.subcategories.map(s => ({
         ...s,
         productCount: products.filter(p => p.subcategoryId === s.id).length

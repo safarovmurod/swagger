@@ -7,6 +7,7 @@ function flatten() {
     id: s.id,
     name: s.name,
     slug: s.slug,
+    description: s.description || '',
     categoryId: c.id,
     categoryName: c.name,
     categorySlug: c.slug,

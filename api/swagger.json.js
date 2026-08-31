@@ -351,11 +351,21 @@ module.exports = (req, res) => {
             hasPrevious: { type: 'boolean' }, hasNext: { type: 'boolean' }
           }
         },
+        CategoryInfo: {
+          type: 'object',
+          description: 'Справка по категории — своя у каждой: на что смотреть при выборе, доставка, гарантия, оплата',
+          properties: {
+            note: { type: 'string' }, howToChoose: { type: 'string' },
+            delivery: { type: 'string' }, warranty: { type: 'string' }, payment: { type: 'string' }
+          }
+        },
         Subcategory: {
           type: 'object',
           properties: {
             id: { type: 'integer', example: 21 }, name: { type: 'string', example: 'Кроватки' },
-            slug: { type: 'string', example: 'krovatki' }, categoryId: { type: 'integer', example: 2 },
+            slug: { type: 'string', example: 'krovatki' },
+            description: { type: 'string', description: 'Описание подкатегории — своё у каждой из 37' },
+            categoryId: { type: 'integer', example: 2 },
             categoryName: { type: 'string', example: 'Детская мебель' },
             productCount: { type: 'integer', example: 20 }
           }
@@ -370,6 +380,7 @@ module.exports = (req, res) => {
             id: { type: 'integer', example: 2 }, name: { type: 'string', example: 'Детская мебель' },
             slug: { type: 'string', example: 'detskaya-mebel' }, description: { type: 'string' },
             image: { type: 'string' }, productCount: { type: 'integer', example: 120 },
+            info: { $ref: '#/components/schemas/CategoryInfo' },
             subcategories: { type: 'array', items: { $ref: '#/components/schemas/Subcategory' } }
           }
         },
@@ -457,7 +468,7 @@ module.exports = (req, res) => {
           properties: {
             id: { type: 'integer' }, slug: { type: 'string', example: 'akciya-kolyaski' },
             title: { type: 'string' }, description: { type: 'string' },
-            content: { type: 'string', description: 'Полный текст акции' },
+            content: { type: 'string', description: 'Полный текст акции — свой у каждой категории' },
             image: { type: 'string' }, discount: { type: 'integer', example: 30 },
             categoryId: { type: 'integer' }, categoryName: { type: 'string' },
             dateStart: { type: 'string' }, dateEnd: { type: 'string' }, isActive: { type: 'boolean' },

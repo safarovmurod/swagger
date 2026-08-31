@@ -11,6 +11,7 @@ const fs = require('fs');
 const path = require('path');
 const { categories: tree } = require('../lib/tree');
 const { BRAND_COUNTRY, AUTHORS, PROS, CONS, COMMENTS } = require('../lib/catalog');
+const { CATEGORY_INFO, PROMO, SUBCATEGORY_INFO } = require('../lib/copy');
 
 // --- детерминированный ГПСЧ (mulberry32) ---
 function rng(seed) {
@@ -151,6 +152,7 @@ for (const cat of tree) {
       id: sub.id,
       name: sub.name,
       slug: sub.slug,
+      description: SUBCATEGORY_INFO[sub.id] || '',
       categoryId: cat.id,
       productCount: total
     });
@@ -163,53 +165,34 @@ for (const cat of tree) {
     description: cat.description,
     image: cat.image,
     productCount: products.filter(p => p.categoryId === cat.id).length,
+    info: CATEGORY_INFO[cat.id],
     subcategories
   });
 }
 
 // ============================================================
-// АКЦИИ — по одной на каждую категорию (8 штук), с полным текстом
+// АКЦИИ — по одной на каждую категорию. Заголовок, описание, сроки
+// и полный текст берутся из lib/copy.js: у каждой категории свой.
 // ============================================================
-const PROMO_META = {
-  1: { title: 'Неделя скидок: готовые наборы для малыша', short: 'Готовые наборы для новорождённого по цене ниже, чем покупать по отдельности.' },
-  2: { title: 'Детская мебель со скидкой до 30%', short: 'Кроватки, комоды, шкафы и колыбели — со скидкой до 30% на складские остатки.' },
-  3: { title: 'Коляски: смена сезона, цены снижены', short: 'Прогулочные коляски и трансформеры прошлой коллекции — по сниженным ценам.' },
-  4: { title: 'Автокресла со скидкой — безопасность дешевле', short: 'Кресла всех весовых групп с краш-тестами ADAC по акции.' },
-  5: { title: 'Детская одежда: второй товар со скидкой', short: 'Комплекты, костюмы и комбинезоны для мальчиков и девочек по акции.' },
-  6: { title: 'Всё для кормления — вкусные скидки', short: 'Бутылочки, молокоотсосы, стульчики, посуда и детское питание со скидкой.' },
-  7: { title: 'Гигиена и уход: подгузники и косметика по акции', short: 'Подгузники большими упаковками и уходовая косметика по специальной цене.' },
-  8: { title: 'Умные игрушки — скидки к новому сезону', short: 'Развивающие, музыкальные и интерактивные игрушки со скидкой.' }
-};
-
 const promotions = outCategories.map((cat, i) => {
+  const meta = PROMO[cat.id];
   const promoProducts = products.filter(p => p.categoryId === cat.id && p.isPromo);
   const list = promoProducts.slice(0, 12);
   const maxDiscount = list.length ? Math.max(...list.map(p => p.discount)) : 15;
-  const meta = PROMO_META[cat.id];
-  const start = `2026-0${(i % 9) + 1}-01`;
-  const end = `2026-0${(i % 9) + 1}-28`;
 
   return {
     id: i + 1,
-    slug: `akciya-${cat.slug}`,
+    slug: meta.slug,
     title: meta.title,
-    description: meta.short,
-    content:
-      `${meta.title}.\n\n` +
-      `${meta.short} В акции участвуют товары категории «${cat.name}» — всего ${promoProducts.length} позиций, ` +
-      `максимальная скидка ${maxDiscount}%.\n\n` +
-      `Как получить скидку: добавьте акционный товар в корзину — цена пересчитается автоматически, промокод вводить не нужно. ` +
-      `Акция действует с ${start} по ${end} или до окончания складских остатков.\n\n` +
-      `Условия: скидка не суммируется с другими акциями и подарочными сертификатами. ` +
-      `Товар можно вернуть в течение 14 дней при сохранении товарного вида и упаковки. ` +
-      `Доставка по городу бесплатная при заказе от 5000 ₽.`,
+    description: meta.description,
+    content: meta.content,
     image: cat.image,
     discount: maxDiscount,
     categoryId: cat.id,
     categoryName: cat.name,
-    dateStart: start,
-    dateEnd: end,
-    date: start,
+    dateStart: meta.dateStart,
+    dateEnd: meta.dateEnd,
+    date: meta.dateStart,
     isActive: true,
     productCount: list.length,
     products: list.map(p => p.id)
