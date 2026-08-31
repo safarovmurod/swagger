@@ -1,7 +1,7 @@
 // OpenAPI / Swagger specification
 // Ин файл-ро Swagger UI мехонад ва ҳамаи endpointҳоро нишон медиҳад
 
-const { categories, products } = require('./_lib/data');
+const { categories, products } = require('../lib/data');
 
 module.exports = (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
