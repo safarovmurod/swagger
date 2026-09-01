@@ -100,6 +100,29 @@ promotions.forEach(pr => {
   });
 });
 
+// --- картинки: только свой эндпоинт, никаких внешних ссылок ---
+const { resolve: resolveRoute } = require('../lib/router');
+function checkImage(url, owner) {
+  if (!url) return fail(`${owner}: пустая ссылка на картинку`);
+  if (/^https?:\/\//.test(url)) return fail(`${owner}: внешняя ссылка на картинку ${url} — она может отдать 404`);
+  if (url.indexOf('/api/images/') !== 0) return fail(`${owner}: непонятная ссылка на картинку ${url}`);
+  const slug = url.replace('/api/images/', '').split('?')[0];
+  if (!resolveRoute(['images', slug])) fail(`${owner}: роутер не разберёт ${url}`);
+}
+products.forEach(p => {
+  checkImage(p.image, `Товар ${p.id}`);
+  (p.images || []).forEach((u, i) => checkImage(u, `Товар ${p.id}, картинка ${i + 1}`));
+});
+categories.forEach(c => {
+  checkImage(c.image, `Категория ${c.name}`);
+  c.subcategories.forEach(sc => checkImage(sc.image, `Подкатегория ${sc.name}`));
+});
+promotions.forEach(pr => checkImage(pr.image, `Акция ${pr.id}`));
+blog.forEach(b => {
+  checkImage(b.image, `Статья ${b.id}`);
+  (b.images || []).forEach((u, i) => checkImage(u, `Статья ${b.id}, картинка ${i + 1}`));
+});
+
 // --- тексты не должны повторяться от категории к категории ---
 function uniq(label, values) {
   const seen = new Map();

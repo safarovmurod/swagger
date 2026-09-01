@@ -8,10 +8,10 @@
   "readingTime": 5,
   "categoryId": 6,
   "categoryName": "Кормление",
-  "image": "https://images.unsplash.com/photo-1547592182-6371e6c1e8b0?w=900&q=80",
+  "image": "/api/images/post-pitanie-v-pervom-trimestre.svg",
   "images": [
-   "https://images.unsplash.com/photo-1547592182-6371e6c1e8b0?w=1200&q=80",
-   "https://images.unsplash.com/photo-1559453001-ee83ef38c473?w=900&q=80"
+   "/api/images/post-pitanie-v-pervom-trimestre.svg",
+   "/api/images/post-pitanie-v-pervom-trimestre.svg?variant=2"
   ],
   "tags": [
    "беременность",
@@ -30,10 +30,10 @@
   "readingTime": 2,
   "categoryId": 6,
   "categoryName": "Кормление",
-  "image": "https://images.unsplash.com/photo-1559453001-ee83ef38c473?w=900&q=80",
+  "image": "/api/images/post-skidki-na-detskoe-pitanie.svg",
   "images": [
-   "https://images.unsplash.com/photo-1559453001-ee83ef38c473?w=1200&q=80",
-   "https://images.unsplash.com/photo-1587654780291-1391c44b5f8a?w=900&q=80"
+   "/api/images/post-skidki-na-detskoe-pitanie.svg",
+   "/api/images/post-skidki-na-detskoe-pitanie.svg?variant=2"
   ],
   "tags": [
    "акция",
@@ -52,10 +52,10 @@
   "readingTime": 7,
   "categoryId": 3,
   "categoryName": "Коляски",
-  "image": "https://images.unsplash.com/photo-1591960991621-7439c32a00b8?w=900&q=80",
+  "image": "/api/images/post-kak-vybrat-pervuyu-kolyasku.svg",
   "images": [
-   "https://images.unsplash.com/photo-1591960991621-7439c32a00b8?w=1200&q=80",
-   "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=900&q=80"
+   "/api/images/post-kak-vybrat-pervuyu-kolyasku.svg",
+   "/api/images/post-kak-vybrat-pervuyu-kolyasku.svg?variant=2"
   ],
   "tags": [
    "коляски",
@@ -74,10 +74,10 @@
   "readingTime": 4,
   "categoryId": 8,
   "categoryName": "Умные игрушки",
-  "image": "https://images.unsplash.com/photo-1513423244312-9a1e3a3a3b8a?w=900&q=80",
+  "image": "/api/images/post-razvivayushchie-igrushki-0-6.svg",
   "images": [
-   "https://images.unsplash.com/photo-1513423244312-9a1e3a3a3b8a?w=1200&q=80",
-   "https://images.unsplash.com/photo-1558084666-f8aba1e3a3b8?w=900&q=80"
+   "/api/images/post-razvivayushchie-igrushki-0-6.svg",
+   "/api/images/post-razvivayushchie-igrushki-0-6.svg?variant=2"
   ],
   "tags": [
    "игрушки",
@@ -96,10 +96,10 @@
   "readingTime": 8,
   "categoryId": 4,
   "categoryName": "Автокресла",
-  "image": "https://images.unsplash.com/photo-1503602647580-7adf548c9b1a?w=900&q=80",
+  "image": "/api/images/post-kak-vybrat-avtokreslo.svg",
   "images": [
-   "https://images.unsplash.com/photo-1503602647580-7adf548c9b1a?w=1200&q=80",
-   "https://images.unsplash.com/photo-1503944583220-794cdba56b2f?w=900&q=80"
+   "/api/images/post-kak-vybrat-avtokreslo.svg",
+   "/api/images/post-kak-vybrat-avtokreslo.svg?variant=2"
   ],
   "tags": [
    "автокресла",
@@ -118,10 +118,10 @@
   "readingTime": 6,
   "categoryId": 2,
   "categoryName": "Детская мебель",
-  "image": "https://images.unsplash.com/photo-1522771930-78848d9293e8?w=900&q=80",
+  "image": "/api/images/post-gotovim-detskuyu-komnatu.svg",
   "images": [
-   "https://images.unsplash.com/photo-1522771930-78848d9293e8?w=1200&q=80",
-   "https://images.unsplash.com/photo-1505693416388-ac5ce068068c?w=900&q=80"
+   "/api/images/post-gotovim-detskuyu-komnatu.svg",
+   "/api/images/post-gotovim-detskuyu-komnatu.svg?variant=2"
   ],
   "tags": [
    "детская комната",
@@ -140,10 +140,10 @@
   "readingTime": 6,
   "categoryId": 6,
   "categoryName": "Кормление",
-  "image": "https://images.unsplash.com/photo-1547592182-6371e6c1e8b0?w=900&q=80",
+  "image": "/api/images/post-pervyy-prikorm.svg",
   "images": [
-   "https://images.unsplash.com/photo-1547592182-6371e6c1e8b0?w=1200&q=80",
-   "https://images.unsplash.com/photo-1559453001-ee83ef38c473?w=900&q=80"
+   "/api/images/post-pervyy-prikorm.svg",
+   "/api/images/post-pervyy-prikorm.svg?variant=2"
   ],
   "tags": [
    "прикорм",
@@ -162,10 +162,10 @@
   "readingTime": 4,
   "categoryId": 2,
   "categoryName": "Детская мебель",
-  "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=900&q=80",
+  "image": "/api/images/post-kak-ukachat-malysha.svg",
   "images": [
-   "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=1200&q=80",
-   "https://images.unsplash.com/photo-1522771930-78848d9293e8?w=900&q=80"
+   "/api/images/post-kak-ukachat-malysha.svg",
+   "/api/images/post-kak-ukachat-malysha.svg?variant=2"
   ],
   "tags": [
    "сон",
@@ -184,10 +184,10 @@
   "readingTime": 5,
   "categoryId": 5,
   "categoryName": "Одежда",
-  "image": "https://images.unsplash.com/photo-1544057967-3e7c83480ee6?w=900&q=80",
+  "image": "/api/images/post-zimnyaya-odezhda-dlya-malysha.svg",
   "images": [
-   "https://images.unsplash.com/photo-1544057967-3e7c83480ee6?w=1200&q=80",
-   "https://images.unsplash.com/photo-1519278429378-e06883480ee6?w=900&q=80"
+   "/api/images/post-zimnyaya-odezhda-dlya-malysha.svg",
+   "/api/images/post-zimnyaya-odezhda-dlya-malysha.svg?variant=2"
   ],
   "tags": [
    "зима",
@@ -206,10 +206,10 @@
   "readingTime": 7,
   "categoryId": 2,
   "categoryName": "Детская мебель",
-  "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068068c?w=900&q=80",
+  "image": "/api/images/post-kak-vybrat-krovatku.svg",
   "images": [
-   "https://images.unsplash.com/photo-1505693416388-ac5ce068068c?w=1200&q=80",
-   "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=900&q=80"
+   "/api/images/post-kak-vybrat-krovatku.svg",
+   "/api/images/post-kak-vybrat-krovatku.svg?variant=2"
   ],
   "tags": [
    "кроватка",
@@ -228,10 +228,10 @@
   "readingTime": 6,
   "categoryId": 7,
   "categoryName": "Гигиена и уход",
-  "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900&q=80",
+  "image": "/api/images/post-gigiena-novorozhdennogo.svg",
   "images": [
-   "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200&q=80",
-   "https://images.unsplash.com/photo-1556228456574-531c6c77c5b0?w=900&q=80"
+   "/api/images/post-gigiena-novorozhdennogo.svg",
+   "/api/images/post-gigiena-novorozhdennogo.svg?variant=2"
   ],
   "tags": [
    "гигиена",
@@ -250,10 +250,10 @@
   "readingTime": 4,
   "categoryId": 1,
   "categoryName": "Акции",
-  "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068068c?w=900&q=80",
+  "image": "/api/images/post-podarki-dlya-molodoy-mamy.svg",
   "images": [
-   "https://images.unsplash.com/photo-1505693416388-ac5ce068068c?w=1200&q=80",
-   "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=900&q=80"
+   "/api/images/post-podarki-dlya-molodoy-mamy.svg",
+   "/api/images/post-podarki-dlya-molodoy-mamy.svg?variant=2"
   ],
   "tags": [
    "подарки",
@@ -272,10 +272,10 @@
   "readingTime": 6,
   "categoryId": 3,
   "categoryName": "Коляски",
-  "image": "https://images.unsplash.com/photo-1591960991621-7439c32a00b8?w=900&q=80",
+  "image": "/api/images/post-kolyaska-dlya-dvoyni.svg",
   "images": [
-   "https://images.unsplash.com/photo-1591960991621-7439c32a00b8?w=1200&q=80",
-   "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=900&q=80"
+   "/api/images/post-kolyaska-dlya-dvoyni.svg",
+   "/api/images/post-kolyaska-dlya-dvoyni.svg?variant=2"
   ],
   "tags": [
    "двойня",
@@ -294,10 +294,10 @@
   "readingTime": 5,
   "categoryId": 7,
   "categoryName": "Гигиена и уход",
-  "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900&q=80",
+  "image": "/api/images/post-chto-vzyat-v-roddom.svg",
   "images": [
-   "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200&q=80",
-   "https://images.unsplash.com/photo-1556228456574-531c6c77c5b0?w=900&q=80"
+   "/api/images/post-chto-vzyat-v-roddom.svg",
+   "/api/images/post-chto-vzyat-v-roddom.svg?variant=2"
   ],
   "tags": [
    "роддом",
@@ -316,10 +316,10 @@
   "readingTime": 5,
   "categoryId": 5,
   "categoryName": "Одежда",
-  "image": "https://images.unsplash.com/photo-1544057967-3e7c83480ee6?w=900&q=80",
+  "image": "/api/images/post-skolko-odezhdy-novorozhdennomu.svg",
   "images": [
-   "https://images.unsplash.com/photo-1544057967-3e7c83480ee6?w=1200&q=80",
-   "https://images.unsplash.com/photo-1519278429378-e06883480ee6?w=900&q=80"
+   "/api/images/post-skolko-odezhdy-novorozhdennomu.svg",
+   "/api/images/post-skolko-odezhdy-novorozhdennomu.svg?variant=2"
   ],
   "tags": [
    "одежда",
@@ -338,10 +338,10 @@
   "readingTime": 5,
   "categoryId": 6,
   "categoryName": "Кормление",
-  "image": "https://images.unsplash.com/photo-1547592182-6371e6c1e8b0?w=900&q=80",
+  "image": "/api/images/post-molokootsos-ruchnoy-ili-elektricheskiy.svg",
   "images": [
-   "https://images.unsplash.com/photo-1547592182-6371e6c1e8b0?w=1200&q=80",
-   "https://images.unsplash.com/photo-1559453001-ee83ef38c473?w=900&q=80"
+   "/api/images/post-molokootsos-ruchnoy-ili-elektricheskiy.svg",
+   "/api/images/post-molokootsos-ruchnoy-ili-elektricheskiy.svg?variant=2"
   ],
   "tags": [
    "молокоотсос",
@@ -360,10 +360,10 @@
   "readingTime": 4,
   "categoryId": 7,
   "categoryName": "Гигиена и уход",
-  "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900&q=80",
+  "image": "/api/images/post-kak-podobrat-razmer-podguznikov.svg",
   "images": [
-   "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200&q=80",
-   "https://images.unsplash.com/photo-1556228456574-531c6c77c5b0?w=900&q=80"
+   "/api/images/post-kak-podobrat-razmer-podguznikov.svg",
+   "/api/images/post-kak-podobrat-razmer-podguznikov.svg?variant=2"
   ],
   "tags": [
    "подгузники",
@@ -382,10 +382,10 @@
   "readingTime": 5,
   "categoryId": 4,
   "categoryName": "Автокресла",
-  "image": "https://images.unsplash.com/photo-1503944583220-794cdba56b2f?w=900&q=80",
+  "image": "/api/images/post-kogda-peresazhivat-v-gruppu-1.svg",
   "images": [
-   "https://images.unsplash.com/photo-1503944583220-794cdba56b2f?w=1200&q=80",
-   "https://images.unsplash.com/photo-1503602647580-7adf548c9b1a?w=900&q=80"
+   "/api/images/post-kogda-peresazhivat-v-gruppu-1.svg",
+   "/api/images/post-kogda-peresazhivat-v-gruppu-1.svg?variant=2"
   ],
   "tags": [
    "автокресла",
@@ -404,10 +404,10 @@
   "readingTime": 5,
   "categoryId": 8,
   "categoryName": "Умные игрушки",
-  "image": "https://images.unsplash.com/photo-1558084666-f8aba1e3a3b8?w=900&q=80",
+  "image": "/api/images/post-igrushki-6-12-mesyacev.svg",
   "images": [
-   "https://images.unsplash.com/photo-1558084666-f8aba1e3a3b8?w=1200&q=80",
-   "https://images.unsplash.com/photo-1513423244312-9a1e3a3a3b8a?w=900&q=80"
+   "/api/images/post-igrushki-6-12-mesyacev.svg",
+   "/api/images/post-igrushki-6-12-mesyacev.svg?variant=2"
   ],
   "tags": [
    "игрушки",
@@ -426,10 +426,10 @@
   "readingTime": 6,
   "categoryId": 2,
   "categoryName": "Детская мебель",
-  "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=900&q=80",
+  "image": "/api/images/post-bezopasnaya-komnata-dlya-polzuna.svg",
   "images": [
-   "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=1200&q=80",
-   "https://images.unsplash.com/photo-1522771930-78848d9293e8?w=900&q=80"
+   "/api/images/post-bezopasnaya-komnata-dlya-polzuna.svg",
+   "/api/images/post-bezopasnaya-komnata-dlya-polzuna.svg?variant=2"
   ],
   "tags": [
    "безопасность",
@@ -448,10 +448,10 @@
   "readingTime": 4,
   "categoryId": 5,
   "categoryName": "Одежда",
-  "image": "https://images.unsplash.com/photo-1544057967-3e7c83480ee6?w=900&q=80",
+  "image": "/api/images/post-progulki-zimoy.svg",
   "images": [
-   "https://images.unsplash.com/photo-1544057967-3e7c83480ee6?w=1200&q=80",
-   "https://images.unsplash.com/photo-1519278429378-e06883480ee6?w=900&q=80"
+   "/api/images/post-progulki-zimoy.svg",
+   "/api/images/post-progulki-zimoy.svg?variant=2"
   ],
   "tags": [
    "зима",
@@ -470,10 +470,10 @@
   "readingTime": 5,
   "categoryId": 6,
   "categoryName": "Кормление",
-  "image": "https://images.unsplash.com/photo-1547592182-6371e6c1e8b0?w=900&q=80",
+  "image": "/api/images/post-stulchik-dlya-kormleniya.svg",
   "images": [
-   "https://images.unsplash.com/photo-1547592182-6371e6c1e8b0?w=1200&q=80",
-   "https://images.unsplash.com/photo-1559453001-ee83ef38c473?w=900&q=80"
+   "/api/images/post-stulchik-dlya-kormleniya.svg",
+   "/api/images/post-stulchik-dlya-kormleniya.svg?variant=2"
   ],
   "tags": [
    "стульчик",
@@ -492,10 +492,10 @@
   "readingTime": 5,
   "categoryId": 7,
   "categoryName": "Гигиена и уход",
-  "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900&q=80",
+  "image": "/api/images/post-kupanie-novorozhdennogo.svg",
   "images": [
-   "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200&q=80",
-   "https://images.unsplash.com/photo-1556228456574-531c6c77c5b0?w=900&q=80"
+   "/api/images/post-kupanie-novorozhdennogo.svg",
+   "/api/images/post-kupanie-novorozhdennogo.svg?variant=2"
   ],
   "tags": [
    "купание",
@@ -514,10 +514,10 @@
   "readingTime": 4,
   "categoryId": 8,
   "categoryName": "Умные игрушки",
-  "image": "https://images.unsplash.com/photo-1513423244312-9a1e3a3a3b8a?w=900&q=80",
+  "image": "/api/images/post-pervye-knizhki-i-muzykalnye-igrushki.svg",
   "images": [
-   "https://images.unsplash.com/photo-1513423244312-9a1e3a3a3b8a?w=1200&q=80",
-   "https://images.unsplash.com/photo-1558084666-f8aba1e3a3b8?w=900&q=80"
+   "/api/images/post-pervye-knizhki-i-muzykalnye-igrushki.svg",
+   "/api/images/post-pervye-knizhki-i-muzykalnye-igrushki.svg?variant=2"
   ],
   "tags": [
    "книжки",

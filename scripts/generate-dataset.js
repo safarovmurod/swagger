@@ -93,14 +93,11 @@ for (const cat of tree) {
       const discount = isPromo ? int(10, 35) : 0;
       const oldPrice = isPromo ? Math.round((price / (1 - discount / 100)) / 10) * 10 : null;
 
-      const imgId = pick(sub.img);
-      const image = `https://images.unsplash.com/photo-${imgId}?w=600&q=80`;
-      const others = sub.img.filter(x => x !== imgId);
-      const images = [
-        image,
-        `https://images.unsplash.com/photo-${imgId}?w=900&q=80&fit=crop`,
-        `https://images.unsplash.com/photo-${others.length ? pick(others) : imgId}?w=900&q=80`
-      ];
+      // Картинки отдаёт сам API (lib/handlers/images.js): внешний фотосток
+      // возвращал 404 на части ссылок, и в карточках висели битые изображения.
+      const slug = `${slugify(`${sub.type}-${brand}-${line}`)}-${pid}`;
+      const image = `/api/images/${slug}.svg`;
+      const images = [image, `/api/images/${slug}.svg?variant=2`];
 
       const characteristics = {};
       for (const [key, values] of Object.entries(sub.chars)) characteristics[key] = pick(values);
@@ -118,7 +115,7 @@ for (const cat of tree) {
       products.push({
         id: pid,
         name,
-        slug: `${slugify(`${sub.type}-${brand}-${line}`)}-${pid}`,
+        slug,
         price,
         oldPrice,
         discount,
@@ -152,6 +149,7 @@ for (const cat of tree) {
       id: sub.id,
       name: sub.name,
       slug: sub.slug,
+      image: `/api/images/sub-${sub.slug}.svg`,
       description: SUBCATEGORY_INFO[sub.id] || '',
       categoryId: cat.id,
       productCount: total
@@ -163,7 +161,7 @@ for (const cat of tree) {
     name: cat.name,
     slug: cat.slug,
     description: cat.description,
-    image: cat.image,
+    image: `/api/images/cat-${cat.slug}.svg`,
     productCount: products.filter(p => p.categoryId === cat.id).length,
     info: CATEGORY_INFO[cat.id],
     subcategories
@@ -186,7 +184,7 @@ const promotions = outCategories.map((cat, i) => {
     title: meta.title,
     description: meta.description,
     content: meta.content,
-    image: cat.image,
+    image: `/api/images/cat-${cat.slug}.svg?variant=2`,
     discount: maxDiscount,
     categoryId: cat.id,
     categoryName: cat.name,
