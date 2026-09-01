@@ -63,17 +63,29 @@ function priceIn([min, max]) {
 }
 
 // --- отзывы ---
-function makeReviews(count) {
+// id отзыва сквозной по всему каталогу, а не по товару: иначе PATCH и
+// DELETE /api/reviews/{id} не смогли бы найти нужную запись — единицы
+// и двойки были бы у каждого товара свои.
+let reviewId = 1;
+function makeReviews(count, productId) {
   const authors = pickN(AUTHORS, count);
-  return authors.map((author, i) => ({
-    id: i + 1,
+  return authors.map((author) => ({
     author,
     date: `20${int(19, 25)}-${String(int(1, 12)).padStart(2, '0')}-${String(int(1, 28)).padStart(2, '0')}`,
     rating: rand() < 0.62 ? 5 : (rand() < 0.75 ? 4 : 3),
     pros: pick(PROS),
     cons: pick(CONS),
     comment: pick(COMMENTS)
-  })).sort((a, b) => a.date.localeCompare(b.date)).map((r, i) => ({ ...r, id: i + 1 }));
+  })).sort((a, b) => a.date.localeCompare(b.date)).map((r) => ({
+    id: reviewId++,
+    productId,
+    author: r.author,
+    date: r.date,
+    rating: r.rating,
+    pros: r.pros,
+    cons: r.cons,
+    comment: r.comment
+  }));
 }
 
 // --- сборка ---
@@ -118,7 +130,7 @@ for (const cat of tree) {
       const feats = pickN(sub.features, 3);
       const description = `${sub.type} ${brand} ${line} — ${feats[0].charAt(0).toLowerCase()}${feats[0].slice(1)}. ${feats[1]}. ${feats[2]}.`;
 
-      const reviews = makeReviews(rand() < 0.18 ? 0 : int(1, 4));
+      const reviews = makeReviews(rand() < 0.18 ? 0 : int(1, 4), pid);
       const rating = reviews.length
         ? Math.round((reviews.reduce((s, r) => s + r.rating, 0) / reviews.length) * 10) / 10
         : 0;
@@ -210,8 +222,70 @@ const promotions = outCategories.map((cat, i) => {
 
 // ============================================================
 // БЛОГ
+//
+// Тексты лежат в lib/blog-posts.json, здесь к ним добавляется всё,
+// что считается: даты в формате ISO, ссылка на категорию и главное —
+// sections. Это готовые блоки страницы статьи в том порядке, в каком
+// их рисуют: абзац, иллюстрация, снова абзацы, выделенная цитата.
+// Фронтенду не нужно резать content самому и гадать, куда вставить фото.
 // ============================================================
-const blog = require('../lib/blog-posts.json');
+const rawBlog = require('../lib/blog-posts.json');
+
+function makeSections(post) {
+  const paragraphs = String(post.content || '').split(/\n{2,}/).map(s => s.trim()).filter(Boolean);
+  const second = post.images && post.images[1] ? post.images[1] : post.image;
+  const quoteAt = Math.min(paragraphs.length - 1, Math.max(2, Math.floor(paragraphs.length * 0.6)));
+  const sections = [];
+
+  paragraphs.forEach((text, i) => {
+    sections.push({ type: 'paragraph', text });
+    // иллюстрация после второго абзаца — так она попадает на первый экран
+    if (i === 1 && second) {
+      sections.push({ type: 'image', url: second, alt: post.title });
+    }
+    if (i === quoteAt && post.quote) {
+      sections.push({ type: 'quote', text: post.quote, author: post.author.name });
+    }
+  });
+
+  if (!sections.some(s => s.type === 'quote') && post.quote) {
+    sections.push({ type: 'quote', text: post.quote, author: post.author.name });
+  }
+  return sections;
+}
+
+const blog = rawBlog.map((post) => {
+  const category = outCategories.find(c => c.id === post.categoryId);
+  const paragraphs = String(post.content || '').split(/\n{2,}/).map(s => s.trim()).filter(Boolean);
+  return {
+    id: post.id,
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    description: post.description,
+    date: post.date,
+    createdAt: `${post.date}T09:00:00.000Z`,
+    updatedAt: `${post.date}T09:00:00.000Z`,
+    readingTime: post.readingTime,
+    isPublished: true,
+    categoryId: post.categoryId,
+    categoryName: post.categoryName,
+    category: post.categoryName,
+    categorySlug: category ? category.slug : '',
+    categoryUrl: category ? `/api/${category.slug}` : '',
+    author: post.author,
+    image: post.image,
+    images: post.images,
+    imageAlt: post.title,
+    tags: post.tags,
+    highlights: post.highlights,
+    quote: post.quote,
+    wordCount: paragraphs.join(' ').split(/\s+/).filter(Boolean).length,
+    paragraphCount: paragraphs.length,
+    sections: makeSections(post),
+    content: post.content
+  };
+});
 
 const dataset = { categories: outCategories, products, promotions, blog };
 const outPath = path.join(__dirname, '..', 'lib', 'dataset.json');

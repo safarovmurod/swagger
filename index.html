@@ -212,6 +212,7 @@ main { max-width: 960px; margin: 0 auto; padding: 40px 20px 100px; }
 .m.get { color: var(--get); background: var(--get-bg); border-color: var(--get-br); }
 .m.post { color: var(--post); background: var(--post-bg); border-color: var(--post-br); }
 .m.put { color: var(--put); background: var(--put-bg); border-color: var(--put-br); }
+.m.patch { color: var(--j-bool); background: color-mix(in srgb, var(--j-bool) 12%, transparent); border-color: color-mix(in srgb, var(--j-bool) 28%, transparent); }
 .m.delete { color: var(--del); background: var(--del-bg); border-color: var(--del-br); }
 .req-name { font-size: 14.5px; font-weight: 650; letter-spacing: -.01em; }
 .req-desc { font-size: 12.5px; color: var(--muted); margin-top: -4px; }
@@ -317,7 +318,37 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
 .mode button[aria-pressed="true"] { color: var(--text); border-color: var(--border-2); background: var(--chip); }
 .mode button[data-m="post"][aria-pressed="true"] { color: var(--post); border-color: var(--post-br); background: var(--post-bg); }
 .mode button[data-m="put"][aria-pressed="true"] { color: var(--put); border-color: var(--put-br); background: var(--put-bg); }
+.mode button[data-m="patch"][aria-pressed="true"] { color: var(--j-bool); border-color: color-mix(in srgb, var(--j-bool) 30%, transparent); background: color-mix(in srgb, var(--j-bool) 12%, transparent); }
 .mode button[data-m="delete"][aria-pressed="true"] { color: var(--del); border-color: var(--del-br); background: var(--del-bg); }
+
+/* ---------- аккаунт ---------- */
+.auth-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  padding: 11px 12px; border: 1px solid var(--border); border-radius: 12px;
+  background: var(--card); box-shadow: var(--shadow-1); margin-bottom: 10px;
+}
+.auth-state { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); min-width: 0; }
+.auth-state b { color: var(--text); font-weight: 650; }
+.auth-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted-2); flex: none; }
+.auth-dot.on { background: var(--ok); }
+.auth-token {
+  flex: 1 1 210px; min-width: 0; font-family: var(--mono); font-size: 12px;
+  padding: 8px 10px; border: 1px solid var(--border); border-radius: 9px;
+  background: var(--card-2); color: var(--text-2);
+}
+.auth-token:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent); }
+.file-note { font-size: 11.5px; color: var(--muted-2); }
+
+/* ---------- справка ---------- */
+.faq { display: grid; gap: 14px; padding: 8px 2px 4px; }
+.faq h4 { margin: 0; font-size: 13px; font-weight: 680; letter-spacing: -.01em; color: var(--text); }
+.faq-group { display: grid; gap: 7px; }
+.faq-row { display: grid; grid-template-columns: minmax(0, 168px) minmax(0, 1fr); gap: 12px; align-items: baseline; }
+.faq-row .t { font-family: var(--mono); font-size: 12px; color: var(--accent); overflow-wrap: anywhere; }
+.faq-row .d { font-size: 12.5px; color: var(--muted); }
+@media (max-width: 640px) {
+  .faq-row { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
 
 .footer {
   margin-top: 54px; padding-top: 20px; border-top: 1px solid var(--border);
@@ -365,7 +396,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       <svg viewBox="0 0 64 64"><path d="M52 6 H24 L6 24 h28 z" fill="currentColor"/><path d="M12 58 h28 l18-18 H30 z" fill="currentColor" opacity=".72"/><path d="M34 24 H6 l10 10 h28 z" fill="currentColor" opacity=".45"/></svg>
     </span>
     <span class="brand-name"><span class="dim">Softclub&nbsp;·&nbsp;</span><span data-i18n="brand">Карапуз API</span></span>
-    <span class="badge-ver">v2.2.0</span>
+    <span class="badge-ver">v3.0.0</span>
   </div>
   <div class="topbar-actions">
     <div class="seg" role="group" aria-label="Язык / Language">
@@ -397,6 +428,14 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
   </div>
   <p class="hero-sub" id="hero-sub"><span class="spin"></span></p>
 
+  <section class="section" id="s-auth">
+    <div class="section-head">
+      <h2 data-i18n="account">Аккаунт</h2>
+      <span data-i18n="accountHint">регистрация, вход и токен</span>
+    </div>
+    <div id="auth"></div>
+  </section>
+
   <section class="section" id="s-catalog">
     <div class="section-head">
       <h2 data-i18n="catalog">Каталог</h2>
@@ -419,6 +458,14 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       <span data-i18n="crudHint">одна форма для всех разделов</span>
     </div>
     <div class="stack" id="crud"></div>
+  </section>
+
+  <section class="section" id="s-help">
+    <div class="section-head">
+      <h2 data-i18n="help">Как пользоваться API</h2>
+      <span data-i18n="helpHint">короткая справка</span>
+    </div>
+    <div class="stack" id="help"></div>
   </section>
 
   <div class="footer">
@@ -463,7 +510,25 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       promoList: 'Все акции', promoOne: 'Акция по id или slug',
       byDate: 'по дате', byReading: 'по времени чтения', fullText: 'полный текст',
       category: 'категория', anyCategory: 'любая',
-      catsIn: 'подкатегорий', endpoints: 'запросов на странице'
+      catsIn: 'подкатегорий', endpoints: 'запросов на странице',
+      account: 'Аккаунт', accountHint: 'регистрация, вход и токен',
+      help: 'Как пользоваться API', helpHint: 'короткая справка',
+      noToken: 'Токен не задан — защищённые методы ответят 401',
+      tokenSet: 'Токен сохранён',
+      signedAs: 'Вы вошли как',
+      tokenPh: 'вставьте токен или войдите ниже',
+      useToken: 'Сохранить', forgetToken: 'Забыть',
+      aRegister: 'Регистрация', aRegisterD: 'Форма с файлом — multipart/form-data',
+      aLogin: 'Вход', aLoginD: 'В ответе приходит accessToken, он сохранится сам',
+      aMe: 'Мой профиль', aMeD: 'Нужен заголовок Authorization: Bearer',
+      aLogout: 'Выход', aLogoutD: 'Токен отзывается на сервере, повторный запрос вернёт 401',
+      fFullName: 'Полное имя', fTel: 'Телефон', fEmail: 'Email', fPassword: 'Пароль', fAddress: 'Адрес',
+      fAvatar: 'Аватар — jpg, png или webp до 256 КБ',
+      demoAdmin: 'Демонстрационный администратор: admin@karapuz.tj / Admin123!',
+      fillDemo: 'Подставить администратора',
+      doRegister: 'Зарегистрироваться', doLogin: 'Войти', doMe: 'Показать профиль', doLogout: 'Выйти',
+      needAuth: 'Сначала войдите в разделе «Аккаунт» — иначе сервер ответит 401',
+      crudAuthNote: 'Изменение данных требует токена администратора. Войдите в разделе «Аккаунт».'
     },
     en: {
       brand: 'Karapuz API',
@@ -495,7 +560,25 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       promoList: 'All promotions', promoOne: 'Promotion by id or slug',
       byDate: 'by date', byReading: 'by reading time', fullText: 'full text',
       category: 'category', anyCategory: 'any',
-      catsIn: 'subcategories', endpoints: 'requests on the page'
+      catsIn: 'subcategories', endpoints: 'requests on the page',
+      account: 'Account', accountHint: 'sign up, log in and the token',
+      help: 'How to use the API', helpHint: 'a short reference',
+      noToken: 'No token — protected methods will answer 401',
+      tokenSet: 'Token saved',
+      signedAs: 'Signed in as',
+      tokenPh: 'paste a token or log in below',
+      useToken: 'Save', forgetToken: 'Forget',
+      aRegister: 'Sign up', aRegisterD: 'A form with a file — multipart/form-data',
+      aLogin: 'Log in', aLoginD: 'The response carries accessToken, it is saved automatically',
+      aMe: 'My profile', aMeD: 'Requires the Authorization: Bearer header',
+      aLogout: 'Log out', aLogoutD: 'The token is revoked on the server, the next call returns 401',
+      fFullName: 'Full name', fTel: 'Phone', fEmail: 'Email', fPassword: 'Password', fAddress: 'Address',
+      fAvatar: 'Avatar — jpg, png or webp up to 256 KB',
+      demoAdmin: 'Demo administrator: admin@karapuz.tj / Admin123!',
+      fillDemo: 'Fill in the administrator',
+      doRegister: 'Sign up', doLogin: 'Log in', doMe: 'Show profile', doLogout: 'Log out',
+      needAuth: 'Log in under “Account” first — otherwise the server answers 401',
+      crudAuthNote: 'Writing needs an administrator token. Log in under “Account”.'
     }
   };
 
@@ -514,7 +597,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
     'umnye-igrushki': '<circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/>'
   };
 
-  var state = { lang: 'ru', cats: [], open: {}, reqCount: 0 };
+  var state = { lang: 'ru', cats: [], open: {}, reqCount: 0, token: '', me: null };
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var T = function (k) { return (I18N[state.lang] && I18N[state.lang][k]) || I18N.ru[k] || k; };
@@ -674,7 +757,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
     btn.disabled = true;
     btn.textContent = T('sending');
     var t0 = performance.now();
-    fetch(url, { headers: { Accept: 'application/json' } })
+    fetch(url, { headers: authHeaders({ Accept: 'application/json' }) })
       .then(function (r) { return r.text().then(function (t) { return { r: r, t: t }; }); })
       .then(function (x) { showOut(out, x.r, x.t, Math.round(performance.now() - t0)); })
       .catch(function (e) { out.innerHTML = '<div class="note">' + esc(T('netErr') + (e && e.message ? e.message : e)) + '</div>'; })
@@ -714,18 +797,311 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
     document.body.removeChild(ta);
   }
 
+  /* ---------- аккаунт ---------- */
+  // Токен добавляется ко всем запросам страницы: чтение работает и без него,
+  // а защищённые методы без заголовка отвечают 401 — так это и должно быть.
+  function authHeaders(extra) {
+    var h = extra || {};
+    if (state.token) h.Authorization = 'Bearer ' + state.token;
+    return h;
+  }
+
+  function saveToken(token, user) {
+    state.token = token || '';
+    state.me = user || null;
+    try {
+      if (state.token) localStorage.setItem('karapuz-token', state.token);
+      else localStorage.removeItem('karapuz-token');
+    } catch (e) {}
+    paintAuthBar();
+  }
+
+  function paintAuthBar() {
+    var bar = $('#auth-state');
+    if (!bar) return;
+    var input = $('#auth-token');
+    if (input && input.value !== state.token) input.value = state.token;
+    if (state.token && state.me) {
+      bar.innerHTML = '<span class="auth-dot on"></span><span>' + esc(T('signedAs')) + ' <b>' +
+        esc(state.me.fullName) + '</b> · ' + esc(state.me.role) + '</span>';
+    } else if (state.token) {
+      bar.innerHTML = '<span class="auth-dot on"></span><span>' + esc(T('tokenSet')) + '</span>';
+    } else {
+      bar.innerHTML = '<span class="auth-dot"></span><span>' + esc(T('noToken')) + '</span>';
+    }
+  }
+
+  var CHEV = '<span class="cat-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span>';
+
+  function cardHtml(o) {
+    return '<article class="cat" data-slug="' + esc(o.slug) + '" data-open="false" style="--cat:' + o.color + '">' +
+      '<button type="button" class="cat-head" aria-expanded="false">' +
+        '<span class="cat-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + o.icon + '</svg></span>' +
+        '<span class="cat-title"><b>' + esc(o.name) + '</b><span>' + esc(o.method + ' ' + o.path) + '</span></span>' +
+        '<span class="cat-count"><span class="m ' + o.method.toLowerCase() + '">' + o.method + '</span></span>' +
+        CHEV +
+      '</button>' +
+      '<div class="cat-body" hidden>' + o.body + '</div>' +
+    '</article>';
+  }
+
+  function fieldRow(id, labelKey, type, required) {
+    return '<div class="field"><label>' + esc(T(labelKey)) +
+      (required ? ' <span class="req-star">*</span>' : '') + '</label>' +
+      '<input type="' + type + '" id="' + id + '" autocomplete="off"></div>';
+  }
+
+  function urlRow(path) {
+    return '<div class="url-row" style="margin-top:12px"><div class="url">' +
+      '<span class="host">' + esc(location.origin) + '</span>' + esc(path) + '</div></div>';
+  }
+
+  function authHtml() {
+    var bar =
+      '<div class="auth-bar">' +
+        '<span class="auth-state" id="auth-state"></span>' +
+        '<input type="text" class="auth-token" id="auth-token" placeholder="' + esc(T('tokenPh')) + '">' +
+        '<button type="button" class="btn btn-ghost" id="auth-save">' + esc(T('useToken')) + '</button>' +
+        '<button type="button" class="btn btn-ghost" id="auth-forget">' + esc(T('forgetToken')) + '</button>' +
+      '</div>';
+
+    var register = cardHtml({
+      slug: '__register', color: '#4e9c6b', method: 'POST', path: '/api/auth/register',
+      name: T('aRegister'),
+      icon: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/>',
+      body:
+        '<div class="req-desc" style="margin:6px 0 2px">' + esc(T('aRegisterD')) + '</div>' +
+        '<div class="form-grid">' +
+          fieldRow('reg-fullName', 'fFullName', 'text', true) +
+          fieldRow('reg-tel', 'fTel', 'text', true) +
+          fieldRow('reg-email', 'fEmail', 'email', true) +
+          fieldRow('reg-password', 'fPassword', 'password', true) +
+          fieldRow('reg-address', 'fAddress', 'text', false) +
+          '<div class="field"><label>' + esc(T('fAvatar')) + '</label>' +
+            '<input type="file" id="reg-avatar" accept="image/jpeg,image/png,image/webp"></div>' +
+        '</div>' +
+        urlRow('/api/auth/register') +
+        '<div class="controls" style="margin-top:12px">' +
+          '<button type="button" class="btn btn-go" id="reg-send">' + esc(T('doRegister')) + '</button>' +
+          '<button type="button" class="btn btn-ghost" id="reg-clear">' + esc(T('clear')) + '</button>' +
+        '</div>' +
+        '<div class="out" id="reg-out" style="margin-top:12px"></div>'
+    });
+
+    var login = cardHtml({
+      slug: '__login', color: '#3f7bc0', method: 'POST', path: '/api/auth/login',
+      name: T('aLogin'),
+      icon: '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/>',
+      body:
+        '<div class="req-desc" style="margin:6px 0 2px">' + esc(T('aLoginD')) + '</div>' +
+        '<div class="note" style="margin-bottom:10px">' + esc(T('demoAdmin')) + '</div>' +
+        '<div class="form-grid">' +
+          fieldRow('log-email', 'fEmail', 'email', true) +
+          fieldRow('log-password', 'fPassword', 'password', true) +
+        '</div>' +
+        urlRow('/api/auth/login') +
+        '<div class="controls" style="margin-top:12px">' +
+          '<button type="button" class="btn btn-go" id="log-send">' + esc(T('doLogin')) + '</button>' +
+          '<button type="button" class="btn btn-ghost" id="log-demo">' + esc(T('fillDemo')) + '</button>' +
+        '</div>' +
+        '<div class="out" id="log-out" style="margin-top:12px"></div>'
+    });
+
+    var me = cardHtml({
+      slug: '__me', color: '#8a6bc0', method: 'GET', path: '/api/auth/me',
+      name: T('aMe'),
+      icon: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+      body:
+        '<div class="req-desc" style="margin:6px 0 2px">' + esc(T('aMeD')) + '</div>' +
+        urlRow('/api/auth/me') +
+        '<div class="controls" style="margin-top:12px">' +
+          '<button type="button" class="btn btn-go" id="me-send">' + esc(T('doMe')) + '</button>' +
+        '</div>' +
+        '<div class="out" id="me-out" style="margin-top:12px"></div>'
+    });
+
+    var logout = cardHtml({
+      slug: '__logout', color: '#c05252', method: 'POST', path: '/api/auth/logout',
+      name: T('aLogout'),
+      icon: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/>',
+      body:
+        '<div class="req-desc" style="margin:6px 0 2px">' + esc(T('aLogoutD')) + '</div>' +
+        urlRow('/api/auth/logout') +
+        '<div class="controls" style="margin-top:12px">' +
+          '<button type="button" class="btn btn-go" id="out-send">' + esc(T('doLogout')) + '</button>' +
+        '</div>' +
+        '<div class="out" id="out-out" style="margin-top:12px"></div>'
+    });
+
+    return bar + '<div class="stack">' + register + login + me + logout + '</div>';
+  }
+
+  // Один запрос из раздела аккаунта: показывает ответ так же, как остальные,
+  // и, если в ответе пришёл токен, сразу его сохраняет.
+  function sendAuth(btn, outSel, method, path, init) {
+    var out = $(outSel);
+    var old = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = T('sending');
+    var t0 = performance.now();
+    fetch(location.origin + path, init)
+      .then(function (r) { return r.text().then(function (t) { return { r: r, t: t }; }); })
+      .then(function (x) {
+        showOut(out, x.r, x.t, Math.round(performance.now() - t0));
+        var payload = null;
+        try { payload = JSON.parse(x.t); } catch (e) {}
+        var d = payload && payload.data;
+        if (d && d.accessToken) saveToken(d.accessToken, d.user);
+        else if (d && d.revokedJti) saveToken('', null);
+        else if (d && d.user && state.token) { state.me = d.user; paintAuthBar(); }
+      })
+      .catch(function (e) { out.innerHTML = '<div class="note">' + esc(T('netErr') + (e && e.message ? e.message : e)) + '</div>'; })
+      .then(function () { btn.disabled = false; btn.textContent = old; });
+  }
+
+  function initAuth() {
+    paintAuthBar();
+
+    $('#auth-save').addEventListener('click', function () {
+      saveToken(String($('#auth-token').value || '').trim(), null);
+    });
+    $('#auth-forget').addEventListener('click', function () { saveToken('', null); });
+
+    $('#reg-send').addEventListener('click', function () {
+      // FormData — тот же multipart/form-data, что и в Swagger:
+      // браузер сам расставит границы, свой Content-Type ставить нельзя
+      var form = new FormData();
+      ['fullName', 'tel', 'email', 'password', 'address'].forEach(function (key) {
+        var el = $('#reg-' + key);
+        if (el && String(el.value || '').trim()) form.append(key, el.value.trim());
+      });
+      var file = $('#reg-avatar').files[0];
+      if (file) form.append('avatar', file, file.name);
+      sendAuth(this, '#reg-out', 'POST', '/api/auth/register', { method: 'POST', body: form });
+    });
+
+    $('#reg-clear').addEventListener('click', function () {
+      ['fullName', 'tel', 'email', 'password', 'address', 'avatar'].forEach(function (key) {
+        var el = $('#reg-' + key);
+        if (el) el.value = '';
+      });
+      $('#reg-out').innerHTML = '';
+    });
+
+    $('#log-demo').addEventListener('click', function () {
+      $('#log-email').value = 'admin@karapuz.tj';
+      $('#log-password').value = 'Admin123!';
+    });
+
+    $('#log-send').addEventListener('click', function () {
+      sendAuth(this, '#log-out', 'POST', '/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: String($('#log-email').value || '').trim(),
+          password: String($('#log-password').value || '')
+        })
+      });
+    });
+
+    $('#me-send').addEventListener('click', function () {
+      sendAuth(this, '#me-out', 'GET', '/api/auth/me', { headers: authHeaders({ Accept: 'application/json' }) });
+    });
+
+    $('#out-send').addEventListener('click', function () {
+      sendAuth(this, '#out-out', 'POST', '/api/auth/logout', { method: 'POST', headers: authHeaders({}) });
+    });
+  }
+
+  /* ---------- справка внизу страницы ---------- */
+  var HELP = [
+    ['HTTP-методы', 'HTTP methods', [
+      ['GET', 'получить данные, тело запроса не отправляется', 'read data, no request body'],
+      ['POST', 'создать новую запись', 'create a new record'],
+      ['PUT', 'заменить запись целиком — обязательные поля нужны все', 'replace a record entirely — all required fields needed'],
+      ['PATCH', 'изменить только присланные поля, остальные останутся как были', 'change only the fields you send, the rest stay as they were'],
+      ['DELETE', 'удалить запись', 'delete a record']
+    ]],
+    ['Адрес запроса', 'Request address', [
+      ['Endpoint', 'адрес одного действия, например /api/products', 'the address of one action, e.g. /api/products'],
+      ['Path parameter', 'часть самого адреса: /api/products/12 — здесь 12 это id', 'part of the address itself: /api/products/12 — 12 is the id'],
+      ['Query parameter', 'после знака вопроса: /api/products?page=2&pageSize=20', 'after the question mark: /api/products?page=2&pageSize=20']
+    ]],
+    ['Списки', 'Lists', [
+      ['Pagination', 'page — номер страницы, pageSize — сколько записей. По умолчанию 1 и 20, максимум 200', 'page and pageSize. Defaults are 1 and 20, the cap is 200'],
+      ['Filtering', 'отбор по признакам: ?categoryId=1&minPrice=5000&maxPrice=15000&inStock=true', 'narrowing by fields: ?categoryId=1&minPrice=5000&maxPrice=15000&inStock=true'],
+      ['Sorting', '?sort=price_asc — цена по возрастанию. Ещё: price_desc, name_asc, newest, rating, discount', '?sort=price_asc — cheapest first. Also price_desc, name_asc, newest, rating, discount'],
+      ['Search', '?q=Nuovita — ищет по названию, описанию, бренду, артикулу и разделу, без учёта регистра', '?q=Nuovita — searches name, description, brand, article and section, case-insensitive']
+    ]],
+    ['Тело запроса', 'Request body', [
+      ['JSON', 'обычный текстовый формат: {"name":"Кроватка","price":42000}. Заголовок Content-Type: application/json', 'plain text format: {"name":"Crib","price":42000} with Content-Type: application/json'],
+      ['multipart/form-data', 'формат, который умеет отправлять текст и файлы одним запросом', 'a format that sends text fields and files in one request'],
+      ['Upload', 'загрузка файла — так работает поле avatar при регистрации: jpg, png или webp до 256 КБ', 'file upload — that is the avatar field on sign-up: jpg, png or webp up to 256 KB']
+    ]],
+    ['Аккаунт', 'Account', [
+      ['Register', 'POST /api/auth/register — создаёт пользователя. Роль всегда user, её назначает сервер', 'POST /api/auth/register — creates a user. The role is always user and is set by the server'],
+      ['Login', 'POST /api/auth/login — по email и паролю выдаёт accessToken', 'POST /api/auth/login — returns an accessToken for the email and password'],
+      ['Bearer token', 'пропуск: заголовок Authorization: Bearer <токен> в каждом защищённом запросе', 'the pass: header Authorization: Bearer <token> in every protected request'],
+      ['/api/auth/me', 'показывает владельца токена. Пароля и его хеша в ответе нет, телефон неполный', 'shows the token owner. No password or hash in the response, the phone is masked'],
+      ['Logout', 'POST /api/auth/logout — отзывает токен: следующий запрос с ним получит 401', 'POST /api/auth/logout — revokes the token: the next call with it returns 401']
+    ]],
+    ['Коды ответа', 'Response codes', [
+      ['200 OK', 'всё получилось. Пустой список — тоже 200', 'success. An empty list is also 200'],
+      ['201 Created', 'запись создана', 'the record was created'],
+      ['400 Bad Request', 'в запросе ошибка: нет обязательного поля или значение неверное', 'bad request: a required field is missing or a value is wrong'],
+      ['401 Unauthorized', 'нет токена, он испорчен, просрочен или отозван', 'no token, or it is broken, expired or revoked'],
+      ['403 Forbidden', 'токен есть, но прав не хватает — например, нужен администратор', 'the token is fine but the rights are not enough — an admin is needed'],
+      ['404 Not Found', 'такой записи или такого адреса нет', 'no such record or no such address'],
+      ['409 Conflict', 'запись уже существует: занятый email, телефон или slug', 'the record already exists: email, phone or slug is taken'],
+      ['413 Payload Too Large', 'файл или тело запроса больше разрешённого', 'the file or body is larger than allowed'],
+      ['415 Unsupported Media Type', 'такой тип файла загружать нельзя', 'this file type is not allowed'],
+      ['422 Unprocessable Entity', 'формат верный, но данные не подходят по смыслу', 'the format is fine but the data does not make sense'],
+      ['429 Too Many Requests', 'слишком часто. В заголовке Retry-After — через сколько секунд повторить', 'too often. Retry-After says how many seconds to wait'],
+      ['500 Internal Server Error', 'ошибка на сервере. Подробности остаются в логах, наружу они не уходят', 'a server error. Details stay in the logs and never leave the server']
+    ]]
+  ];
+
+  function helpHtml() {
+    var en = state.lang === 'en';
+    var groups = HELP.map(function (g) {
+      var rows = g[2].map(function (r) {
+        return '<div class="faq-row"><span class="t">' + esc(r[0]) + '</span>' +
+          '<span class="d">' + esc(en ? r[2] : r[1]) + '</span></div>';
+      }).join('');
+      return '<div class="faq-group"><h4>' + esc(en ? g[1] : g[0]) + '</h4>' + rows + '</div>';
+    }).join('');
+
+    return '<article class="cat" data-slug="__help" data-open="false" style="--cat:#6f7a8c">' +
+      '<button type="button" class="cat-head" aria-expanded="false">' +
+        '<span class="cat-dot" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v18H6a2 2 0 0 1-2-2z"/><path d="M8 8h7M8 12h7M8 16h4"/></svg></span>' +
+        '<span class="cat-title"><b>' + esc(T('help')) + '</b><span>' + esc(T('helpHint')) + '</span></span>' +
+        CHEV +
+      '</button>' +
+      '<div class="cat-body" hidden><div class="faq">' + groups + '</div></div>' +
+    '</article>';
+  }
+
   /* ---------- отрисовка каталога ---------- */
   function render() {
     state.reqCount = 0;
+    $('#auth').innerHTML = authHtml();
     $('#cats').innerHTML = state.cats.map(catHtml).join('');
     $('#extra').innerHTML = extraHtml();
     $('#crud').innerHTML = crudHtml();
+    $('#help').innerHTML = helpHtml();
     initCrud();
+    initAuth();
     $$('.req').forEach(paintUrl);
+    // раскрытые блоки остаются раскрытыми после смены языка
     Object.keys(state.open).forEach(function (slug) {
       if (!state.open[slug]) return;
       var el = $('.cat[data-slug="' + slug.replace(/["\\]/g, '\\$&') + '"]');
-      if (el) el.setAttribute('data-open', 'true');
+      if (!el) return;
+      el.setAttribute('data-open', 'true');
+      var head = $('.cat-head', el);
+      if (head) head.setAttribute('aria-expanded', 'true');
+      var body = $('.cat-body', el);
+      if (body) body.hidden = false;
     });
     observe();
     $('#foot').textContent = state.reqCount + ' ' + T('endpoints');
@@ -857,11 +1233,13 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
             '<div class="mode" id="crud-mode">' +
               '<button type="button" data-m="post" aria-pressed="true">POST</button>' +
               '<button type="button" data-m="put" aria-pressed="false">PUT</button>' +
+              '<button type="button" data-m="patch" aria-pressed="false">PATCH</button>' +
               '<button type="button" data-m="delete" aria-pressed="false">DELETE</button>' +
             '</div></div>' +
           '<div class="field" id="crud-id-wrap" hidden><label>' + esc(T('idOf')) + ' <span class="req-star">*</span></label>' +
             '<input type="text" id="crud-id" placeholder="1"></div>' +
         '</div>' +
+        '<div class="note" style="margin-bottom:11px">' + esc(T('crudAuthNote')) + '</div>' +
         '<div class="form-grid" id="crud-fields"></div>' +
         '<div class="checks" id="crud-checks" style="margin-top:11px"></div>' +
         '<div class="url-row" style="margin-top:13px">' +
@@ -1011,7 +1389,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
         out.innerHTML = '<div class="note">' + esc(T('needId')) + '</div>';
         return;
       }
-      if (mode === 'post') {
+      if (mode === 'post' || mode === 'put') {
         var missing = sec.fields.filter(function (f) {
           if (!f[3]) return false;
           var el = $('#crud-fields [data-f="' + f[0] + '"]');
@@ -1022,7 +1400,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       var btn = this;
       btn.disabled = true;
       btn.textContent = T('sending');
-      var init = { method: mode.toUpperCase(), headers: {} };
+      var init = { method: mode.toUpperCase(), headers: authHeaders({}) };
       if (mode !== 'delete') {
         init.headers['Content-Type'] = 'application/json';
         init.body = JSON.stringify(buildBody());
@@ -1104,6 +1482,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
   /* ---------- старт ---------- */
   initTheme();
   try { if (localStorage.getItem('karapuz-lang') === 'en') state.lang = 'en'; } catch (e) {}
+  try { state.token = localStorage.getItem('karapuz-token') || ''; } catch (e) {}
 
   fetch('/api/categories?pageSize=50', { headers: { Accept: 'application/json' } })
     .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })

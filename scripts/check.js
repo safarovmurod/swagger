@@ -61,6 +61,14 @@ products.forEach(p => {
   });
 });
 
+// --- id отзывов сквозные: по ним работает /api/reviews/{id} ---
+const reviewIds = new Set();
+products.forEach(p => (p.reviews || []).forEach(r => {
+  if (reviewIds.has(r.id)) fail(`Дублирующийся id отзыва: ${r.id} (товар ${p.id})`);
+  reviewIds.add(r.id);
+  if (r.productId !== p.id) fail(`Отзыв ${r.id}: productId ${r.productId} не совпадает с товаром ${p.id}`);
+}));
+
 // --- по 20 товаров в каждой подкатегории ---
 subcategories.forEach(s => {
   const n = products.filter(p => p.subcategoryId === s.id).length;
@@ -68,7 +76,7 @@ subcategories.forEach(s => {
 });
 
 // --- slug категории не должен перекрывать служебные пути /api/... ---
-const RESERVED = ['products', 'categories', 'subcategories', 'promotions', 'blog', 'swagger.json', 'swagger'];
+const { RESERVED_SLUGS: RESERVED } = require('../lib/router');
 const seenSlugs = new Set();
 categories.forEach(c => {
   if (RESERVED.includes(c.slug)) fail(`Категория ${c.id} «${c.name}»: slug «${c.slug}» перекрывает служебный путь /api/${c.slug}`);
@@ -128,6 +136,10 @@ promotions.forEach(pr => checkImage(pr.image, `Акция ${pr.id}`));
 blog.forEach(b => {
   checkImage(b.image, `Статья ${b.id}`);
   (b.images || []).forEach((u, i) => checkImage(u, `Статья ${b.id}, картинка ${i + 1}`));
+  if (b.author && b.author.avatar) checkImage(b.author.avatar, `Автор статьи ${b.id}`);
+  (b.sections || []).forEach((sec, i) => {
+    if (sec.type === 'image') checkImage(sec.url, `Статья ${b.id}, блок ${i + 1}`);
+  });
 });
 
 // --- тексты не должны повторяться от категории к категории ---
@@ -175,6 +187,22 @@ blog.forEach(b => {
   if (!(b.readingTime > 0)) fail(`Статья ${b.id}: не указано время чтения`);
   if (b.categoryId && !catIds.has(b.categoryId)) fail(`Статья ${b.id}: неизвестная категория ${b.categoryId}`);
 });
+// у каждой статьи должно быть, из чего собрать страницу целиком
+blog.forEach(b => {
+  if (!b.description || b.description.length < 80) fail(`Статья ${b.id} «${b.title}»: слишком короткое description`);
+  if (!b.author || !b.author.name || !b.author.role) fail(`Статья ${b.id} «${b.title}»: не указан автор`);
+  if (!b.author || !b.author.avatar) fail(`Статья ${b.id} «${b.title}»: у автора нет аватара`);
+  if (!b.highlights || b.highlights.length < 3) fail(`Статья ${b.id} «${b.title}»: нужно три тезиса в highlights`);
+  if (!b.sections || b.sections.length < 3) fail(`Статья ${b.id} «${b.title}»: нет блоков sections для страницы`);
+  if (b.sections && !b.sections.some(x => x.type === 'image')) fail(`Статья ${b.id} «${b.title}»: в sections нет иллюстрации`);
+  if (b.sections && !b.sections.some(x => x.type === 'quote')) fail(`Статья ${b.id} «${b.title}»: в sections нет цитаты`);
+  if (b.isPublished !== true) fail(`Статья ${b.id} «${b.title}»: не помечена как опубликованная`);
+  if (!/^\d{4}-\d{2}-\d{2}T/.test(String(b.createdAt))) fail(`Статья ${b.id}: createdAt не в формате ISO`);
+});
+uniq('Описание статьи', blog.map(b => ({ text: b.description, owner: b.title })));
+const allHighlights = blog.flatMap(b => (b.highlights || []).map(h => ({ text: h, owner: b.title })));
+uniq('Тезис статьи', allHighlights);
+
 if (blog.length < 24) fail(`Статей в блоге ${blog.length} — на сайте их две страницы по 12, нужно минимум 24`);
 uniq('Текст статьи', blog.map(b => ({ text: b.content, owner: b.title })));
 uniq('Цитата статьи', blog.map(b => ({ text: b.quote, owner: b.title })));
@@ -197,6 +225,15 @@ KNOWN_PATHS.forEach(kp => {
   if (kp === '/api/swagger.json') return;
   if (!specPaths.includes(kp)) warn(`Маршрут ${kp} есть в роутере, но не описан в спецификации`);
 });
+
+// --- секреты не должны попадать ни в код, ни в репозиторий ---
+const fsEnv = require('fs');
+const rootDir = require('path').join(__dirname, '..');
+if (!fsEnv.existsSync(require('path').join(rootDir, '.env.example'))) {
+  fail('Нет .env.example — непонятно, какие переменные окружения нужны проекту');
+}
+const gitignore = fsEnv.readFileSync(require('path').join(rootDir, '.gitignore'), 'utf8');
+if (!/^\.env$/m.test(gitignore)) fail('.env не указан в .gitignore — секреты могут попасть в репозиторий');
 
 // --- на бесплатном тарифе Vercel не больше 12 serverless-функций ---
 const apiDir = require('path').join(__dirname, '..', 'api');
