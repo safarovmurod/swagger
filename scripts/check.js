@@ -102,9 +102,16 @@ promotions.forEach(pr => {
 
 // --- картинки: только свой эндпоинт, никаких внешних ссылок ---
 const { resolve: resolveRoute } = require('../lib/router');
+const fsCheck = require('fs');
+const pathCheck = require('path');
 function checkImage(url, owner) {
   if (!url) return fail(`${owner}: пустая ссылка на картинку`);
   if (/^https?:\/\//.test(url)) return fail(`${owner}: внешняя ссылка на картинку ${url} — она может отдать 404`);
+  if (url.indexOf('/assets/products/') === 0) {
+    const file = pathCheck.join(__dirname, '..', url.split('?')[0]);
+    if (!fsCheck.existsSync(file)) fail(`${owner}: файла ${url} нет в репозитории`);
+    return;
+  }
   if (url.indexOf('/api/images/') !== 0) return fail(`${owner}: непонятная ссылка на картинку ${url}`);
   const slug = url.replace('/api/images/', '').split('?')[0];
   if (!resolveRoute(['images', slug])) fail(`${owner}: роутер не разберёт ${url}`);

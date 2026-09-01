@@ -505,10 +505,9 @@
    "article": "Арт. 100007-0001",
    "brand": "Nuovita",
    "country": "Италия",
-   "image": "/api/images/tovar-nedeli-nuovita-day-offer-1.svg",
+   "image": "/assets/products/tovar-nedeli-nuovita-day-offer-1.jpg",
    "images": [
-    "/api/images/tovar-nedeli-nuovita-day-offer-1.svg",
-    "/api/images/tovar-nedeli-nuovita-day-offer-1.svg?variant=2"
+    "/assets/products/tovar-nedeli-nuovita-day-offer-1.jpg"
    ],
    "description": "Товар недели Nuovita Day Offer — цена действует ровно неделю и возвращается к обычной в понедельник. Позиция выбрана по спросу прошлого месяца — берут чаще всего именно её. Скидка уже в цене, промокод вводить не нужно.",
    "characteristics": {
@@ -572,10 +571,9 @@
    "article": "Арт. 100014-0002",
    "brand": "Chicco",
    "country": "Италия",
-   "image": "/api/images/tovar-nedeli-chicco-top-week-2.svg",
+   "image": "/assets/products/tovar-nedeli-chicco-top-week-2.jpg",
    "images": [
-    "/api/images/tovar-nedeli-chicco-top-week-2.svg",
-    "/api/images/tovar-nedeli-chicco-top-week-2.svg?variant=2"
+    "/assets/products/tovar-nedeli-chicco-top-week-2.jpg"
    ],
    "description": "Товар недели Chicco Top Week — скидка уже в цене, промокод вводить не нужно. Цена действует ровно неделю и возвращается к обычной в понедельник. Количество ограничено складским остатком и не пополняется до конца акции.",
    "characteristics": {
@@ -656,10 +654,9 @@
    "article": "Арт. 100021-0003",
    "brand": "Maman",
    "country": "Россия",
-   "image": "/api/images/tovar-nedeli-maman-top-week-3.svg",
+   "image": "/assets/products/tovar-nedeli-maman-top-week-3.jpg",
    "images": [
-    "/api/images/tovar-nedeli-maman-top-week-3.svg",
-    "/api/images/tovar-nedeli-maman-top-week-3.svg?variant=2"
+    "/assets/products/tovar-nedeli-maman-top-week-3.jpg"
    ],
    "description": "Товар недели Maman Top Week — количество ограничено складским остатком и не пополняется до конца акции. Позиция выбрана по спросу прошлого месяца — берут чаще всего именно её. Цена действует ровно неделю и возвращается к обычной в понедельник.",
    "characteristics": {
@@ -703,10 +700,9 @@
    "article": "Арт. 100028-0004",
    "brand": "Roxy Kids",
    "country": "Россия",
-   "image": "/api/images/tovar-nedeli-roxy-kids-day-offer-4.svg",
+   "image": "/assets/products/tovar-nedeli-roxy-kids-day-offer-4.jpg",
    "images": [
-    "/api/images/tovar-nedeli-roxy-kids-day-offer-4.svg",
-    "/api/images/tovar-nedeli-roxy-kids-day-offer-4.svg?variant=2"
+    "/assets/products/tovar-nedeli-roxy-kids-day-offer-4.jpg"
    ],
    "description": "Товар недели Roxy Kids Day Offer — позиция выбрана по спросу прошлого месяца — берут чаще всего именно её. Цена действует ровно неделю и возвращается к обычной в понедельник. Скидка уже в цене, промокод вводить не нужно.",
    "characteristics": {
@@ -758,10 +754,9 @@
    "article": "Арт. 100035-0005",
    "brand": "Munchkin",
    "country": "США",
-   "image": "/api/images/tovar-nedeli-munchkin-day-offer-5.svg",
+   "image": "/assets/products/tovar-nedeli-munchkin-day-offer-5.jpg",
    "images": [
-    "/api/images/tovar-nedeli-munchkin-day-offer-5.svg",
-    "/api/images/tovar-nedeli-munchkin-day-offer-5.svg?variant=2"
+    "/assets/products/tovar-nedeli-munchkin-day-offer-5.jpg"
    ],
    "description": "Товар недели Munchkin Day Offer — количество ограничено складским остатком и не пополняется до конца акции. Цена действует ровно неделю и возвращается к обычной в понедельник. Скидка уже в цене, промокод вводить не нужно.",
    "characteristics": {
@@ -816,10 +811,9 @@
    "article": "Арт. 100042-0006",
    "brand": "Nuovita",
    "country": "Италия",
-   "image": "/api/images/tovar-nedeli-nuovita-star-price-6.svg",
+   "image": "/assets/products/tovar-nedeli-nuovita-star-price-6.jpg",
    "images": [
-    "/api/images/tovar-nedeli-nuovita-star-price-6.svg",
-    "/api/images/tovar-nedeli-nuovita-star-price-6.svg?variant=2"
+    "/assets/products/tovar-nedeli-nuovita-star-price-6.jpg"
    ],
    "description": "Товар недели Nuovita Star Price — позиция выбрана по спросу прошлого месяца — берут чаще всего именно её. Скидка уже в цене, промокод вводить не нужно. Количество ограничено складским остатком и не пополняется до конца акции.",
    "characteristics": {
@@ -865,10 +859,9 @@
    "article": "Арт. 100049-0007",
    "brand": "Roxy Kids",
    "country": "Россия",
-   "image": "/api/images/tovar-nedeli-roxy-kids-best-choice-7.svg",
+   "image": "/assets/products/tovar-nedeli-roxy-kids-best-choice-7.jpg",
    "images": [
-    "/api/images/tovar-nedeli-roxy-kids-best-choice-7.svg",
-    "/api/images/tovar-nedeli-roxy-kids-best-choice-7.svg?variant=2"
+    "/assets/products/tovar-nedeli-roxy-kids-best-choice-7.jpg"
    ],
    "description": "Товар недели Roxy Kids Best Choice — цена действует ровно неделю и возвращается к обычной в понедельник. Скидка уже в цене, промокод вводить не нужно. Количество ограничено складским остатком и не пополняется до конца акции.",
    "characteristics": {
@@ -929,10 +922,9 @@
    "article": "Арт. 100056-0008",
    "brand": "Babyono",
    "country": "Польша",
-   "image": "/api/images/tovar-nedeli-babyono-hot-price-8.svg",
+   "image": "/assets/products/tovar-nedeli-babyono-hot-price-8.jpg",
    "images": [
-    "/api/images/tovar-nedeli-babyono-hot-price-8.svg",
-    "/api/images/tovar-nedeli-babyono-hot-price-8.svg?variant=2"
+    "/assets/products/tovar-nedeli-babyono-hot-price-8.jpg"
    ],
    "description": "Товар недели Babyono Hot Price — цена действует ровно неделю и возвращается к обычной в понедельник. Количество ограничено складским остатком и не пополняется до конца акции. Позиция выбрана по спросу прошлого месяца — берут чаще всего именно её.",
    "characteristics": {
@@ -1006,10 +998,9 @@
    "article": "Арт. 100063-0009",
    "brand": "Kinderkraft",
    "country": "Польша",
-   "image": "/api/images/tovar-nedeli-kinderkraft-top-week-9.svg",
+   "image": "/assets/products/tovar-nedeli-kinderkraft-top-week-9.jpg",
    "images": [
-    "/api/images/tovar-nedeli-kinderkraft-top-week-9.svg",
-    "/api/images/tovar-nedeli-kinderkraft-top-week-9.svg?variant=2"
+    "/assets/products/tovar-nedeli-kinderkraft-top-week-9.jpg"
    ],
    "description": "Товар недели Kinderkraft Top Week — цена действует ровно неделю и возвращается к обычной в понедельник. Позиция выбрана по спросу прошлого месяца — берут чаще всего именно её. Скидка уже в цене, промокод вводить не нужно.",
    "characteristics": {
@@ -1074,10 +1065,9 @@
    "article": "Арт. 100070-0010",
    "brand": "Chicco",
    "country": "Италия",
-   "image": "/api/images/tovar-nedeli-chicco-hot-price-10.svg",
+   "image": "/assets/products/tovar-nedeli-chicco-hot-price-10.jpg",
    "images": [
-    "/api/images/tovar-nedeli-chicco-hot-price-10.svg",
-    "/api/images/tovar-nedeli-chicco-hot-price-10.svg?variant=2"
+    "/assets/products/tovar-nedeli-chicco-hot-price-10.jpg"
    ],
    "description": "Товар недели Chicco Hot Price — количество ограничено складским остатком и не пополняется до конца акции. Позиция выбрана по спросу прошлого месяца — берут чаще всего именно её. Скидка уже в цене, промокод вводить не нужно.",
    "characteristics": {
@@ -1158,10 +1148,9 @@
    "article": "Арт. 100077-0011",
    "brand": "Nuovita",
    "country": "Италия",
-   "image": "/api/images/tovar-nedeli-nuovita-prime-week-11.svg",
+   "image": "/assets/products/tovar-nedeli-nuovita-prime-week-11.jpg",
    "images": [
-    "/api/images/tovar-nedeli-nuovita-prime-week-11.svg",
-    "/api/images/tovar-nedeli-nuovita-prime-week-11.svg?variant=2"
+    "/assets/products/tovar-nedeli-nuovita-prime-week-11.jpg"
    ],
    "description": "Товар недели Nuovita Prime Week — скидка уже в цене, промокод вводить не нужно. Цена действует ровно неделю и возвращается к обычной в понедельник. Позиция выбрана по спросу прошлого месяца — берут чаще всего именно её.",
    "characteristics": {
@@ -1207,10 +1196,9 @@
    "article": "Арт. 100084-0012",
    "brand": "Roxy Kids",
    "country": "Россия",
-   "image": "/api/images/tovar-nedeli-roxy-kids-star-price-12.svg",
+   "image": "/assets/products/tovar-nedeli-roxy-kids-star-price-12.jpg",
    "images": [
-    "/api/images/tovar-nedeli-roxy-kids-star-price-12.svg",
-    "/api/images/tovar-nedeli-roxy-kids-star-price-12.svg?variant=2"
+    "/assets/products/tovar-nedeli-roxy-kids-star-price-12.jpg"
    ],
    "description": "Товар недели Roxy Kids Star Price — скидка уже в цене, промокод вводить не нужно. Количество ограничено складским остатком и не пополняется до конца акции. Позиция выбрана по спросу прошлого месяца — берут чаще всего именно её.",
    "characteristics": {
@@ -1272,10 +1260,9 @@
    "article": "Арт. 100091-0013",
    "brand": "Roxy Kids",
    "country": "Россия",
-   "image": "/api/images/tovar-nedeli-roxy-kids-prime-week-13.svg",
+   "image": "/assets/products/tovar-nedeli-roxy-kids-prime-week-13.jpg",
    "images": [
-    "/api/images/tovar-nedeli-roxy-kids-prime-week-13.svg",
-    "/api/images/tovar-nedeli-roxy-kids-prime-week-13.svg?variant=2"
+    "/assets/products/tovar-nedeli-roxy-kids-prime-week-13.jpg"
    ],
    "description": "Товар недели Roxy Kids Prime Week — количество ограничено складским остатком и не пополняется до конца акции. Скидка уже в цене, промокод вводить не нужно. Позиция выбрана по спросу прошлого месяца — берут чаще всего именно её.",
    "characteristics": {
@@ -1356,10 +1343,9 @@
    "article": "Арт. 100098-0014",
    "brand": "Munchkin",
    "country": "США",
-   "image": "/api/images/tovar-nedeli-munchkin-smart-buy-14.svg",
+   "image": "/assets/products/tovar-nedeli-munchkin-smart-buy-14.jpg",
    "images": [
-    "/api/images/tovar-nedeli-munchkin-smart-buy-14.svg",
-    "/api/images/tovar-nedeli-munchkin-smart-buy-14.svg?variant=2"
+    "/assets/products/tovar-nedeli-munchkin-smart-buy-14.jpg"
    ],
    "description": "Товар недели Munchkin Smart Buy — скидка уже в цене, промокод вводить не нужно. Количество ограничено складским остатком и не пополняется до конца акции. Цена действует ровно неделю и возвращается к обычной в понедельник.",
    "characteristics": {
@@ -1431,10 +1417,9 @@
    "article": "Арт. 100105-0015",
    "brand": "Lorelli",
    "country": "Болгария",
-   "image": "/api/images/tovar-nedeli-lorelli-prime-week-15.svg",
+   "image": "/assets/products/tovar-nedeli-lorelli-prime-week-15.jpg",
    "images": [
-    "/api/images/tovar-nedeli-lorelli-prime-week-15.svg",
-    "/api/images/tovar-nedeli-lorelli-prime-week-15.svg?variant=2"
+    "/assets/products/tovar-nedeli-lorelli-prime-week-15.jpg"
    ],
    "description": "Товар недели Lorelli Prime Week — позиция выбрана по спросу прошлого месяца — берут чаще всего именно её. Количество ограничено складским остатком и не пополняется до конца акции. Скидка уже в цене, промокод вводить не нужно.",
    "characteristics": {
@@ -1505,10 +1490,9 @@
    "article": "Арт. 100112-0016",
    "brand": "Canpol Babies",
    "country": "Польша",
-   "image": "/api/images/tovar-nedeli-canpol-babies-fresh-deal-16.svg",
+   "image": "/assets/products/tovar-nedeli-canpol-babies-fresh-deal-16.jpg",
    "images": [
-    "/api/images/tovar-nedeli-canpol-babies-fresh-deal-16.svg",
-    "/api/images/tovar-nedeli-canpol-babies-fresh-deal-16.svg?variant=2"
+    "/assets/products/tovar-nedeli-canpol-babies-fresh-deal-16.jpg"
    ],
    "description": "Товар недели Canpol Babies Fresh Deal — позиция выбрана по спросу прошлого месяца — берут чаще всего именно её. Количество ограничено складским остатком и не пополняется до конца акции. Цена действует ровно неделю и возвращается к обычной в понедельник.",
    "characteristics": {
@@ -1562,10 +1546,9 @@
    "article": "Арт. 100119-0017",
    "brand": "Happy Baby",
    "country": "Россия",
-   "image": "/api/images/tovar-nedeli-happy-baby-prime-week-17.svg",
+   "image": "/assets/products/tovar-nedeli-happy-baby-prime-week-17.jpg",
    "images": [
-    "/api/images/tovar-nedeli-happy-baby-prime-week-17.svg",
-    "/api/images/tovar-nedeli-happy-baby-prime-week-17.svg?variant=2"
+    "/assets/products/tovar-nedeli-happy-baby-prime-week-17.jpg"
    ],
    "description": "Товар недели Happy Baby Prime Week — скидка уже в цене, промокод вводить не нужно. Количество ограничено складским остатком и не пополняется до конца акции. Цена действует ровно неделю и возвращается к обычной в понедельник.",
    "characteristics": {
@@ -1636,10 +1619,9 @@
    "article": "Арт. 100126-0018",
    "brand": "Canpol Babies",
    "country": "Польша",
-   "image": "/api/images/tovar-nedeli-canpol-babies-quick-pick-18.svg",
+   "image": "/assets/products/tovar-nedeli-canpol-babies-quick-pick-18.jpg",
    "images": [
-    "/api/images/tovar-nedeli-canpol-babies-quick-pick-18.svg",
-    "/api/images/tovar-nedeli-canpol-babies-quick-pick-18.svg?variant=2"
+    "/assets/products/tovar-nedeli-canpol-babies-quick-pick-18.jpg"
    ],
    "description": "Товар недели Canpol Babies Quick Pick — цена действует ровно неделю и возвращается к обычной в понедельник. Скидка уже в цене, промокод вводить не нужно. Количество ограничено складским остатком и не пополняется до конца акции.",
    "characteristics": {
@@ -1682,10 +1664,9 @@
    "article": "Арт. 100133-0019",
    "brand": "Babyono",
    "country": "Польша",
-   "image": "/api/images/tovar-nedeli-babyono-best-choice-19.svg",
+   "image": "/assets/products/tovar-nedeli-babyono-best-choice-19.jpg",
    "images": [
-    "/api/images/tovar-nedeli-babyono-best-choice-19.svg",
-    "/api/images/tovar-nedeli-babyono-best-choice-19.svg?variant=2"
+    "/assets/products/tovar-nedeli-babyono-best-choice-19.jpg"
    ],
    "description": "Товар недели Babyono Best Choice — скидка уже в цене, промокод вводить не нужно. Цена действует ровно неделю и возвращается к обычной в понедельник. Позиция выбрана по спросу прошлого месяца — берут чаще всего именно её.",
    "characteristics": {
@@ -1747,10 +1728,9 @@
    "article": "Арт. 100140-0020",
    "brand": "Maman",
    "country": "Россия",
-   "image": "/api/images/tovar-nedeli-maman-prime-week-20.svg",
+   "image": "/assets/products/tovar-nedeli-maman-prime-week-20.jpg",
    "images": [
-    "/api/images/tovar-nedeli-maman-prime-week-20.svg",
-    "/api/images/tovar-nedeli-maman-prime-week-20.svg?variant=2"
+    "/assets/products/tovar-nedeli-maman-prime-week-20.jpg"
    ],
    "description": "Товар недели Maman Prime Week — цена действует ровно неделю и возвращается к обычной в понедельник. Позиция выбрана по спросу прошлого месяца — берут чаще всего именно её. Количество ограничено складским остатком и не пополняется до конца акции.",
    "characteristics": {
@@ -1794,10 +1774,9 @@
    "article": "Арт. 100147-0021",
    "brand": "Lorelli",
    "country": "Болгария",
-   "image": "/api/images/tovar-rasprodazhi-lorelli-final-21.svg",
+   "image": "/assets/products/tovar-rasprodazhi-lorelli-final-21.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-lorelli-final-21.svg",
-    "/api/images/tovar-rasprodazhi-lorelli-final-21.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-lorelli-final-21.jpg"
    ],
    "description": "Товар распродажи Lorelli Финал — перед покупкой уточните остаток — позиции разбирают за считаные дни. Последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя. Товар новый, скидка не связана с качеством: меняется только цвет или упаковка.",
    "characteristics": {
@@ -1878,10 +1857,9 @@
    "article": "Арт. 100154-0022",
    "brand": "Micuna",
    "country": "Испания",
-   "image": "/api/images/tovar-rasprodazhi-micuna-ostatok-22.svg",
+   "image": "/assets/products/tovar-rasprodazhi-micuna-ostatok-22.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-micuna-ostatok-22.svg",
-    "/api/images/tovar-rasprodazhi-micuna-ostatok-22.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-micuna-ostatok-22.jpg"
    ],
    "description": "Товар распродажи Micuna Остаток — товар новый, скидка не связана с качеством: меняется только цвет или упаковка. Перед покупкой уточните остаток — позиции разбирают за считаные дни. Последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя.",
    "characteristics": {
@@ -1964,10 +1942,9 @@
    "article": "Арт. 100161-0023",
    "brand": "Riko",
    "country": "Польша",
-   "image": "/api/images/tovar-rasprodazhi-riko-ostatok-23.svg",
+   "image": "/assets/products/tovar-rasprodazhi-riko-ostatok-23.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-riko-ostatok-23.svg",
-    "/api/images/tovar-rasprodazhi-riko-ostatok-23.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-riko-ostatok-23.jpg"
    ],
    "description": "Товар распродажи Riko Остаток — перед покупкой уточните остаток — позиции разбирают за считаные дни. Последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя. Товар новый, скидка не связана с качеством: меняется только цвет или упаковка.",
    "characteristics": {
@@ -2039,10 +2016,9 @@
    "article": "Арт. 100168-0024",
    "brand": "Pali",
    "country": "Италия",
-   "image": "/api/images/tovar-rasprodazhi-pali-posledniy-razmer-24.svg",
+   "image": "/assets/products/tovar-rasprodazhi-pali-posledniy-razmer-24.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-pali-posledniy-razmer-24.svg",
-    "/api/images/tovar-rasprodazhi-pali-posledniy-razmer-24.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-pali-posledniy-razmer-24.jpg"
    ],
    "description": "Товар распродажи Pali Последний размер — последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя. Гарантия производителя сохраняется полностью. Перед покупкой уточните остаток — позиции разбирают за считаные дни.",
    "characteristics": {
@@ -2095,10 +2071,9 @@
    "article": "Арт. 100175-0025",
    "brand": "Happy Baby",
    "country": "Россия",
-   "image": "/api/images/tovar-rasprodazhi-happy-baby-ostatok-25.svg",
+   "image": "/assets/products/tovar-rasprodazhi-happy-baby-ostatok-25.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-happy-baby-ostatok-25.svg",
-    "/api/images/tovar-rasprodazhi-happy-baby-ostatok-25.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-happy-baby-ostatok-25.jpg"
    ],
    "description": "Товар распродажи Happy Baby Остаток — последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя. Товар новый, скидка не связана с качеством: меняется только цвет или упаковка. Перед покупкой уточните остаток — позиции разбирают за считаные дни.",
    "characteristics": {
@@ -2162,10 +2137,9 @@
    "article": "Арт. 100182-0026",
    "brand": "Babyton",
    "country": "Россия",
-   "image": "/api/images/tovar-rasprodazhi-babyton-clearance-26.svg",
+   "image": "/assets/products/tovar-rasprodazhi-babyton-clearance-26.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-babyton-clearance-26.svg",
-    "/api/images/tovar-rasprodazhi-babyton-clearance-26.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-babyton-clearance-26.jpg"
    ],
    "description": "Товар распродажи Babyton Clearance — гарантия производителя сохраняется полностью. Товар новый, скидка не связана с качеством: меняется только цвет или упаковка. Последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя.",
    "characteristics": {
@@ -2208,10 +2182,9 @@
    "article": "Арт. 100189-0027",
    "brand": "Babyton",
    "country": "Россия",
-   "image": "/api/images/tovar-rasprodazhi-babyton-sklad-27.svg",
+   "image": "/assets/products/tovar-rasprodazhi-babyton-sklad-27.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-babyton-sklad-27.svg",
-    "/api/images/tovar-rasprodazhi-babyton-sklad-27.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-babyton-sklad-27.jpg"
    ],
    "description": "Товар распродажи Babyton Склад — последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя. Гарантия производителя сохраняется полностью. Товар новый, скидка не связана с качеством: меняется только цвет или упаковка.",
    "characteristics": {
@@ -2275,10 +2248,9 @@
    "article": "Арт. 100196-0028",
    "brand": "Pali",
    "country": "Италия",
-   "image": "/api/images/tovar-rasprodazhi-pali-sale-out-28.svg",
+   "image": "/assets/products/tovar-rasprodazhi-pali-sale-out-28.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-pali-sale-out-28.svg",
-    "/api/images/tovar-rasprodazhi-pali-sale-out-28.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-pali-sale-out-28.jpg"
    ],
    "description": "Товар распродажи Pali Sale Out — последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя. Перед покупкой уточните остаток — позиции разбирают за считаные дни. Товар новый, скидка не связана с качеством: меняется только цвет или упаковка.",
    "characteristics": {
@@ -2322,10 +2294,9 @@
    "article": "Арт. 100203-0029",
    "brand": "Carrello",
    "country": "Польша",
-   "image": "/api/images/tovar-rasprodazhi-carrello-last-items-29.svg",
+   "image": "/assets/products/tovar-rasprodazhi-carrello-last-items-29.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-carrello-last-items-29.svg",
-    "/api/images/tovar-rasprodazhi-carrello-last-items-29.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-carrello-last-items-29.jpg"
    ],
    "description": "Товар распродажи Carrello Last Items — гарантия производителя сохраняется полностью. Перед покупкой уточните остаток — позиции разбирают за считаные дни. Товар новый, скидка не связана с качеством: меняется только цвет или упаковка.",
    "characteristics": {
@@ -2389,10 +2360,9 @@
    "article": "Арт. 100210-0030",
    "brand": "Pali",
    "country": "Италия",
-   "image": "/api/images/tovar-rasprodazhi-pali-ostatok-30.svg",
+   "image": "/assets/products/tovar-rasprodazhi-pali-ostatok-30.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-pali-ostatok-30.svg",
-    "/api/images/tovar-rasprodazhi-pali-ostatok-30.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-pali-ostatok-30.jpg"
    ],
    "description": "Товар распродажи Pali Остаток — перед покупкой уточните остаток — позиции разбирают за считаные дни. Последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя. Товар новый, скидка не связана с качеством: меняется только цвет или упаковка.",
    "characteristics": {
@@ -2455,10 +2425,9 @@
    "article": "Арт. 100217-0031",
    "brand": "Antel",
    "country": "Россия",
-   "image": "/api/images/tovar-rasprodazhi-antel-last-items-31.svg",
+   "image": "/assets/products/tovar-rasprodazhi-antel-last-items-31.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-antel-last-items-31.svg",
-    "/api/images/tovar-rasprodazhi-antel-last-items-31.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-antel-last-items-31.jpg"
    ],
    "description": "Товар распродажи Antel Last Items — последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя. Перед покупкой уточните остаток — позиции разбирают за считаные дни. Гарантия производителя сохраняется полностью.",
    "characteristics": {
@@ -2538,10 +2507,9 @@
    "article": "Арт. 100224-0032",
    "brand": "Erbesi",
    "country": "Италия",
-   "image": "/api/images/tovar-rasprodazhi-erbesi-ucenka-32.svg",
+   "image": "/assets/products/tovar-rasprodazhi-erbesi-ucenka-32.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-erbesi-ucenka-32.svg",
-    "/api/images/tovar-rasprodazhi-erbesi-ucenka-32.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-erbesi-ucenka-32.jpg"
    ],
    "description": "Товар распродажи Erbesi Уценка — гарантия производителя сохраняется полностью. Последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя. Перед покупкой уточните остаток — позиции разбирают за считаные дни.",
    "characteristics": {
@@ -2621,10 +2589,9 @@
    "article": "Арт. 100231-0033",
    "brand": "Riko",
    "country": "Польша",
-   "image": "/api/images/tovar-rasprodazhi-riko-sale-out-33.svg",
+   "image": "/assets/products/tovar-rasprodazhi-riko-sale-out-33.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-riko-sale-out-33.svg",
-    "/api/images/tovar-rasprodazhi-riko-sale-out-33.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-riko-sale-out-33.jpg"
    ],
    "description": "Товар распродажи Riko Sale Out — товар новый, скидка не связана с качеством: меняется только цвет или упаковка. Гарантия производителя сохраняется полностью. Перед покупкой уточните остаток — позиции разбирают за считаные дни.",
    "characteristics": {
@@ -2696,10 +2663,9 @@
    "article": "Арт. 100238-0034",
    "brand": "Babyton",
    "country": "Россия",
-   "image": "/api/images/tovar-rasprodazhi-babyton-ucenka-34.svg",
+   "image": "/assets/products/tovar-rasprodazhi-babyton-ucenka-34.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-babyton-ucenka-34.svg",
-    "/api/images/tovar-rasprodazhi-babyton-ucenka-34.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-babyton-ucenka-34.jpg"
    ],
    "description": "Товар распродажи Babyton Уценка — товар новый, скидка не связана с качеством: меняется только цвет или упаковка. Последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя. Перед покупкой уточните остаток — позиции разбирают за считаные дни.",
    "characteristics": {
@@ -2762,10 +2728,9 @@
    "article": "Арт. 100245-0035",
    "brand": "Antel",
    "country": "Россия",
-   "image": "/api/images/tovar-rasprodazhi-antel-final-35.svg",
+   "image": "/assets/products/tovar-rasprodazhi-antel-final-35.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-antel-final-35.svg",
-    "/api/images/tovar-rasprodazhi-antel-final-35.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-antel-final-35.jpg"
    ],
    "description": "Товар распродажи Antel Финал — последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя. Товар новый, скидка не связана с качеством: меняется только цвет или упаковка. Гарантия производителя сохраняется полностью.",
    "characteristics": {
@@ -2836,10 +2801,9 @@
    "article": "Арт. 100252-0036",
    "brand": "Antel",
    "country": "Россия",
-   "image": "/api/images/tovar-rasprodazhi-antel-ostatok-36.svg",
+   "image": "/assets/products/tovar-rasprodazhi-antel-ostatok-36.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-antel-ostatok-36.svg",
-    "/api/images/tovar-rasprodazhi-antel-ostatok-36.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-antel-ostatok-36.jpg"
    ],
    "description": "Товар распродажи Antel Остаток — перед покупкой уточните остаток — позиции разбирают за считаные дни. Товар новый, скидка не связана с качеством: меняется только цвет или упаковка. Гарантия производителя сохраняется полностью.",
    "characteristics": {
@@ -2911,10 +2875,9 @@
    "article": "Арт. 100259-0037",
    "brand": "Erbesi",
    "country": "Италия",
-   "image": "/api/images/tovar-rasprodazhi-erbesi-clearance-37.svg",
+   "image": "/assets/products/tovar-rasprodazhi-erbesi-clearance-37.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-erbesi-clearance-37.svg",
-    "/api/images/tovar-rasprodazhi-erbesi-clearance-37.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-erbesi-clearance-37.jpg"
    ],
    "description": "Товар распродажи Erbesi Clearance — товар новый, скидка не связана с качеством: меняется только цвет или упаковка. Перед покупкой уточните остаток — позиции разбирают за считаные дни. Последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя.",
    "characteristics": {
@@ -2967,10 +2930,9 @@
    "article": "Арт. 100266-0038",
    "brand": "Carrello",
    "country": "Польша",
-   "image": "/api/images/tovar-rasprodazhi-carrello-final-sale-38.svg",
+   "image": "/assets/products/tovar-rasprodazhi-carrello-final-sale-38.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-carrello-final-sale-38.svg",
-    "/api/images/tovar-rasprodazhi-carrello-final-sale-38.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-carrello-final-sale-38.jpg"
    ],
    "description": "Товар распродажи Carrello Final Sale — перед покупкой уточните остаток — позиции разбирают за считаные дни. Товар новый, скидка не связана с качеством: меняется только цвет или упаковка. Гарантия производителя сохраняется полностью.",
    "characteristics": {
@@ -3051,10 +3013,9 @@
    "article": "Арт. 100273-0039",
    "brand": "Micuna",
    "country": "Испания",
-   "image": "/api/images/tovar-rasprodazhi-micuna-final-sale-39.svg",
+   "image": "/assets/products/tovar-rasprodazhi-micuna-final-sale-39.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-micuna-final-sale-39.svg",
-    "/api/images/tovar-rasprodazhi-micuna-final-sale-39.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-micuna-final-sale-39.jpg"
    ],
    "description": "Товар распродажи Micuna Final Sale — последние экземпляры уходящих коллекций — дозаказать такую модель уже нельзя. Перед покупкой уточните остаток — позиции разбирают за считаные дни. Гарантия производителя сохраняется полностью.",
    "characteristics": {
@@ -3136,10 +3097,9 @@
    "article": "Арт. 100280-0040",
    "brand": "Riko",
    "country": "Польша",
-   "image": "/api/images/tovar-rasprodazhi-riko-last-items-40.svg",
+   "image": "/assets/products/tovar-rasprodazhi-riko-last-items-40.jpg",
    "images": [
-    "/api/images/tovar-rasprodazhi-riko-last-items-40.svg",
-    "/api/images/tovar-rasprodazhi-riko-last-items-40.svg?variant=2"
+    "/assets/products/tovar-rasprodazhi-riko-last-items-40.jpg"
    ],
    "description": "Товар распродажи Riko Last Items — гарантия производителя сохраняется полностью. Товар новый, скидка не связана с качеством: меняется только цвет или упаковка. Перед покупкой уточните остаток — позиции разбирают за считаные дни.",
    "characteristics": {
@@ -3183,10 +3143,9 @@
    "article": "Арт. 100287-0041",
    "brand": "Roxy Kids",
    "country": "Россия",
-   "image": "/api/images/nabor-k-vypiske-roxy-kids-podarok-malyshu-41.svg",
+   "image": "/assets/products/nabor-k-vypiske-roxy-kids-podarok-malyshu-41.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-roxy-kids-podarok-malyshu-41.svg",
-    "/api/images/nabor-k-vypiske-roxy-kids-podarok-malyshu-41.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-roxy-kids-podarok-malyshu-41.jpg"
    ],
    "description": "Набор к выписке Roxy Kids Подарок малышу — состав набора фиксированный: заменить отдельный предмет внутри нельзя. Собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста. Дешевле, чем те же предметы поштучно — разница доходит до трети стоимости.",
    "characteristics": {
@@ -3230,10 +3189,9 @@
    "article": "Арт. 100294-0042",
    "brand": "Крошка Я",
    "country": "Россия",
-   "image": "/api/images/nabor-k-vypiske-kroshka-ya-pervye-dni-42.svg",
+   "image": "/assets/products/nabor-k-vypiske-kroshka-ya-pervye-dni-42.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-kroshka-ya-pervye-dni-42.svg",
-    "/api/images/nabor-k-vypiske-kroshka-ya-pervye-dni-42.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-kroshka-ya-pervye-dni-42.jpg"
    ],
    "description": "Набор к выписке Крошка Я Первые дни — собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста. Приходит в подарочной упаковке, открытку с подписью добавим бесплатно. Состав набора фиксированный: заменить отдельный предмет внутри нельзя.",
    "characteristics": {
@@ -3278,10 +3236,9 @@
    "article": "Арт. 100301-0043",
    "brand": "Мамуляндия",
    "country": "Россия",
-   "image": "/api/images/nabor-k-vypiske-mamulyandiya-komplekt-mamy-43.svg",
+   "image": "/assets/products/nabor-k-vypiske-mamulyandiya-komplekt-mamy-43.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-mamulyandiya-komplekt-mamy-43.svg",
-    "/api/images/nabor-k-vypiske-mamulyandiya-komplekt-mamy-43.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-mamulyandiya-komplekt-mamy-43.jpg"
    ],
    "description": "Набор к выписке Мамуляндия Комплект мамы — приходит в подарочной упаковке, открытку с подписью добавим бесплатно. Дешевле, чем те же предметы поштучно — разница доходит до трети стоимости. Собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста.",
    "characteristics": {
@@ -3345,10 +3302,9 @@
    "article": "Арт. 100308-0044",
    "brand": "Мамуляндия",
    "country": "Россия",
-   "image": "/api/images/nabor-k-vypiske-mamulyandiya-domoy-iz-roddoma-44.svg",
+   "image": "/assets/products/nabor-k-vypiske-mamulyandiya-domoy-iz-roddoma-44.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-mamulyandiya-domoy-iz-roddoma-44.svg",
-    "/api/images/nabor-k-vypiske-mamulyandiya-domoy-iz-roddoma-44.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-mamulyandiya-domoy-iz-roddoma-44.jpg"
    ],
    "description": "Набор к выписке Мамуляндия Домой из роддома — дешевле, чем те же предметы поштучно — разница доходит до трети стоимости. Состав набора фиксированный: заменить отдельный предмет внутри нельзя. Приходит в подарочной упаковке, открытку с подписью добавим бесплатно.",
    "characteristics": {
@@ -3412,10 +3368,9 @@
    "article": "Арт. 100315-0045",
    "brand": "Крошка Я",
    "country": "Россия",
-   "image": "/api/images/nabor-k-vypiske-kroshka-ya-nezhnost-45.svg",
+   "image": "/assets/products/nabor-k-vypiske-kroshka-ya-nezhnost-45.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-kroshka-ya-nezhnost-45.svg",
-    "/api/images/nabor-k-vypiske-kroshka-ya-nezhnost-45.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-kroshka-ya-nezhnost-45.jpg"
    ],
    "description": "Набор к выписке Крошка Я Нежность — дешевле, чем те же предметы поштучно — разница доходит до трети стоимости. Приходит в подарочной упаковке, открытку с подписью добавим бесплатно. Состав набора фиксированный: заменить отдельный предмет внутри нельзя.",
    "characteristics": {
@@ -3487,10 +3442,9 @@
    "article": "Арт. 100322-0046",
    "brand": "Munchkin",
    "country": "США",
-   "image": "/api/images/nabor-k-vypiske-munchkin-komplekt-mamy-46.svg",
+   "image": "/assets/products/nabor-k-vypiske-munchkin-komplekt-mamy-46.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-munchkin-komplekt-mamy-46.svg",
-    "/api/images/nabor-k-vypiske-munchkin-komplekt-mamy-46.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-munchkin-komplekt-mamy-46.jpg"
    ],
    "description": "Набор к выписке Munchkin Комплект мамы — состав набора фиксированный: заменить отдельный предмет внутри нельзя. Дешевле, чем те же предметы поштучно — разница доходит до трети стоимости. Собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста.",
    "characteristics": {
@@ -3562,10 +3516,9 @@
    "article": "Арт. 100329-0047",
    "brand": "Babyono",
    "country": "Польша",
-   "image": "/api/images/nabor-k-vypiske-babyono-start-47.svg",
+   "image": "/assets/products/nabor-k-vypiske-babyono-start-47.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-babyono-start-47.svg",
-    "/api/images/nabor-k-vypiske-babyono-start-47.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-babyono-start-47.jpg"
    ],
    "description": "Набор к выписке Babyono Старт — состав набора фиксированный: заменить отдельный предмет внутри нельзя. Собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста. Дешевле, чем те же предметы поштучно — разница доходит до трети стоимости.",
    "characteristics": {
@@ -3619,10 +3572,9 @@
    "article": "Арт. 100336-0048",
    "brand": "Roxy Kids",
    "country": "Россия",
-   "image": "/api/images/nabor-k-vypiske-roxy-kids-nezhnost-48.svg",
+   "image": "/assets/products/nabor-k-vypiske-roxy-kids-nezhnost-48.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-roxy-kids-nezhnost-48.svg",
-    "/api/images/nabor-k-vypiske-roxy-kids-nezhnost-48.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-roxy-kids-nezhnost-48.jpg"
    ],
    "description": "Набор к выписке Roxy Kids Нежность — дешевле, чем те же предметы поштучно — разница доходит до трети стоимости. Состав набора фиксированный: заменить отдельный предмет внутри нельзя. Приходит в подарочной упаковке, открытку с подписью добавим бесплатно.",
    "characteristics": {
@@ -3704,10 +3656,9 @@
    "article": "Арт. 100343-0049",
    "brand": "Babyono",
    "country": "Польша",
-   "image": "/api/images/nabor-k-vypiske-babyono-newborn-set-49.svg",
+   "image": "/assets/products/nabor-k-vypiske-babyono-newborn-set-49.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-babyono-newborn-set-49.svg",
-    "/api/images/nabor-k-vypiske-babyono-newborn-set-49.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-babyono-newborn-set-49.jpg"
    ],
    "description": "Набор к выписке Babyono Newborn Set — дешевле, чем те же предметы поштучно — разница доходит до трети стоимости. Приходит в подарочной упаковке, открытку с подписью добавим бесплатно. Собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста.",
    "characteristics": {
@@ -3768,10 +3719,9 @@
    "article": "Арт. 100350-0050",
    "brand": "Canpol Babies",
    "country": "Польша",
-   "image": "/api/images/nabor-k-vypiske-canpol-babies-newborn-set-50.svg",
+   "image": "/assets/products/nabor-k-vypiske-canpol-babies-newborn-set-50.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-canpol-babies-newborn-set-50.svg",
-    "/api/images/nabor-k-vypiske-canpol-babies-newborn-set-50.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-canpol-babies-newborn-set-50.jpg"
    ],
    "description": "Набор к выписке Canpol Babies Newborn Set — приходит в подарочной упаковке, открытку с подписью добавим бесплатно. Собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста. Состав набора фиксированный: заменить отдельный предмет внутри нельзя.",
    "characteristics": {
@@ -3825,10 +3775,9 @@
    "article": "Арт. 100357-0051",
    "brand": "Roxy Kids",
    "country": "Россия",
-   "image": "/api/images/nabor-k-vypiske-roxy-kids-baby-box-51.svg",
+   "image": "/assets/products/nabor-k-vypiske-roxy-kids-baby-box-51.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-roxy-kids-baby-box-51.svg",
-    "/api/images/nabor-k-vypiske-roxy-kids-baby-box-51.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-roxy-kids-baby-box-51.jpg"
    ],
    "description": "Набор к выписке Roxy Kids Baby Box — собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста. Состав набора фиксированный: заменить отдельный предмет внутри нельзя. Приходит в подарочной упаковке, открытку с подписью добавим бесплатно.",
    "characteristics": {
@@ -3910,10 +3859,9 @@
    "article": "Арт. 100364-0052",
    "brand": "Sofuto",
    "country": "Япония",
-   "image": "/api/images/nabor-k-vypiske-sofuto-newborn-set-52.svg",
+   "image": "/assets/products/nabor-k-vypiske-sofuto-newborn-set-52.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-sofuto-newborn-set-52.svg",
-    "/api/images/nabor-k-vypiske-sofuto-newborn-set-52.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-sofuto-newborn-set-52.jpg"
    ],
    "description": "Набор к выписке Sofuto Newborn Set — собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста. Дешевле, чем те же предметы поштучно — разница доходит до трети стоимости. Состав набора фиксированный: заменить отдельный предмет внутри нельзя.",
    "characteristics": {
@@ -3965,10 +3913,9 @@
    "article": "Арт. 100371-0053",
    "brand": "Мамуляндия",
    "country": "Россия",
-   "image": "/api/images/nabor-k-vypiske-mamulyandiya-pervyy-den-53.svg",
+   "image": "/assets/products/nabor-k-vypiske-mamulyandiya-pervyy-den-53.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-mamulyandiya-pervyy-den-53.svg",
-    "/api/images/nabor-k-vypiske-mamulyandiya-pervyy-den-53.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-mamulyandiya-pervyy-den-53.jpg"
    ],
    "description": "Набор к выписке Мамуляндия Первый день — приходит в подарочной упаковке, открытку с подписью добавим бесплатно. Дешевле, чем те же предметы поштучно — разница доходит до трети стоимости. Состав набора фиксированный: заменить отдельный предмет внутри нельзя.",
    "characteristics": {
@@ -4020,10 +3967,9 @@
    "article": "Арт. 100378-0054",
    "brand": "Munchkin",
    "country": "США",
-   "image": "/api/images/nabor-k-vypiske-munchkin-newborn-set-54.svg",
+   "image": "/assets/products/nabor-k-vypiske-munchkin-newborn-set-54.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-munchkin-newborn-set-54.svg",
-    "/api/images/nabor-k-vypiske-munchkin-newborn-set-54.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-munchkin-newborn-set-54.jpg"
    ],
    "description": "Набор к выписке Munchkin Newborn Set — состав набора фиксированный: заменить отдельный предмет внутри нельзя. Собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста. Дешевле, чем те же предметы поштучно — разница доходит до трети стоимости.",
    "characteristics": {
@@ -4094,10 +4040,9 @@
    "article": "Арт. 100385-0055",
    "brand": "Крошка Я",
    "country": "Россия",
-   "image": "/api/images/nabor-k-vypiske-kroshka-ya-start-55.svg",
+   "image": "/assets/products/nabor-k-vypiske-kroshka-ya-start-55.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-kroshka-ya-start-55.svg",
-    "/api/images/nabor-k-vypiske-kroshka-ya-start-55.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-kroshka-ya-start-55.jpg"
    ],
    "description": "Набор к выписке Крошка Я Старт — дешевле, чем те же предметы поштучно — разница доходит до трети стоимости. Состав набора фиксированный: заменить отдельный предмет внутри нельзя. Приходит в подарочной упаковке, открытку с подписью добавим бесплатно.",
    "characteristics": {
@@ -4141,10 +4086,9 @@
    "article": "Арт. 100392-0056",
    "brand": "Canpol Babies",
    "country": "Польша",
-   "image": "/api/images/nabor-k-vypiske-canpol-babies-pervyy-den-56.svg",
+   "image": "/assets/products/nabor-k-vypiske-canpol-babies-pervyy-den-56.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-canpol-babies-pervyy-den-56.svg",
-    "/api/images/nabor-k-vypiske-canpol-babies-pervyy-den-56.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-canpol-babies-pervyy-den-56.jpg"
    ],
    "description": "Набор к выписке Canpol Babies Первый день — состав набора фиксированный: заменить отдельный предмет внутри нельзя. Собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста. Дешевле, чем те же предметы поштучно — разница доходит до трети стоимости.",
    "characteristics": {
@@ -4215,10 +4159,9 @@
    "article": "Арт. 100399-0057",
    "brand": "Sofuto",
    "country": "Япония",
-   "image": "/api/images/nabor-k-vypiske-sofuto-domoy-iz-roddoma-57.svg",
+   "image": "/assets/products/nabor-k-vypiske-sofuto-domoy-iz-roddoma-57.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-sofuto-domoy-iz-roddoma-57.svg",
-    "/api/images/nabor-k-vypiske-sofuto-domoy-iz-roddoma-57.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-sofuto-domoy-iz-roddoma-57.jpg"
    ],
    "description": "Набор к выписке Sofuto Домой из роддома — собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста. Дешевле, чем те же предметы поштучно — разница доходит до трети стоимости. Приходит в подарочной упаковке, открытку с подписью добавим бесплатно.",
    "characteristics": {
@@ -4262,10 +4205,9 @@
    "article": "Арт. 100406-0058",
    "brand": "Canpol Babies",
    "country": "Польша",
-   "image": "/api/images/nabor-k-vypiske-canpol-babies-baby-box-58.svg",
+   "image": "/assets/products/nabor-k-vypiske-canpol-babies-baby-box-58.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-canpol-babies-baby-box-58.svg",
-    "/api/images/nabor-k-vypiske-canpol-babies-baby-box-58.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-canpol-babies-baby-box-58.jpg"
    ],
    "description": "Набор к выписке Canpol Babies Baby Box — собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста. Приходит в подарочной упаковке, открытку с подписью добавим бесплатно. Дешевле, чем те же предметы поштучно — разница доходит до трети стоимости.",
    "characteristics": {
@@ -4346,10 +4288,9 @@
    "article": "Арт. 100413-0059",
    "brand": "Chicco",
    "country": "Италия",
-   "image": "/api/images/nabor-k-vypiske-chicco-podarok-malyshu-59.svg",
+   "image": "/assets/products/nabor-k-vypiske-chicco-podarok-malyshu-59.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-chicco-podarok-malyshu-59.svg",
-    "/api/images/nabor-k-vypiske-chicco-podarok-malyshu-59.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-chicco-podarok-malyshu-59.jpg"
    ],
    "description": "Набор к выписке Chicco Подарок малышу — приходит в подарочной упаковке, открытку с подписью добавим бесплатно. Собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста. Дешевле, чем те же предметы поштучно — разница доходит до трети стоимости.",
    "characteristics": {
@@ -4405,10 +4346,9 @@
    "article": "Арт. 100420-0060",
    "brand": "Nuovita",
    "country": "Италия",
-   "image": "/api/images/nabor-k-vypiske-nuovita-aistenok-60.svg",
+   "image": "/assets/products/nabor-k-vypiske-nuovita-aistenok-60.jpg",
    "images": [
-    "/api/images/nabor-k-vypiske-nuovita-aistenok-60.svg",
-    "/api/images/nabor-k-vypiske-nuovita-aistenok-60.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-nuovita-aistenok-60.jpg"
    ],
    "description": "Набор к выписке Nuovita Аистёнок — состав набора фиксированный: заменить отдельный предмет внутри нельзя. Собран из того, что нужно в первые недели: уход, текстиль и бутылочки нужного возраста. Дешевле, чем те же предметы поштучно — разница доходит до трети стоимости.",
    "characteristics": {
@@ -4461,10 +4401,9 @@
    "article": "Арт. 100427-0061",
    "brand": "Feretti",
    "country": "Италия",
-   "image": "/api/images/krovatka-feretti-incanto-61.svg",
+   "image": "/assets/products/krovatka-feretti-incanto-61.jpg",
    "images": [
-    "/api/images/krovatka-feretti-incanto-61.svg",
-    "/api/images/krovatka-feretti-incanto-61.svg?variant=2"
+    "/assets/products/krovatka-feretti-incanto-61.jpg"
    ],
    "description": "Кроватка Feretti Incanto — изготовлена из массива дерева, покрытие — нетоксичный лак на водной основе. Регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет. Съёмная передняя стенка превращает кроватку в диванчик.",
    "characteristics": {
@@ -4509,10 +4448,9 @@
    "article": "Арт. 100434-0062",
    "brand": "Baby Italia",
    "country": "Италия",
-   "image": "/api/images/krovatka-baby-italia-natural-62.svg",
+   "image": "/assets/products/krovatka-baby-italia-natural-62.jpg",
    "images": [
-    "/api/images/krovatka-baby-italia-natural-62.svg",
-    "/api/images/krovatka-baby-italia-natural-62.svg?variant=2"
+    "/assets/products/krovatka-baby-italia-natural-62.jpg"
    ],
    "description": "Кроватка Baby Italia Natural — изготовлена из массива дерева, покрытие — нетоксичный лак на водной основе. Силиконовые накладки на бортиках защищают дерево, когда режутся зубки. Регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет.",
    "characteristics": {
@@ -4596,10 +4534,9 @@
    "article": "Арт. 100441-0063",
    "brand": "Papaloni",
    "country": "Россия",
-   "image": "/api/images/krovatka-papaloni-dream-63.svg",
+   "image": "/assets/products/krovatka-papaloni-dream-63.jpg",
    "images": [
-    "/api/images/krovatka-papaloni-dream-63.svg",
-    "/api/images/krovatka-papaloni-dream-63.svg?variant=2"
+    "/assets/products/krovatka-papaloni-dream-63.jpg"
    ],
    "description": "Кроватка Papaloni Dream — изготовлена из массива дерева, покрытие — нетоксичный лак на водной основе. Регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет. Съёмная передняя стенка превращает кроватку в диванчик.",
    "characteristics": {
@@ -4653,10 +4590,9 @@
    "article": "Арт. 100448-0064",
    "brand": "Pali",
    "country": "Италия",
-   "image": "/api/images/krovatka-pali-sonia-64.svg",
+   "image": "/assets/products/krovatka-pali-sonia-64.jpg",
    "images": [
-    "/api/images/krovatka-pali-sonia-64.svg",
-    "/api/images/krovatka-pali-sonia-64.svg?variant=2"
+    "/assets/products/krovatka-pali-sonia-64.jpg"
    ],
    "description": "Кроватка Pali Sonia — регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет. Съёмная передняя стенка превращает кроватку в диванчик. Силиконовые накладки на бортиках защищают дерево, когда режутся зубки.",
    "characteristics": {
@@ -4740,10 +4676,9 @@
    "article": "Арт. 100455-0065",
    "brand": "Erbesi",
    "country": "Италия",
-   "image": "/api/images/krovatka-erbesi-sogno-65.svg",
+   "image": "/assets/products/krovatka-erbesi-sogno-65.jpg",
    "images": [
-    "/api/images/krovatka-erbesi-sogno-65.svg",
-    "/api/images/krovatka-erbesi-sogno-65.svg?variant=2"
+    "/assets/products/krovatka-erbesi-sogno-65.jpg"
    ],
    "description": "Кроватка Erbesi Sogno — силиконовые накладки на бортиках защищают дерево, когда режутся зубки. Съёмная передняя стенка превращает кроватку в диванчик. Регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет.",
    "characteristics": {
@@ -4817,10 +4752,9 @@
    "article": "Арт. 100462-0066",
    "brand": "Micuna",
    "country": "Испания",
-   "image": "/api/images/krovatka-micuna-valensiya-66.svg",
+   "image": "/assets/products/krovatka-micuna-valensiya-66.jpg",
    "images": [
-    "/api/images/krovatka-micuna-valensiya-66.svg",
-    "/api/images/krovatka-micuna-valensiya-66.svg?variant=2"
+    "/assets/products/krovatka-micuna-valensiya-66.jpg"
    ],
    "description": "Кроватка Micuna Валенсия — съёмная передняя стенка превращает кроватку в диванчик. Регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет. Силиконовые накладки на бортиках защищают дерево, когда режутся зубки.",
    "characteristics": {
@@ -4874,10 +4808,9 @@
    "article": "Арт. 100469-0067",
    "brand": "Erbesi",
    "country": "Италия",
-   "image": "/api/images/krovatka-erbesi-dream-67.svg",
+   "image": "/assets/products/krovatka-erbesi-dream-67.jpg",
    "images": [
-    "/api/images/krovatka-erbesi-dream-67.svg",
-    "/api/images/krovatka-erbesi-dream-67.svg?variant=2"
+    "/assets/products/krovatka-erbesi-dream-67.jpg"
    ],
    "description": "Кроватка Erbesi Dream — регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет. Силиконовые накладки на бортиках защищают дерево, когда режутся зубки. Изготовлена из массива дерева, покрытие — нетоксичный лак на водной основе.",
    "characteristics": {
@@ -4961,10 +4894,9 @@
    "article": "Арт. 100476-0068",
    "brand": "Papaloni",
    "country": "Россия",
-   "image": "/api/images/krovatka-papaloni-tulip-68.svg",
+   "image": "/assets/products/krovatka-papaloni-tulip-68.jpg",
    "images": [
-    "/api/images/krovatka-papaloni-tulip-68.svg",
-    "/api/images/krovatka-papaloni-tulip-68.svg?variant=2"
+    "/assets/products/krovatka-papaloni-tulip-68.jpg"
    ],
    "description": "Кроватка Papaloni Tulip — изготовлена из массива дерева, покрытие — нетоксичный лак на водной основе. Силиконовые накладки на бортиках защищают дерево, когда режутся зубки. Съёмная передняя стенка превращает кроватку в диванчик.",
    "characteristics": {
@@ -5019,10 +4951,9 @@
    "article": "Арт. 100483-0069",
    "brand": "Антел",
    "country": "Россия",
-   "image": "/api/images/krovatka-antel-natural-69.svg",
+   "image": "/assets/products/krovatka-antel-natural-69.jpg",
    "images": [
-    "/api/images/krovatka-antel-natural-69.svg",
-    "/api/images/krovatka-antel-natural-69.svg?variant=2"
+    "/assets/products/krovatka-antel-natural-69.jpg"
    ],
    "description": "Кроватка Антел Natural — съёмная передняя стенка превращает кроватку в диванчик. Регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет. Силиконовые накладки на бортиках защищают дерево, когда режутся зубки.",
    "characteristics": {
@@ -5086,10 +5017,9 @@
    "article": "Арт. 100490-0070",
    "brand": "Гандылян",
    "country": "Россия",
-   "image": "/api/images/krovatka-gandylyan-bambino-70.svg",
+   "image": "/assets/products/krovatka-gandylyan-bambino-70.jpg",
    "images": [
-    "/api/images/krovatka-gandylyan-bambino-70.svg",
-    "/api/images/krovatka-gandylyan-bambino-70.svg?variant=2"
+    "/assets/products/krovatka-gandylyan-bambino-70.jpg"
    ],
    "description": "Кроватка Гандылян Bambino — съёмная передняя стенка превращает кроватку в диванчик. Регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет. Изготовлена из массива дерева, покрытие — нетоксичный лак на водной основе.",
    "characteristics": {
@@ -5162,10 +5092,9 @@
    "article": "Арт. 100497-0071",
    "brand": "Papaloni",
    "country": "Россия",
-   "image": "/api/images/krovatka-papaloni-dzhuliya-71.svg",
+   "image": "/assets/products/krovatka-papaloni-dzhuliya-71.jpg",
    "images": [
-    "/api/images/krovatka-papaloni-dzhuliya-71.svg",
-    "/api/images/krovatka-papaloni-dzhuliya-71.svg?variant=2"
+    "/assets/products/krovatka-papaloni-dzhuliya-71.jpg"
    ],
    "description": "Кроватка Papaloni Джулия — изготовлена из массива дерева, покрытие — нетоксичный лак на водной основе. Регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет. Силиконовые накладки на бортиках защищают дерево, когда режутся зубки.",
    "characteristics": {
@@ -5220,10 +5149,9 @@
    "article": "Арт. 100504-0072",
    "brand": "Micuna",
    "country": "Испания",
-   "image": "/api/images/krovatka-micuna-alita-72.svg",
+   "image": "/assets/products/krovatka-micuna-alita-72.jpg",
    "images": [
-    "/api/images/krovatka-micuna-alita-72.svg",
-    "/api/images/krovatka-micuna-alita-72.svg?variant=2"
+    "/assets/products/krovatka-micuna-alita-72.jpg"
    ],
    "description": "Кроватка Micuna Алита — изготовлена из массива дерева, покрытие — нетоксичный лак на водной основе. Регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет. Съёмная передняя стенка превращает кроватку в диванчик.",
    "characteristics": {
@@ -5278,10 +5206,9 @@
    "article": "Арт. 100511-0073",
    "brand": "Erbesi",
    "country": "Италия",
-   "image": "/api/images/krovatka-erbesi-milana-73.svg",
+   "image": "/assets/products/krovatka-erbesi-milana-73.jpg",
    "images": [
-    "/api/images/krovatka-erbesi-milana-73.svg",
-    "/api/images/krovatka-erbesi-milana-73.svg?variant=2"
+    "/assets/products/krovatka-erbesi-milana-73.jpg"
    ],
    "description": "Кроватка Erbesi Милана — съёмная передняя стенка превращает кроватку в диванчик. Изготовлена из массива дерева, покрытие — нетоксичный лак на водной основе. Силиконовые накладки на бортиках защищают дерево, когда режутся зубки.",
    "characteristics": {
@@ -5339,10 +5266,9 @@
    "article": "Арт. 100518-0074",
    "brand": "Micuna",
    "country": "Испания",
-   "image": "/api/images/krovatka-micuna-tulip-74.svg",
+   "image": "/assets/products/krovatka-micuna-tulip-74.jpg",
    "images": [
-    "/api/images/krovatka-micuna-tulip-74.svg",
-    "/api/images/krovatka-micuna-tulip-74.svg?variant=2"
+    "/assets/products/krovatka-micuna-tulip-74.jpg"
    ],
    "description": "Кроватка Micuna Tulip — съёмная передняя стенка превращает кроватку в диванчик. Изготовлена из массива дерева, покрытие — нетоксичный лак на водной основе. Силиконовые накладки на бортиках защищают дерево, когда режутся зубки.",
    "characteristics": {
@@ -5396,10 +5322,9 @@
    "article": "Арт. 100525-0075",
    "brand": "Papaloni",
    "country": "Россия",
-   "image": "/api/images/krovatka-papaloni-bambino-75.svg",
+   "image": "/assets/products/krovatka-papaloni-bambino-75.jpg",
    "images": [
-    "/api/images/krovatka-papaloni-bambino-75.svg",
-    "/api/images/krovatka-papaloni-bambino-75.svg?variant=2"
+    "/assets/products/krovatka-papaloni-bambino-75.jpg"
    ],
    "description": "Кроватка Papaloni Bambino — регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет. Силиконовые накладки на бортиках защищают дерево, когда режутся зубки. Съёмная передняя стенка превращает кроватку в диванчик.",
    "characteristics": {
@@ -5484,10 +5409,9 @@
    "article": "Арт. 100532-0076",
    "brand": "Pali",
    "country": "Италия",
-   "image": "/api/images/krovatka-pali-dream-76.svg",
+   "image": "/assets/products/krovatka-pali-dream-76.jpg",
    "images": [
-    "/api/images/krovatka-pali-dream-76.svg",
-    "/api/images/krovatka-pali-dream-76.svg?variant=2"
+    "/assets/products/krovatka-pali-dream-76.jpg"
    ],
    "description": "Кроватка Pali Dream — изготовлена из массива дерева, покрытие — нетоксичный лак на водной основе. Съёмная передняя стенка превращает кроватку в диванчик. Регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет.",
    "characteristics": {
@@ -5534,10 +5458,9 @@
    "article": "Арт. 100539-0077",
    "brand": "Erbesi",
    "country": "Италия",
-   "image": "/api/images/krovatka-erbesi-verona-77.svg",
+   "image": "/assets/products/krovatka-erbesi-verona-77.jpg",
    "images": [
-    "/api/images/krovatka-erbesi-verona-77.svg",
-    "/api/images/krovatka-erbesi-verona-77.svg?variant=2"
+    "/assets/products/krovatka-erbesi-verona-77.jpg"
    ],
    "description": "Кроватка Erbesi Верона — силиконовые накладки на бортиках защищают дерево, когда режутся зубки. Съёмная передняя стенка превращает кроватку в диванчик. Изготовлена из массива дерева, покрытие — нетоксичный лак на водной основе.",
    "characteristics": {
@@ -5619,10 +5542,9 @@
    "article": "Арт. 100546-0078",
    "brand": "Антел",
    "country": "Россия",
-   "image": "/api/images/krovatka-antel-sogno-78.svg",
+   "image": "/assets/products/krovatka-antel-sogno-78.jpg",
    "images": [
-    "/api/images/krovatka-antel-sogno-78.svg",
-    "/api/images/krovatka-antel-sogno-78.svg?variant=2"
+    "/assets/products/krovatka-antel-sogno-78.jpg"
    ],
    "description": "Кроватка Антел Sogno — регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет. Съёмная передняя стенка превращает кроватку в диванчик. Изготовлена из массива дерева, покрытие — нетоксичный лак на водной основе.",
    "characteristics": {
@@ -5688,10 +5610,9 @@
    "article": "Арт. 100553-0079",
    "brand": "Mr. Sandman",
    "country": "Германия",
-   "image": "/api/images/krovatka-mr-sandman-bambino-79.svg",
+   "image": "/assets/products/krovatka-mr-sandman-bambino-79.jpg",
    "images": [
-    "/api/images/krovatka-mr-sandman-bambino-79.svg",
-    "/api/images/krovatka-mr-sandman-bambino-79.svg?variant=2"
+    "/assets/products/krovatka-mr-sandman-bambino-79.jpg"
    ],
    "description": "Кроватка Mr. Sandman Bambino — силиконовые накладки на бортиках защищают дерево, когда режутся зубки. Съёмная передняя стенка превращает кроватку в диванчик. Регулируемая высота дна позволяет пользоваться кроваткой с рождения и до 3 лет.",
    "characteristics": {
@@ -5774,10 +5695,9 @@
    "article": "Арт. 100560-0080",
    "brand": "Feretti",
    "country": "Италия",
-   "image": "/api/images/krovatka-feretti-tulip-80.svg",
+   "image": "/assets/products/krovatka-feretti-tulip-80.jpg",
    "images": [
-    "/api/images/krovatka-feretti-tulip-80.svg",
-    "/api/images/krovatka-feretti-tulip-80.svg?variant=2"
+    "/assets/products/krovatka-feretti-tulip-80.jpg"
    ],
    "description": "Кроватка Feretti Tulip — изготовлена из массива дерева, покрытие — нетоксичный лак на водной основе. Силиконовые накладки на бортиках защищают дерево, когда режутся зубки. Съёмная передняя стенка превращает кроватку в диванчик.",
    "characteristics": {
@@ -5842,10 +5762,9 @@
    "article": "Арт. 100567-0081",
    "brand": "Maman",
    "country": "Россия",
-   "image": "/api/images/kolybel-maman-amelia-81.svg",
+   "image": "/assets/products/kolybel-maman-amelia-81.jpg",
    "images": [
-    "/api/images/kolybel-maman-amelia-81.svg",
-    "/api/images/kolybel-maman-amelia-81.svg?variant=2"
+    "/assets/products/kolybel-maman-amelia-81.jpg"
    ],
    "description": "Колыбель Maman Amelia — приставной режим позволяет спать рядом с малышом, не поднимаясь ночью. Чехол снимается и стирается в машине при 30°. Складывается за минуту и помещается в сумку для перевозки.",
    "characteristics": {
@@ -5928,10 +5847,9 @@
    "article": "Арт. 100574-0082",
    "brand": "Micuna",
    "country": "Испания",
-   "image": "/api/images/kolybel-micuna-nanny-82.svg",
+   "image": "/assets/products/kolybel-micuna-nanny-82.jpg",
    "images": [
-    "/api/images/kolybel-micuna-nanny-82.svg",
-    "/api/images/kolybel-micuna-nanny-82.svg?variant=2"
+    "/assets/products/kolybel-micuna-nanny-82.jpg"
    ],
    "description": "Колыбель Micuna Nanny — складывается за минуту и помещается в сумку для перевозки. Регулировка высоты подгоняет колыбель под любую взрослую кровать. Приставной режим позволяет спать рядом с малышом, не поднимаясь ночью.",
    "characteristics": {
@@ -5987,10 +5905,9 @@
    "article": "Арт. 100581-0083",
    "brand": "Micuna",
    "country": "Испания",
-   "image": "/api/images/kolybel-micuna-next2me-83.svg",
+   "image": "/assets/products/kolybel-micuna-next2me-83.jpg",
    "images": [
-    "/api/images/kolybel-micuna-next2me-83.svg",
-    "/api/images/kolybel-micuna-next2me-83.svg?variant=2"
+    "/assets/products/kolybel-micuna-next2me-83.jpg"
    ],
    "description": "Колыбель Micuna Next2Me — складывается за минуту и помещается в сумку для перевозки. Регулировка высоты подгоняет колыбель под любую взрослую кровать. Приставной режим позволяет спать рядом с малышом, не поднимаясь ночью.",
    "characteristics": {
@@ -6071,10 +5988,9 @@
    "article": "Арт. 100588-0084",
    "brand": "Micuna",
    "country": "Испания",
-   "image": "/api/images/kolybel-micuna-sweet-dream-84.svg",
+   "image": "/assets/products/kolybel-micuna-sweet-dream-84.jpg",
    "images": [
-    "/api/images/kolybel-micuna-sweet-dream-84.svg",
-    "/api/images/kolybel-micuna-sweet-dream-84.svg?variant=2"
+    "/assets/products/kolybel-micuna-sweet-dream-84.jpg"
    ],
    "description": "Колыбель Micuna Sweet Dream — приставной режим позволяет спать рядом с малышом, не поднимаясь ночью. Регулировка высоты подгоняет колыбель под любую взрослую кровать. Чехол снимается и стирается в машине при 30°.",
    "characteristics": {
@@ -6140,10 +6056,9 @@
    "article": "Арт. 100595-0085",
    "brand": "Kinderkraft",
    "country": "Польша",
-   "image": "/api/images/kolybel-kinderkraft-sweet-dream-85.svg",
+   "image": "/assets/products/kolybel-kinderkraft-sweet-dream-85.jpg",
    "images": [
-    "/api/images/kolybel-kinderkraft-sweet-dream-85.svg",
-    "/api/images/kolybel-kinderkraft-sweet-dream-85.svg?variant=2"
+    "/assets/products/kolybel-kinderkraft-sweet-dream-85.jpg"
    ],
    "description": "Колыбель Kinderkraft Sweet Dream — приставной режим позволяет спать рядом с малышом, не поднимаясь ночью. Регулировка высоты подгоняет колыбель под любую взрослую кровать. Складывается за минуту и помещается в сумку для перевозки.",
    "characteristics": {
@@ -6207,10 +6122,9 @@
    "article": "Арт. 100602-0086",
    "brand": "Happy Baby",
    "country": "Россия",
-   "image": "/api/images/kolybel-happy-baby-accanto-86.svg",
+   "image": "/assets/products/kolybel-happy-baby-accanto-86.jpg",
    "images": [
-    "/api/images/kolybel-happy-baby-accanto-86.svg",
-    "/api/images/kolybel-happy-baby-accanto-86.svg?variant=2"
+    "/assets/products/kolybel-happy-baby-accanto-86.jpg"
    ],
    "description": "Колыбель Happy Baby Accanto — чехол снимается и стирается в машине при 30°. Регулировка высоты подгоняет колыбель под любую взрослую кровать. Приставной режим позволяет спать рядом с малышом, не поднимаясь ночью.",
    "characteristics": {
@@ -6256,10 +6170,9 @@
    "article": "Арт. 100609-0087",
    "brand": "Maman",
    "country": "Россия",
-   "image": "/api/images/kolybel-maman-accanto-87.svg",
+   "image": "/assets/products/kolybel-maman-accanto-87.jpg",
    "images": [
-    "/api/images/kolybel-maman-accanto-87.svg",
-    "/api/images/kolybel-maman-accanto-87.svg?variant=2"
+    "/assets/products/kolybel-maman-accanto-87.jpg"
    ],
    "description": "Колыбель Maman Accanto — приставной режим позволяет спать рядом с малышом, не поднимаясь ночью. Складывается за минуту и помещается в сумку для перевозки. Чехол снимается и стирается в машине при 30°.",
    "characteristics": {
@@ -6323,10 +6236,9 @@
    "article": "Арт. 100616-0088",
    "brand": "Nuovita",
    "country": "Италия",
-   "image": "/api/images/kolybel-nuovita-coco-88.svg",
+   "image": "/assets/products/kolybel-nuovita-coco-88.jpg",
    "images": [
-    "/api/images/kolybel-nuovita-coco-88.svg",
-    "/api/images/kolybel-nuovita-coco-88.svg?variant=2"
+    "/assets/products/kolybel-nuovita-coco-88.jpg"
    ],
    "description": "Колыбель Nuovita Coco — складывается за минуту и помещается в сумку для перевозки. Регулировка высоты подгоняет колыбель под любую взрослую кровать. Приставной режим позволяет спать рядом с малышом, не поднимаясь ночью.",
    "characteristics": {
@@ -6410,10 +6322,9 @@
    "article": "Арт. 100623-0089",
    "brand": "Maman",
    "country": "Россия",
-   "image": "/api/images/kolybel-maman-nanny-89.svg",
+   "image": "/assets/products/kolybel-maman-nanny-89.jpg",
    "images": [
-    "/api/images/kolybel-maman-nanny-89.svg",
-    "/api/images/kolybel-maman-nanny-89.svg?variant=2"
+    "/assets/products/kolybel-maman-nanny-89.jpg"
    ],
    "description": "Колыбель Maman Nanny — регулировка высоты подгоняет колыбель под любую взрослую кровать. Приставной режим позволяет спать рядом с малышом, не поднимаясь ночью. Складывается за минуту и помещается в сумку для перевозки.",
    "characteristics": {
@@ -6497,10 +6408,9 @@
    "article": "Арт. 100630-0090",
    "brand": "Erbesi",
    "country": "Италия",
-   "image": "/api/images/kolybel-erbesi-next2me-90.svg",
+   "image": "/assets/products/kolybel-erbesi-next2me-90.jpg",
    "images": [
-    "/api/images/kolybel-erbesi-next2me-90.svg",
-    "/api/images/kolybel-erbesi-next2me-90.svg?variant=2"
+    "/assets/products/kolybel-erbesi-next2me-90.jpg"
    ],
    "description": "Колыбель Erbesi Next2Me — чехол снимается и стирается в машине при 30°. Складывается за минуту и помещается в сумку для перевозки. Приставной режим позволяет спать рядом с малышом, не поднимаясь ночью.",
    "characteristics": {
@@ -6583,10 +6493,9 @@
    "article": "Арт. 100637-0091",
    "brand": "Chicco",
    "country": "Италия",
-   "image": "/api/images/kolybel-chicco-nanny-91.svg",
+   "image": "/assets/products/kolybel-chicco-nanny-91.jpg",
    "images": [
-    "/api/images/kolybel-chicco-nanny-91.svg",
-    "/api/images/kolybel-chicco-nanny-91.svg?variant=2"
+    "/assets/products/kolybel-chicco-nanny-91.jpg"
    ],
    "description": "Колыбель Chicco Nanny — складывается за минуту и помещается в сумку для перевозки. Чехол снимается и стирается в машине при 30°. Регулировка высоты подгоняет колыбель под любую взрослую кровать.",
    "characteristics": {
@@ -6659,10 +6568,9 @@
    "article": "Арт. 100644-0092",
    "brand": "Maman",
    "country": "Россия",
-   "image": "/api/images/kolybel-maman-mini-fresh-92.svg",
+   "image": "/assets/products/kolybel-maman-mini-fresh-92.jpg",
    "images": [
-    "/api/images/kolybel-maman-mini-fresh-92.svg",
-    "/api/images/kolybel-maman-mini-fresh-92.svg?variant=2"
+    "/assets/products/kolybel-maman-mini-fresh-92.jpg"
    ],
    "description": "Колыбель Maman Mini Fresh — чехол снимается и стирается в машине при 30°. Регулировка высоты подгоняет колыбель под любую взрослую кровать. Складывается за минуту и помещается в сумку для перевозки.",
    "characteristics": {
@@ -6744,10 +6652,9 @@
    "article": "Арт. 100651-0093",
    "brand": "Erbesi",
    "country": "Италия",
-   "image": "/api/images/kolybel-erbesi-mini-fresh-93.svg",
+   "image": "/assets/products/kolybel-erbesi-mini-fresh-93.jpg",
    "images": [
-    "/api/images/kolybel-erbesi-mini-fresh-93.svg",
-    "/api/images/kolybel-erbesi-mini-fresh-93.svg?variant=2"
+    "/assets/products/kolybel-erbesi-mini-fresh-93.jpg"
    ],
    "description": "Колыбель Erbesi Mini Fresh — приставной режим позволяет спать рядом с малышом, не поднимаясь ночью. Регулировка высоты подгоняет колыбель под любую взрослую кровать. Чехол снимается и стирается в машине при 30°.",
    "characteristics": {
@@ -6813,10 +6720,9 @@
    "article": "Арт. 100658-0094",
    "brand": "Babyton",
    "country": "Россия",
-   "image": "/api/images/kolybel-babyton-coco-94.svg",
+   "image": "/assets/products/kolybel-babyton-coco-94.jpg",
    "images": [
-    "/api/images/kolybel-babyton-coco-94.svg",
-    "/api/images/kolybel-babyton-coco-94.svg?variant=2"
+    "/assets/products/kolybel-babyton-coco-94.jpg"
    ],
    "description": "Колыбель Babyton Coco — приставной режим позволяет спать рядом с малышом, не поднимаясь ночью. Складывается за минуту и помещается в сумку для перевозки. Чехол снимается и стирается в машине при 30°.",
    "characteristics": {
@@ -6889,10 +6795,9 @@
    "article": "Арт. 100665-0095",
    "brand": "Nuovita",
    "country": "Италия",
-   "image": "/api/images/kolybel-nuovita-uno-95.svg",
+   "image": "/assets/products/kolybel-nuovita-uno-95.jpg",
    "images": [
-    "/api/images/kolybel-nuovita-uno-95.svg",
-    "/api/images/kolybel-nuovita-uno-95.svg?variant=2"
+    "/assets/products/kolybel-nuovita-uno-95.jpg"
    ],
    "description": "Колыбель Nuovita Uno — приставной режим позволяет спать рядом с малышом, не поднимаясь ночью. Регулировка высоты подгоняет колыбель под любую взрослую кровать. Чехол снимается и стирается в машине при 30°.",
    "characteristics": {
@@ -6936,10 +6841,9 @@
    "article": "Арт. 100672-0096",
    "brand": "Happy Baby",
    "country": "Россия",
-   "image": "/api/images/kolybel-happy-baby-sweet-dream-96.svg",
+   "image": "/assets/products/kolybel-happy-baby-sweet-dream-96.jpg",
    "images": [
-    "/api/images/kolybel-happy-baby-sweet-dream-96.svg",
-    "/api/images/kolybel-happy-baby-sweet-dream-96.svg?variant=2"
+    "/assets/products/kolybel-happy-baby-sweet-dream-96.jpg"
    ],
    "description": "Колыбель Happy Baby Sweet Dream — складывается за минуту и помещается в сумку для перевозки. Регулировка высоты подгоняет колыбель под любую взрослую кровать. Приставной режим позволяет спать рядом с малышом, не поднимаясь ночью.",
    "characteristics": {
@@ -7015,10 +6919,9 @@
    "article": "Арт. 100679-0097",
    "brand": "Erbesi",
    "country": "Италия",
-   "image": "/api/images/kolybel-erbesi-amelia-97.svg",
+   "image": "/assets/products/kolybel-erbesi-amelia-97.jpg",
    "images": [
-    "/api/images/kolybel-erbesi-amelia-97.svg",
-    "/api/images/kolybel-erbesi-amelia-97.svg?variant=2"
+    "/assets/products/kolybel-erbesi-amelia-97.jpg"
    ],
    "description": "Колыбель Erbesi Amelia — чехол снимается и стирается в машине при 30°. Регулировка высоты подгоняет колыбель под любую взрослую кровать. Приставной режим позволяет спать рядом с малышом, не поднимаясь ночью.",
    "characteristics": {
@@ -7091,10 +6994,9 @@
    "article": "Арт. 100686-0098",
    "brand": "Chicco",
    "country": "Италия",
-   "image": "/api/images/kolybel-chicco-coco-98.svg",
+   "image": "/assets/products/kolybel-chicco-coco-98.jpg",
    "images": [
-    "/api/images/kolybel-chicco-coco-98.svg",
-    "/api/images/kolybel-chicco-coco-98.svg?variant=2"
+    "/assets/products/kolybel-chicco-coco-98.jpg"
    ],
    "description": "Колыбель Chicco Coco — складывается за минуту и помещается в сумку для перевозки. Регулировка высоты подгоняет колыбель под любую взрослую кровать. Чехол снимается и стирается в машине при 30°.",
    "characteristics": {
@@ -7168,10 +7070,9 @@
    "article": "Арт. 100693-0099",
    "brand": "Erbesi",
    "country": "Италия",
-   "image": "/api/images/kolybel-erbesi-bibi-99.svg",
+   "image": "/assets/products/kolybel-erbesi-bibi-99.jpg",
    "images": [
-    "/api/images/kolybel-erbesi-bibi-99.svg",
-    "/api/images/kolybel-erbesi-bibi-99.svg?variant=2"
+    "/assets/products/kolybel-erbesi-bibi-99.jpg"
    ],
    "description": "Колыбель Erbesi Bibi — складывается за минуту и помещается в сумку для перевозки. Регулировка высоты подгоняет колыбель под любую взрослую кровать. Чехол снимается и стирается в машине при 30°.",
    "characteristics": {
@@ -7237,10 +7138,9 @@
    "article": "Арт. 100700-0100",
    "brand": "Micuna",
    "country": "Испания",
-   "image": "/api/images/kolybel-micuna-uno-100.svg",
+   "image": "/assets/products/kolybel-micuna-uno-100.jpg",
    "images": [
-    "/api/images/kolybel-micuna-uno-100.svg",
-    "/api/images/kolybel-micuna-uno-100.svg?variant=2"
+    "/assets/products/kolybel-micuna-uno-100.jpg"
    ],
    "description": "Колыбель Micuna Uno — складывается за минуту и помещается в сумку для перевозки. Приставной режим позволяет спать рядом с малышом, не поднимаясь ночью. Регулировка высоты подгоняет колыбель под любую взрослую кровать.",
    "characteristics": {
@@ -7297,10 +7197,9 @@
    "article": "Арт. 100707-0101",
    "brand": "Babyton",
    "country": "Россия",
-   "image": "/api/images/lyulka-babyton-sonno-101.svg",
+   "image": "/assets/products/lyulka-babyton-sonno-101.jpg",
    "images": [
-    "/api/images/lyulka-babyton-sonno-101.svg",
-    "/api/images/lyulka-babyton-sonno-101.svg?variant=2"
+    "/assets/products/lyulka-babyton-sonno-101.jpg"
    ],
    "description": "Люлька Babyton Sonno — дышащие материалы обеспечивают правильный микроклимат. Компактный размер — помещается в спальне рядом с кроватью родителей. Фиксатор превращает люльку в неподвижную кроватку.",
    "characteristics": {
@@ -7372,10 +7271,9 @@
    "article": "Арт. 100714-0102",
    "brand": "Maman",
    "country": "Россия",
-   "image": "/api/images/lyulka-maman-fiore-102.svg",
+   "image": "/assets/products/lyulka-maman-fiore-102.jpg",
    "images": [
-    "/api/images/lyulka-maman-fiore-102.svg",
-    "/api/images/lyulka-maman-fiore-102.svg?variant=2"
+    "/assets/products/lyulka-maman-fiore-102.jpg"
    ],
    "description": "Люлька Maman Fiore — плавное качание успокаивает малыша и помогает быстрее уснуть. Дышащие материалы обеспечивают правильный микроклимат. Компактный размер — помещается в спальне рядом с кроватью родителей.",
    "characteristics": {
@@ -7449,10 +7347,9 @@
    "article": "Арт. 100721-0103",
    "brand": "Nuovita",
    "country": "Италия",
-   "image": "/api/images/lyulka-nuovita-dolce-103.svg",
+   "image": "/assets/products/lyulka-nuovita-dolce-103.jpg",
    "images": [
-    "/api/images/lyulka-nuovita-dolce-103.svg",
-    "/api/images/lyulka-nuovita-dolce-103.svg?variant=2"
+    "/assets/products/lyulka-nuovita-dolce-103.jpg"
    ],
    "description": "Люлька Nuovita Dolce — компактный размер — помещается в спальне рядом с кроватью родителей. Плавное качание успокаивает малыша и помогает быстрее уснуть. Фиксатор превращает люльку в неподвижную кроватку.",
    "characteristics": {
@@ -7506,10 +7403,9 @@
    "article": "Арт. 100728-0104",
    "brand": "Micuna",
    "country": "Испания",
-   "image": "/api/images/lyulka-micuna-bella-104.svg",
+   "image": "/assets/products/lyulka-micuna-bella-104.jpg",
    "images": [
-    "/api/images/lyulka-micuna-bella-104.svg",
-    "/api/images/lyulka-micuna-bella-104.svg?variant=2"
+    "/assets/products/lyulka-micuna-bella-104.jpg"
    ],
    "description": "Люлька Micuna Bella — плавное качание успокаивает малыша и помогает быстрее уснуть. Компактный размер — помещается в спальне рядом с кроватью родителей. Дышащие материалы обеспечивают правильный микроклимат.",
    "characteristics": {
@@ -7581,10 +7477,9 @@
    "article": "Арт. 100735-0105",
    "brand": "Micuna",
    "country": "Испания",
-   "image": "/api/images/lyulka-micuna-stella-105.svg",
+   "image": "/assets/products/lyulka-micuna-stella-105.jpg",
    "images": [
-    "/api/images/lyulka-micuna-stella-105.svg",
-    "/api/images/lyulka-micuna-stella-105.svg?variant=2"
+    "/assets/products/lyulka-micuna-stella-105.jpg"
    ],
    "description": "Люлька Micuna Stella — компактный размер — помещается в спальне рядом с кроватью родителей. Дышащие материалы обеспечивают правильный микроклимат. Плавное качание успокаивает малыша и помогает быстрее уснуть.",
    "characteristics": {
@@ -7668,10 +7563,9 @@
    "article": "Арт. 100742-0106",
    "brand": "Nuovita",
    "country": "Италия",
-   "image": "/api/images/lyulka-nuovita-stanza-106.svg",
+   "image": "/assets/products/lyulka-nuovita-stanza-106.jpg",
    "images": [
-    "/api/images/lyulka-nuovita-stanza-106.svg",
-    "/api/images/lyulka-nuovita-stanza-106.svg?variant=2"
+    "/assets/products/lyulka-nuovita-stanza-106.jpg"
    ],
    "description": "Люлька Nuovita Stanza — компактный размер — помещается в спальне рядом с кроватью родителей. Дышащие материалы обеспечивают правильный микроклимат. Плавное качание успокаивает малыша и помогает быстрее уснуть.",
    "characteristics": {
@@ -7744,10 +7638,9 @@
    "article": "Арт. 100749-0107",
    "brand": "Nuovita",
    "country": "Италия",
-   "image": "/api/images/lyulka-nuovita-bella-107.svg",
+   "image": "/assets/products/lyulka-nuovita-bella-107.jpg",
    "images": [
-    "/api/images/lyulka-nuovita-bella-107.svg",
-    "/api/images/lyulka-nuovita-bella-107.svg?variant=2"
+    "/assets/products/lyulka-nuovita-bella-107.jpg"
    ],
    "description": "Люлька Nuovita Bella — дышащие материалы обеспечивают правильный микроклимат. Плавное качание успокаивает малыша и помогает быстрее уснуть. Фиксатор превращает люльку в неподвижную кроватку.",
    "characteristics": {
@@ -7814,10 +7707,9 @@
    "article": "Арт. 100756-0108",
    "brand": "Happy Baby",
    "country": "Россия",
-   "image": "/api/images/lyulka-happy-baby-stella-108.svg",
+   "image": "/assets/products/lyulka-happy-baby-stella-108.jpg",
    "images": [
-    "/api/images/lyulka-happy-baby-stella-108.svg",
-    "/api/images/lyulka-happy-baby-stella-108.svg?variant=2"
+    "/assets/products/lyulka-happy-baby-stella-108.jpg"
    ],
    "description": "Люлька Happy Baby Stella — дышащие материалы обеспечивают правильный микроклимат. Компактный размер — помещается в спальне рядом с кроватью родителей. Фиксатор превращает люльку в неподвижную кроватку.",
    "characteristics": {
@@ -7890,10 +7782,9 @@
    "article": "Арт. 100763-0109",
    "brand": "Lorelli",
    "country": "Болгария",
-   "image": "/api/images/lyulka-lorelli-aria-109.svg",
+   "image": "/assets/products/lyulka-lorelli-aria-109.jpg",
    "images": [
-    "/api/images/lyulka-lorelli-aria-109.svg",
-    "/api/images/lyulka-lorelli-aria-109.svg?variant=2"
+    "/assets/products/lyulka-lorelli-aria-109.jpg"
    ],
    "description": "Люлька Lorelli Aria — фиксатор превращает люльку в неподвижную кроватку. Плавное качание успокаивает малыша и помогает быстрее уснуть. Дышащие материалы обеспечивают правильный микроклимат.",
    "characteristics": {
@@ -7958,10 +7849,9 @@
    "article": "Арт. 100770-0110",
    "brand": "Happy Baby",
    "country": "Россия",
-   "image": "/api/images/lyulka-happy-baby-sonno-110.svg",
+   "image": "/assets/products/lyulka-happy-baby-sonno-110.jpg",
    "images": [
-    "/api/images/lyulka-happy-baby-sonno-110.svg",
-    "/api/images/lyulka-happy-baby-sonno-110.svg?variant=2"
+    "/assets/products/lyulka-happy-baby-sonno-110.jpg"
    ],
    "description": "Люлька Happy Baby Sonno — фиксатор превращает люльку в неподвижную кроватку. Плавное качание успокаивает малыша и помогает быстрее уснуть. Компактный размер — помещается в спальне рядом с кроватью родителей.",
    "characteristics": {
@@ -8018,10 +7908,9 @@
    "article": "Арт. 100777-0111",
    "brand": "Feretti",
    "country": "Италия",
-   "image": "/api/images/lyulka-feretti-dolce-111.svg",
+   "image": "/assets/products/lyulka-feretti-dolce-111.jpg",
    "images": [
-    "/api/images/lyulka-feretti-dolce-111.svg",
-    "/api/images/lyulka-feretti-dolce-111.svg?variant=2"
+    "/assets/products/lyulka-feretti-dolce-111.jpg"
    ],
    "description": "Люлька Feretti Dolce — дышащие материалы обеспечивают правильный микроклимат. Компактный размер — помещается в спальне рядом с кроватью родителей. Фиксатор превращает люльку в неподвижную кроватку.",
    "characteristics": {
@@ -8065,10 +7954,9 @@
    "article": "Арт. 100784-0112",
    "brand": "Erbesi",
    "country": "Италия",
-   "image": "/api/images/lyulka-erbesi-dolce-112.svg",
+   "image": "/assets/products/lyulka-erbesi-dolce-112.jpg",
    "images": [
-    "/api/images/lyulka-erbesi-dolce-112.svg",
-    "/api/images/lyulka-erbesi-dolce-112.svg?variant=2"
+    "/assets/products/lyulka-erbesi-dolce-112.jpg"
    ],
    "description": "Люлька Erbesi Dolce — компактный размер — помещается в спальне рядом с кроватью родителей. Фиксатор превращает люльку в неподвижную кроватку. Дышащие материалы обеспечивают правильный микроклимат.",
    "characteristics": {
@@ -8151,10 +8039,9 @@
    "article": "Арт. 100791-0113",
    "brand": "Micuna",
    "country": "Испания",
-   "image": "/api/images/lyulka-micuna-sonno-113.svg",
+   "image": "/assets/products/lyulka-micuna-sonno-113.jpg",
    "images": [
-    "/api/images/lyulka-micuna-sonno-113.svg",
-    "/api/images/lyulka-micuna-sonno-113.svg?variant=2"
+    "/assets/products/lyulka-micuna-sonno-113.jpg"
    ],
    "description": "Люлька Micuna Sonno — дышащие материалы обеспечивают правильный микроклимат. Фиксатор превращает люльку в неподвижную кроватку. Плавное качание успокаивает малыша и помогает быстрее уснуть.",
    "characteristics": {
@@ -8239,10 +8126,9 @@
    "article": "Арт. 100798-0114",
    "brand": "Lorelli",
    "country": "Болгария",
-   "image": "/api/images/lyulka-lorelli-bella-114.svg",
+   "image": "/assets/products/lyulka-lorelli-bella-114.jpg",
    "images": [
-    "/api/images/lyulka-lorelli-bella-114.svg",
-    "/api/images/lyulka-lorelli-bella-114.svg?variant=2"
+    "/assets/products/lyulka-lorelli-bella-114.jpg"
    ],
    "description": "Люлька Lorelli Bella — дышащие материалы обеспечивают правильный микроклимат. Плавное качание успокаивает малыша и помогает быстрее уснуть. Фиксатор превращает люльку в неподвижную кроватку.",
    "characteristics": {
@@ -8325,10 +8211,9 @@
    "article": "Арт. 100805-0115",
    "brand": "Micuna",
    "country": "Испания",
-   "image": "/api/images/lyulka-micuna-aria-115.svg",
+   "image": "/assets/products/lyulka-micuna-aria-115.jpg",
    "images": [
-    "/api/images/lyulka-micuna-aria-115.svg",
-    "/api/images/lyulka-micuna-aria-115.svg?variant=2"
+    "/assets/products/lyulka-micuna-aria-115.jpg"
    ],
    "description": "Люлька Micuna Aria — компактный размер — помещается в спальне рядом с кроватью родителей. Дышащие материалы обеспечивают правильный микроклимат. Плавное качание успокаивает малыша и помогает быстрее уснуть.",
    "characteristics": {
@@ -8393,10 +8278,9 @@
    "article": "Арт. 100812-0116",
    "brand": "Lorelli",
    "country": "Болгария",
-   "image": "/api/images/lyulka-lorelli-stanza-116.svg",
+   "image": "/assets/products/lyulka-lorelli-stanza-116.jpg",
    "images": [
-    "/api/images/lyulka-lorelli-stanza-116.svg",
-    "/api/images/lyulka-lorelli-stanza-116.svg?variant=2"
+    "/assets/products/lyulka-lorelli-stanza-116.jpg"
    ],
    "description": "Люлька Lorelli Stanza — компактный размер — помещается в спальне рядом с кроватью родителей. Плавное качание успокаивает малыша и помогает быстрее уснуть. Фиксатор превращает люльку в неподвижную кроватку.",
    "characteristics": {
@@ -8443,10 +8327,9 @@
    "article": "Арт. 100819-0117",
    "brand": "Maman",
    "country": "Россия",
-   "image": "/api/images/lyulka-maman-luna-117.svg",
+   "image": "/assets/products/lyulka-maman-luna-117.jpg",
    "images": [
-    "/api/images/lyulka-maman-luna-117.svg",
-    "/api/images/lyulka-maman-luna-117.svg?variant=2"
+    "/assets/products/lyulka-maman-luna-117.jpg"
    ],
    "description": "Люлька Maman Luna — дышащие материалы обеспечивают правильный микроклимат. Плавное качание успокаивает малыша и помогает быстрее уснуть. Компактный размер — помещается в спальне рядом с кроватью родителей.",
    "characteristics": {
@@ -8492,10 +8375,9 @@
    "article": "Арт. 100826-0118",
    "brand": "Chicco",
    "country": "Италия",
-   "image": "/api/images/lyulka-chicco-sonno-118.svg",
+   "image": "/assets/products/lyulka-chicco-sonno-118.jpg",
    "images": [
-    "/api/images/lyulka-chicco-sonno-118.svg",
-    "/api/images/lyulka-chicco-sonno-118.svg?variant=2"
+    "/assets/products/lyulka-chicco-sonno-118.jpg"
    ],
    "description": "Люлька Chicco Sonno — фиксатор превращает люльку в неподвижную кроватку. Дышащие материалы обеспечивают правильный микроклимат. Компактный размер — помещается в спальне рядом с кроватью родителей.",
    "characteristics": {
@@ -8540,10 +8422,9 @@
    "article": "Арт. 100833-0119",
    "brand": "Pali",
    "country": "Италия",
-   "image": "/api/images/lyulka-pali-dolce-119.svg",
+   "image": "/assets/products/lyulka-pali-dolce-119.jpg",
    "images": [
-    "/api/images/lyulka-pali-dolce-119.svg",
-    "/api/images/lyulka-pali-dolce-119.svg?variant=2"
+    "/assets/products/lyulka-pali-dolce-119.jpg"
    ],
    "description": "Люлька Pali Dolce — фиксатор превращает люльку в неподвижную кроватку. Компактный размер — помещается в спальне рядом с кроватью родителей. Дышащие материалы обеспечивают правильный микроклимат.",
    "characteristics": {
@@ -8598,10 +8479,9 @@
    "article": "Арт. 100840-0120",
    "brand": "Happy Baby",
    "country": "Россия",
-   "image": "/api/images/lyulka-happy-baby-fiore-120.svg",
+   "image": "/assets/products/lyulka-happy-baby-fiore-120.jpg",
    "images": [
-    "/api/images/lyulka-happy-baby-fiore-120.svg",
-    "/api/images/lyulka-happy-baby-fiore-120.svg?variant=2"
+    "/assets/products/lyulka-happy-baby-fiore-120.jpg"
    ],
    "description": "Люлька Happy Baby Fiore — дышащие материалы обеспечивают правильный микроклимат. Компактный размер — помещается в спальне рядом с кроватью родителей. Фиксатор превращает люльку в неподвижную кроватку.",
    "characteristics": {

@@ -9,6 +9,14 @@
 // ============================================================
 const fs = require('fs');
 const path = require('path');
+
+// список готовых фотографий — читаем один раз
+const PHOTO_DIR = path.join(__dirname, '..', 'assets', 'products');
+const PHOTOS = (() => {
+  try { return new Set(fs.readdirSync(PHOTO_DIR).filter(f => f.endsWith('.jpg')).map(f => f.slice(0, -4))); }
+  catch { return new Set(); }
+})();
+const hasPhoto = (slug) => PHOTOS.has(slug);
 const { categories: tree } = require('../lib/tree');
 const { BRAND_COUNTRY, AUTHORS, PROS, CONS, COMMENTS } = require('../lib/catalog');
 const { CATEGORY_INFO, PROMO, SUBCATEGORY_INFO } = require('../lib/copy');
@@ -93,11 +101,14 @@ for (const cat of tree) {
       const discount = isPromo ? int(10, 35) : 0;
       const oldPrice = isPromo ? Math.round((price / (1 - discount / 100)) / 10) * 10 : null;
 
-      // Картинки отдаёт сам API (lib/handlers/images.js): внешний фотосток
-      // возвращал 404 на части ссылок, и в карточках висели битые изображения.
+      // Если для товара есть студийная фотография в assets/products — берём её:
+      // это статический файл, его отдаёт CDN, без вызова функции. Для товаров
+      // без фотографии остаётся рисованная карточка /api/images/{slug}.svg,
+      // поэтому пустых картинок в каталоге не бывает.
       const slug = `${slugify(`${sub.type}-${brand}-${line}`)}-${pid}`;
-      const image = `/api/images/${slug}.svg`;
-      const images = [image, `/api/images/${slug}.svg?variant=2`];
+      const photo = hasPhoto(slug) ? `/assets/products/${slug}.jpg` : null;
+      const image = photo || `/api/images/${slug}.svg`;
+      const images = photo ? [photo] : [image, `/api/images/${slug}.svg?variant=2`];
 
       const characteristics = {};
       for (const [key, values] of Object.entries(sub.chars)) characteristics[key] = pick(values);
@@ -208,6 +219,7 @@ fs.writeFileSync(outPath, JSON.stringify(dataset, null, 1) + '\n', 'utf8');
 
 const bySub = {};
 products.forEach(p => { bySub[p.subcategoryId] = (bySub[p.subcategoryId] || 0) + 1; });
+console.log(`  с настоящей фотографией: ${products.filter(p => p.image.indexOf('/assets/') === 0).length}, с рисованной карточкой: ${products.filter(p => p.image.indexOf('/api/') === 0).length}`);
 console.log(`✔ lib/dataset.json — ${outCategories.length} категорий, ` +
   `${outCategories.reduce((s, c) => s + c.subcategories.length, 0)} подкатегорий, ` +
   `${products.length} товаров, ${promotions.length} акций, ${blog.length} статей блога`);
