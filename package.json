@@ -8,7 +8,8 @@
     "dev": "node scripts/dev-server.js",
     "generate": "node scripts/generate-dataset.js",
     "check": "node scripts/check.js",
-    "test:api": "node scripts/test-api.js"
+    "test:api": "node scripts/test-api.js",
+    "links": "node scripts/links.js"
   },
   "engines": {
     "node": "22.x"
