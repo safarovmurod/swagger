@@ -37,6 +37,12 @@
      и здесь оказываются слишком большими — ужимаем и отделяем блоки. */
   .swagger-ui .wrapper { max-width: var(--page); padding: 0 20px; }
   .swagger-ui .info { margin: 22px 0 18px; }
+  /* под заголовком Swagger UI показывает адрес спецификации и контакты —
+     студенту они не нужны, а лишние ссылки со страницы уводят */
+  .swagger-ui .info hgroup.main a { display: none; }
+  .swagger-ui .info .info__contact,
+  .swagger-ui .info .info__license,
+  .swagger-ui .info .info__tos { display: none; }
   .swagger-ui .info .title { font-size: 30px; margin: 0 0 8px; }
   .swagger-ui .info .description { margin-bottom: 4px; }
   .swagger-ui .scheme-container { margin: 0 0 22px; padding: 14px 0; box-shadow: none; border-bottom: 1px solid #e4e6ea; background: transparent; }
@@ -55,11 +61,8 @@
 <body>
 <div class="topline-wrap"><div class="topline">
   <b>Softclub · Карапуз API</b>
-  <span class="dim">учебный REST API интернет-магазина детских товаров</span>
   <span class="sp"></span>
   <a href="/docs">Каталог по категориям</a>
-  <a href="/api/swagger.json" target="_blank" rel="noopener">swagger.json</a>
-  <a href="https://github.com/safarovmurod/swagger" target="_blank" rel="noopener">GitHub</a>
 </div></div>
 
 <div id="swagger-ui"></div>
