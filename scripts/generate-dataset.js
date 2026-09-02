@@ -10,13 +10,23 @@
 const fs = require('fs');
 const path = require('path');
 
-// список готовых фотографий — читаем один раз
+// Список готовых фотографий — читаем один раз. Имя файла совпадает со slug
+// товара. Берём и .png, и .jpg, но png важнее: он без фона и одинаково ложится
+// на любую подложку карточки, поэтому если рядом лежат оба, выигрывает png.
 const PHOTO_DIR = path.join(__dirname, '..', 'assets', 'products');
 const PHOTOS = (() => {
-  try { return new Set(fs.readdirSync(PHOTO_DIR).filter(f => f.endsWith('.jpg')).map(f => f.slice(0, -4))); }
-  catch { return new Set(); }
+  const map = new Map();
+  try {
+    for (const file of fs.readdirSync(PHOTO_DIR)) {
+      const m = /^(.+)\.(png|jpg)$/i.exec(file);
+      if (!m) continue;
+      const [, slug, ext] = m;
+      if (ext.toLowerCase() === 'png' || !map.has(slug)) map.set(slug, file);
+    }
+  } catch { /* папки может не быть */ }
+  return map;
 })();
-const hasPhoto = (slug) => PHOTOS.has(slug);
+const photoOf = (slug) => (PHOTOS.has(slug) ? `/assets/products/${PHOTOS.get(slug)}` : null);
 const { categories: tree } = require('../lib/tree');
 const { BRAND_COUNTRY, AUTHORS, PROS, CONS, COMMENTS } = require('../lib/catalog');
 const { CATEGORY_INFO, PROMO, SUBCATEGORY_INFO } = require('../lib/copy');
@@ -118,7 +128,7 @@ for (const cat of tree) {
       // без фотографии остаётся рисованная карточка /api/images/{slug}.svg,
       // поэтому пустых картинок в каталоге не бывает.
       const slug = `${slugify(`${sub.type}-${brand}-${line}`)}-${pid}`;
-      const photo = hasPhoto(slug) ? `/assets/products/${slug}.jpg` : null;
+      const photo = photoOf(slug);
       const image = photo || `/api/images/${slug}.svg`;
       const images = photo ? [photo] : [image, `/api/images/${slug}.svg?variant=2`];
 
