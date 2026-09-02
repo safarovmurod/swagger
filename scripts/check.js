@@ -221,9 +221,24 @@ specPaths.forEach(sp => {
     .map(seg => seg.replace(/^\{.+\}$/, '1'));
   if (!resolve(segments)) fail(`Путь ${sp} из спецификации не разбирается роутером`);
 });
+// Эти маршруты работают, но на странице их нет намеренно:
+// в разделе аккаунта студенту нужен ровно один запрос, а каталог перечислен
+// поимённо (/api/detskaya-mebel/krovatki), поэтому общие адреса со скобками
+// в спецификацию не попадают.
+const HIDDEN = ['/api/swagger.json', '/api/users/{id}', '/api/users/{id}/avatar',
+  '/api/{category}', '/api/{category}/{subcategory}'];
 KNOWN_PATHS.forEach(kp => {
-  if (kp === '/api/swagger.json') return;
+  if (HIDDEN.includes(kp)) return;
   if (!specPaths.includes(kp)) warn(`Маршрут ${kp} есть в роутере, но не описан в спецификации`);
+});
+
+// весь каталог должен быть перечислен в спецификации поимённо — иначе новая
+// категория появится в данных, но не появится на странице
+categories.forEach(c => {
+  if (!specPaths.includes(`/api/${c.slug}`)) fail(`Категория «${c.name}»: нет пути /api/${c.slug} в спецификации`);
+  c.subcategories.forEach(sc => {
+    if (!specPaths.includes(`/api/${c.slug}/${sc.slug}`)) fail(`Подкатегория «${sc.name}»: нет пути /api/${c.slug}/${sc.slug} в спецификации`);
+  });
 });
 
 // --- секреты не должны попадать ни в код, ни в репозиторий ---

@@ -355,10 +355,23 @@ const PNG_2x2 = Buffer.from(
   r = await req('GET', '/api/swagger.json');
   const spec = r.json;
   check('GET /api/swagger.json', r.status === 200 && spec.openapi && !spec.data);
-  check('в спецификации остались только два запроса аккаунта',
-    !!spec.paths['/api/users'].post && !!spec.paths['/api/users/{id}'].delete &&
-    !spec.paths['/api/users'].get && !spec.paths['/api/auth/register'],
-    Object.keys(spec.paths).filter(p => p.includes('users')));
+  const userPaths = Object.keys(spec.paths).filter(p => p.includes('users'));
+  check('в разделе аккаунта один запрос — POST /api/users',
+    userPaths.length === 1 && !!spec.paths['/api/users'].post &&
+    !spec.paths['/api/users'].get && !spec.paths['/api/auth/register'], userPaths);
+  check('форма аккаунта одна — multipart/form-data',
+    Object.keys(spec.paths['/api/users'].post.requestBody.content).join() === 'multipart/form-data' &&
+    !spec.paths['/api/users'].post.description,
+    Object.keys(spec.paths['/api/users'].post.requestBody.content));
+  check('каталог перечислен поимённо',
+    !!spec.paths['/api/detskaya-mebel'] && !!spec.paths['/api/detskaya-mebel/krovatki'] &&
+    !spec.paths['/api/{category}'] && !spec.paths['/api/{category}/{subcategory}'] &&
+    spec.paths['/api/detskaya-mebel/krovatki'].get.summary.includes('Кроватки'),
+    Object.keys(spec.paths).length);
+  check('у категорий в спецификации только чтение',
+    Object.keys(spec.paths['/api/categories']).join() === 'get' &&
+    Object.keys(spec.paths['/api/categories/{id}']).join() === 'get',
+    Object.keys(spec.paths['/api/categories/{id}']));
   check('операции без замков', Object.values(spec.paths)
     .every(ops => Object.values(ops).every(op => !op.security)));
 
