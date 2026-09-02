@@ -497,15 +497,15 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       catsIn: 'подкатегорий', endpoints: 'запросов на странице',
       account: 'Аккаунт', accountHint: 'регистрация с фото и личные данные',
       help: 'Как пользоваться API', helpHint: 'короткая справка',
-      aProfile: 'Личные данные', aProfileD: 'Тот же POST: укажите id — и изменения сохранятся',
+      aProfile: 'Личные данные', aProfileD: 'Тот же POST: после входа укажите свой id и сохраните изменения',
       fUserId: 'id пользователя', doSave: 'Сохранить изменения', doDelete: 'Удалить аккаунт',
-      maskNote: 'Личные данные приходят закрытыми: Ма*****, +9929001*****. Если вернуть такое значение обратно, сервер его не запишет — поменяется только то, что вы ввели заново.',
+      maskNote: 'Вход возвращает ваши имя, телефон, адрес и фото. Для сохранения нужен токен, полученный после входа или регистрации.',
       noToken: 'Токен не задан',
       tokenSet: 'Токен сохранён',
       signedAs: 'Вы вошли как',
       tokenPh: 'вставьте токен или войдите ниже',
       useToken: 'Сохранить', forgetToken: 'Забыть',
-      aRegister: 'Регистрация', aRegisterD: 'Форма с файлом — multipart/form-data. Пустые поля тоже принимаются, id сохраните.',
+      aRegister: 'Регистрация', aRegisterD: 'Форма multipart/form-data. Имя, email и пароль обязательны. Ответ содержит user и token.',
       aLogin: 'Вход', aLoginD: 'В ответе приходит accessToken, он сохранится сам',
       aMe: 'Мой профиль', aMeD: 'Нужен заголовок Authorization: Bearer',
       aLogout: 'Выход', aLogoutD: 'Токен отзывается на сервере, повторный запрос вернёт 401',
@@ -550,15 +550,15 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       catsIn: 'subcategories', endpoints: 'requests on the page',
       account: 'Account', accountHint: 'sign up with a photo and personal data',
       help: 'How to use the API', helpHint: 'a short reference',
-      aProfile: 'Personal data', aProfileD: 'The same POST: pass the id and the changes are saved',
+      aProfile: 'Personal data', aProfileD: 'After signing in, use the same POST with your own id',
       fUserId: 'user id', doSave: 'Save changes', doDelete: 'Delete account',
-      maskNote: 'Personal data comes back masked: Ма*****, +9929001*****. Send such a value back and the server keeps the old one — only what you retype is changed.',
+      maskNote: 'Login returns your name, phone, address and photo. Saving requires the token received after login or registration.',
       noToken: 'No token',
       tokenSet: 'Token saved',
       signedAs: 'Signed in as',
       tokenPh: 'paste a token or log in below',
       useToken: 'Save', forgetToken: 'Forget',
-      aRegister: 'Sign up', aRegisterD: 'A form with a file — multipart/form-data. Empty fields are fine, keep the id.',
+      aRegister: 'Sign up', aRegisterD: 'A multipart/form-data form. Name, email and password are required. The response contains user and token.',
       aLogin: 'Log in', aLoginD: 'The response carries accessToken, it is saved automatically',
       aMe: 'My profile', aMeD: 'Requires the Authorization: Bearer header',
       aLogout: 'Log out', aLogoutD: 'The token is revoked on the server, the next call returns 401',
@@ -790,7 +790,11 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
   /* ---------- аккаунт ---------- */
   // Весь раздел держится на двух запросах: POST /api/users создаёт аккаунт
   // и сохраняет изменения, DELETE /api/users/{id} удаляет. Токена нет.
-  function authHeaders(extra) { return extra || {}; }
+  function authHeaders(extra) {
+    var headers = Object.assign({}, extra);
+    if (state.token) headers.Authorization = 'Bearer ' + state.token;
+    return headers;
+  }
 
   var CHEV = '<span class="cat-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span>';
 
@@ -864,7 +868,14 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
         '<div class="out" id="pro-out" style="margin-top:12px"></div>'
     });
 
-    return '<div class="stack">' + register + profile + '</div>';
+    var login = cardHtml({
+      slug: '__login', color: '#4e9c6b', method: 'GET', path: '/api/users/login',
+      name: T('doLogin'), icon: '<circle cx="12" cy="8" r="4"/>',
+      body: fieldRow('login-email', 'fEmail', 'email') + fieldRow('login-password', 'fPassword', 'password') +
+        '<button type="button" class="btn btn-go" id="login-send">' + esc(T('doLogin')) + '</button>' +
+        '<div class="out" id="login-out"></div>'
+    });
+    return '<div class="stack">' + register + login + profile + '</div>';
   }
 
   // Один запрос из раздела аккаунта — ответ показывается так же, как везде
@@ -894,7 +905,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       var form = new FormData();
       keys.forEach(function (key) {
         var el = $('#' + prefix + '-' + key);
-        if (el && String(el.value || '').trim()) form.append(key, el.value.trim());
+        if (el && el.value) form.append(key, key === 'password' ? el.value : el.value.trim());
       });
       var file = $('#' + prefix + '-avatar').files[0];
       if (file) form.append('avatar', file, file.name);
@@ -906,9 +917,27 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       sendAuth(this, '#reg-out', location.origin + '/api/users', { method: 'POST', body: form })
         .then(function (payload) {
           // выданный id сразу подставляем в «Личные данные» — так удобнее
-          var d = payload && payload.data;
+          var d = payload && payload.data && payload.data.user;
+          if (d) state.token = payload.data.token;
           if (d && d.id) { $('#pro-id').value = d.id; paintProfileUrl(); }
         });
+    });
+
+    $('#login-send').addEventListener('click', function () {
+      var credentials = $('#login-email').value.trim() + ':' + $('#login-password').value;
+      var bytes = new TextEncoder().encode(credentials);
+      var encoded = btoa(Array.from(bytes, function (byte) { return String.fromCharCode(byte); }).join(''));
+      sendAuth(this, '#login-out', location.origin + '/api/users/login', {
+        method: 'GET', headers: { Authorization: 'Basic ' + encoded }
+      }).then(function (payload) {
+        if (!payload || !payload.data) return;
+        state.token = payload.data.token;
+        var user = payload.data.user;
+        $('#pro-id').value = user.id;
+        ['fullName', 'tel', 'address'].forEach(function (key) { $('#pro-' + key).value = user[key]; });
+        $('#login-password').value = '';
+        paintProfileUrl();
+      });
     });
 
     $('#reg-clear').addEventListener('click', function () {
@@ -933,7 +962,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
 
     $('#pro-save').addEventListener('click', function () {
       var form = formOf('pro', ['fullName', 'tel', 'address']);
-      sendAuth(this, '#pro-out', profileUrl(), { method: 'POST', body: form });
+      sendAuth(this, '#pro-out', profileUrl(), { method: 'POST', body: form, headers: authHeaders() });
     });
 
     $('#pro-delete').addEventListener('click', function () {
@@ -941,7 +970,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
         $('#pro-out').innerHTML = '<div class="note">' + esc(T('needId')) + '</div>';
         return;
       }
-      sendAuth(this, '#pro-out', profileUrl(), { method: 'DELETE' });
+      sendAuth(this, '#pro-out', profileUrl(), { method: 'DELETE', headers: authHeaders() });
     });
   }
 
@@ -971,11 +1000,11 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       ['Upload', 'загрузка файла — так работает поле avatar: фото до 10 МБ, сервер сам обрежет его в квадрат 512×512', 'file upload — the avatar field: a photo up to 10 MB, the server crops it to a 512×512 square']
     ]],
     ['Аккаунт', 'Account', [
-      ['Регистрация', 'POST /api/users — поля fullName, tel, email, password, address и файл avatar. Проверок нет: пустые поля и любая почта принимаются', 'POST /api/users — fullName, tel, email, password, address and the avatar file. No validation: empty fields and any email are accepted'],
+      ['Регистрация', 'POST /api/users — поля fullName, tel, email, password, address и файл avatar. Обязательны fullName, корректный email и пароль', 'POST /api/users — fullName, tel, email, password, address and the avatar file. fullName, a valid email and password are required'],
       ['id', 'из ответа возьмите id и сохраните его: без него не сохранить изменения и не удалить аккаунт', 'take the id from the response and keep it: without it you cannot save changes or delete the account'],
       ['Личные данные', 'тот же POST /api/users, только с id — тогда он не создаёт новый аккаунт, а сохраняет изменения', 'the same POST /api/users but with an id — then it saves changes instead of creating a new account'],
       ['Удалить', 'DELETE /api/users/{id} — убирает аккаунт вместе с фотографией', 'DELETE /api/users/{id} — removes the account together with the photo'],
-      ['Звёздочки', 'личные данные приходят закрытыми: Ма*****, +9929001*****. Вернёте такое значение обратно — сервер оставит прежнее', 'personal data comes back masked: Ма*****, +9929001*****. Send it back and the server keeps the old value'],
+      ['Вход', 'GET /api/users/login проверяет email и пароль через Basic Authorization; возвращает профиль и token', 'GET /api/users/login checks email and password using Basic Authorization; returns the profile and token'],
       ['userId', 'передали userId при создании записи — только с ним её и удалите. Чужую запись удалить нельзя', 'pass userId when creating a record and you need the same userId to delete it. You cannot delete someone else’s']
     ]],
     ['Коды ответа', 'Response codes', [
@@ -1415,7 +1444,6 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
   /* ---------- старт ---------- */
   initTheme();
   try { if (localStorage.getItem('karapuz-lang') === 'en') state.lang = 'en'; } catch (e) {}
-  try { state.token = localStorage.getItem('karapuz-token') || ''; } catch (e) {}
 
   fetch('/api/categories?pageSize=50', { headers: { Accept: 'application/json' } })
     .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })

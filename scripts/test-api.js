@@ -188,11 +188,10 @@ const PNG_2x2 = Buffer.from(
 
   // ---------- аккаунт: создание ----------
   r = await req('POST', '/api/users', { body: {} });
-  check('пустая регистрация → 201, массив приходит пустым', r.status === 201 &&
-    r.json.data.id > 0 && r.json.data.fullName === '' && r.json.data.email === '', r.json && r.json.error);
+  check('пустая регистрация → 400', r.status === 400);
 
   r = await req('POST', '/api/users', { body: { fullName: 'X', email: 'не-почта', password: '1' } });
-  check('любая почта и короткий пароль принимаются', r.status === 201, r.json && r.json.error);
+  check('некорректный email → 400', r.status === 400);
 
   const email = `student${Date.now()}@karapuz.tj`;
   const tel = '+992900123456';
@@ -202,14 +201,16 @@ const PNG_2x2 = Buffer.from(
   }, { name: 'avatar', filename: 'foto.png', type: 'image/png', data: PNG_2x2 });
 
   r = await req('POST', '/api/users', { form: mp.body, headers: { 'Content-Type': mp.type } });
-  const me = r.json && r.json.data;
+  const me = r.json && r.json.data && r.json.data.user;
+  const token = r.json && r.json.data && r.json.data.token;
   check('POST /api/users (multipart + фото)', r.status === 201 && me && me.id > 0, r.json && r.json.error);
-  check('телефон закрыт пятью звёздочками', me && me.tel === '+9929001*****', me && me.tel);
-  check('имя закрыто', me && me.fullName === 'Ма*****', me && me.fullName);
-  check('email закрыт, домен виден', me && /^stu\*{5}@karapuz\.tj$/.test(me.email), me && me.email);
-  check('адрес закрыт', me && me.address === 'Душ*****', me && me.address);
+  check('свой телефон возвращается полностью', me && me.tel === tel);
+  check('своё имя возвращается полностью', me && me.fullName === 'Мансур Сафаров');
+  check('свой email возвращается полностью', me && me.email === email);
+  check('свой адрес возвращается полностью', me && me.address === 'Душанбе, улица Рудаки 25');
   check('пароль и хеш не возвращаются', me && !JSON.stringify(me).match(/passwordHash|scrypt\$|ExamplePassword/));
-  check('фото сохранено', me && /\/api\/users\/\d+\/avatar$/.test(me.avatar), me && me.avatar);
+  check('фото сохранено', me && /\/api\/users\/\d+\/avatar\?v=/.test(me.avatar), me && me.avatar);
+  check('регистрация возвращает токен, ответ не кешируется', !!token && r.headers.get('cache-control') === 'no-store');
 
   const userId = me.id;
 
@@ -218,7 +219,33 @@ const PNG_2x2 = Buffer.from(
     r.headers.get('content-type') === 'image/jpeg', r.headers.get('content-type'));
 
   r = await req('POST', '/api/users', { body: { email, fullName: 'Тёзка', password: '1' } });
-  check('повтор email не ошибка — это тренажёр', r.status === 201, r.status);
+  check('повтор email → 409', r.status === 409, r.status);
+
+  const concurrent = await Promise.all(Array.from({ length: 3 }, () =>
+    req('POST', '/api/users', { body: { email: `race${email}`, fullName: 'Проверка', password: '1' } })));
+  check('одновременная регистрация email создаёт один аккаунт',
+    concurrent.filter(result => result.status === 201).length === 1 &&
+    concurrent.filter(result => result.status === 409).length === 2);
+
+  function basic(password, loginEmail = email) {
+    return { Authorization: 'Basic ' + Buffer.from(loginEmail + ':' + password).toString('base64') };
+  }
+  r = await req('GET', '/api/users/login', { headers: basic('wrong') });
+  check('неверный пароль → 401 без профиля', r.status === 401 && r.json.data === null);
+  r = await req('GET', '/api/users/login', { headers: basic('ExamplePassword123!', 'missing@karapuz.tj') });
+  check('неизвестный email → 401', r.status === 401);
+  r = await req('GET', '/api/users/login');
+  check('пустой вход → 401', r.status === 401);
+  r = await req('GET', '/api/users/login', { headers: basic('ExamplePassword123!', email.toUpperCase()) });
+  check('верный вход возвращает сохранённые имя и фото', r.status === 200 &&
+    r.json.data.user.fullName === me.fullName && r.json.data.user.avatar === me.avatar && !!r.json.data.token);
+  check('в ответе входа нет пароля и хеша', !/passwordHash|scrypt\$|ExamplePassword/.test(r.text));
+  check('вход не кешируется', r.headers.get('cache-control') === 'no-store');
+  r = await req('POST', `/api/users/${userId}`, { body: { fullName: 'Чужой' } });
+  check('изменение профиля без входа → 401', r.status === 401);
+  const other = await req('POST', '/api/users', { body: { fullName: 'Другой', email: `other${email}`, password: '1' } });
+  r = await req('POST', `/api/users/${userId}`, { token: other.json.data.token, body: { fullName: 'Чужой' } });
+  check('изменение чужого профиля → 403', r.status === 403);
 
   const bigMp = multipart({ fullName: 'Большой' },
     { name: 'avatar', filename: 'big.png', type: 'image/png', data: Buffer.concat([PNG_2x2, Buffer.alloc(11 * 1024 * 1024, 1)]) });
@@ -232,22 +259,33 @@ const PNG_2x2 = Buffer.from(
 
   // ---------- аккаунт: сохранение изменений ----------
   const save = multipart({
-    fullName: me.fullName,               // вернули закрытое значение как есть
-    tel: me.tel,                         // тоже закрытое
+    fullName: 'Ма*****',
+    tel: '+9929001*****',
     address: 'Москва, ул. Московская 25-45'
   });
-  r = await req('POST', `/api/users/${userId}`, { form: save.body, headers: { 'Content-Type': save.type } });
+  r = await req('POST', `/api/users/${userId}`, { token, form: save.body, headers: { 'Content-Type': save.type } });
   const after = r.json.data;
-  check('POST /api/users/{id} — «Сохранить изменения»', r.status === 200 && after.address === 'Мос*****', after && after.address);
-  check('закрытые значения не затирают данные', after && after.tel === '+9929001*****' &&
+  check('POST /api/users/{id} — «Сохранить изменения»', r.status === 200 && after.address === 'Москва, ул. Московская 25-45');
+  check('старые закрытые значения не затирают данные', after && after.tel === tel &&
     Array.isArray(after.unchanged) && after.unchanged.includes('tel'), after && after.unchanged);
 
-  r = await req('POST', '/api/users', { body: { id: userId, tel: '+992918777666' } });
-  check('id можно прислать и в теле запроса', r.status === 200 && r.json.data.tel === '+9929187*****', r.json.data && r.json.data.tel);
+  r = await req('POST', '/api/users', { token, body: { id: userId, tel: '+992918777666' } });
+  check('id можно прислать и в теле запроса', r.status === 200 && r.json.data.tel === '+992918777666');
 
   const newPhoto = multipart({ id: String(userId) }, { name: 'avatar', filename: 'new.png', type: 'image/png', data: PNG_2x2 });
-  r = await req('POST', '/api/users', { form: newPhoto.body, headers: { 'Content-Type': newPhoto.type } });
-  check('фото меняется тем же запросом', r.status === 200 && /\/avatar$/.test(r.json.data.avatar));
+  r = await req('POST', '/api/users', { token, form: newPhoto.body, headers: { 'Content-Type': newPhoto.type } });
+  check('фото меняется тем же запросом', r.status === 200 && /\/avatar\?v=/.test(r.json.data.avatar) && r.json.data.avatar !== me.avatar);
+  r = await req('GET', '/api/users/login', { headers: basic('ExamplePassword123!') });
+  check('новый вход получает изменения с сервера', r.json.data.user.tel === '+992918777666' && r.json.data.user.address === after.address);
+
+  r = await req('POST', `/api/users/${userId}`, { token, body: { password: 'x'.repeat(129) } });
+  check('слишком длинный новый пароль → 400', r.status === 400);
+  r = await req('POST', `/api/users/${userId}`, { token, body: { password: ' Новый:пароль! ' } });
+  check('владелец может изменить пароль', r.status === 200);
+  r = await req('GET', '/api/users/login', { headers: basic('ExamplePassword123!') });
+  check('старый пароль после изменения не работает', r.status === 401);
+  r = await req('GET', '/api/users/login', { headers: basic(' Новый:пароль! ') });
+  check('новый пароль сохраняет пробелы и Unicode', r.status === 200 && r.json.data.user.id === userId);
 
   r = await req('POST', '/api/users/999999', { body: { fullName: 'Никто' } });
   check('сохранение в несуществующий id → 404', r.status === 404);
@@ -345,23 +383,22 @@ const PNG_2x2 = Buffer.from(
   check('DELETE /api/promotions/{id}', r.status === 200);
 
   // ---------- удаление аккаунта ----------
-  r = await req('DELETE', `/api/users/${userId}`);
+  r = await req('DELETE', `/api/users/${userId}`, { token });
   check('DELETE /api/users/{id}', r.status === 200);
 
-  r = await req('DELETE', `/api/users/${userId}`);
-  check('повторное удаление → 404', r.status === 404);
+  r = await req('DELETE', `/api/users/${userId}`, { token });
+  check('токен удалённого аккаунта не действует → 401', r.status === 401);
 
   // ---------- спецификация и страницы ----------
   r = await req('GET', '/api/swagger.json');
   const spec = r.json;
   check('GET /api/swagger.json', r.status === 200 && spec.openapi && !spec.data);
   const userPaths = Object.keys(spec.paths).filter(p => p.includes('users'));
-  check('в разделе аккаунта один запрос — POST /api/users',
-    userPaths.length === 1 && !!spec.paths['/api/users'].post &&
+  check('в разделе аккаунта POST и GET входа',
+    userPaths.length === 2 && !!spec.paths['/api/users'].post && !!spec.paths['/api/users/login'].get &&
     !spec.paths['/api/users'].get && !spec.paths['/api/auth/register'], userPaths);
   check('форма аккаунта одна — multipart/form-data',
-    Object.keys(spec.paths['/api/users'].post.requestBody.content).join() === 'multipart/form-data' &&
-    !spec.paths['/api/users'].post.description,
+    Object.keys(spec.paths['/api/users'].post.requestBody.content).join() === 'multipart/form-data',
     Object.keys(spec.paths['/api/users'].post.requestBody.content));
   check('каталог перечислен поимённо',
     !!spec.paths['/api/detskaya-mebel'] && !!spec.paths['/api/detskaya-mebel/krovatki'] &&
@@ -372,8 +409,8 @@ const PNG_2x2 = Buffer.from(
     Object.keys(spec.paths['/api/categories']).join() === 'get' &&
     Object.keys(spec.paths['/api/categories/{id}']).join() === 'get',
     Object.keys(spec.paths['/api/categories/{id}']));
-  check('операции без замков', Object.values(spec.paths)
-    .every(ops => Object.values(ops).every(op => !op.security)));
+  check('вход описан через Basic, без password в URL', !!spec.components.securitySchemes.basicAuth &&
+    !spec.paths['/api/users/login'].get.parameters);
 
   r = await req('GET', '/');
   check('/ — страница Swagger UI', r.status === 200 && r.text.includes('swagger-ui-bundle.js'));
