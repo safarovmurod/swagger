@@ -7,3 +7,6 @@ node_modules/
 work/
 incoming/
 tools/
+
+# рабочий список для бота с фотографиями — собирается заново
+photos-todo.tsv
