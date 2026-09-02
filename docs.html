@@ -381,7 +381,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       <svg viewBox="0 0 64 64"><path d="M52 6 H24 L6 24 h28 z" fill="currentColor"/><path d="M12 58 h28 l18-18 H30 z" fill="currentColor" opacity=".72"/><path d="M34 24 H6 l10 10 h28 z" fill="currentColor" opacity=".45"/></svg>
     </span>
     <span class="brand-name"><span class="dim">Softclub&nbsp;·&nbsp;</span><span data-i18n="brand">Карапуз API</span></span>
-    <span class="badge-ver">v3.1.0</span>
+    <span class="badge-ver">v3.2.0</span>
   </div>
   <div class="topbar-actions">
     <div class="seg" role="group" aria-label="Язык / Language">
@@ -498,15 +498,15 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       catsIn: 'подкатегорий', endpoints: 'запросов на странице',
       account: 'Аккаунт', accountHint: 'регистрация с фото и личные данные',
       help: 'Как пользоваться API', helpHint: 'короткая справка',
-      aProfile: 'Личные данные', aProfileD: 'Загрузить профиль и сохранить изменения — тоже FormData',
-      fUserId: 'id пользователя', doLoad: 'Загрузить', doSave: 'Сохранить изменения',
+      aProfile: 'Личные данные', aProfileD: 'Тот же POST: укажите id — и изменения сохранятся',
+      fUserId: 'id пользователя', doSave: 'Сохранить изменения', doDelete: 'Удалить аккаунт',
       maskNote: 'Личные данные приходят закрытыми: Ма*****, +9929001*****. Если вернуть такое значение обратно, сервер его не запишет — поменяется только то, что вы ввели заново.',
       noToken: 'Токен не задан',
       tokenSet: 'Токен сохранён',
       signedAs: 'Вы вошли как',
       tokenPh: 'вставьте токен или войдите ниже',
       useToken: 'Сохранить', forgetToken: 'Забыть',
-      aRegister: 'Регистрация', aRegisterD: 'Форма с файлом — multipart/form-data. Пустые поля тоже принимаются.',
+      aRegister: 'Регистрация', aRegisterD: 'Форма с файлом — multipart/form-data. Пустые поля тоже принимаются, id сохраните.',
       aLogin: 'Вход', aLoginD: 'В ответе приходит accessToken, он сохранится сам',
       aMe: 'Мой профиль', aMeD: 'Нужен заголовок Authorization: Bearer',
       aLogout: 'Выход', aLogoutD: 'Токен отзывается на сервере, повторный запрос вернёт 401',
@@ -551,15 +551,15 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       catsIn: 'subcategories', endpoints: 'requests on the page',
       account: 'Account', accountHint: 'sign up with a photo and personal data',
       help: 'How to use the API', helpHint: 'a short reference',
-      aProfile: 'Personal data', aProfileD: 'Load the profile and save changes — FormData as well',
-      fUserId: 'user id', doLoad: 'Load', doSave: 'Save changes',
+      aProfile: 'Personal data', aProfileD: 'The same POST: pass the id and the changes are saved',
+      fUserId: 'user id', doSave: 'Save changes', doDelete: 'Delete account',
       maskNote: 'Personal data comes back masked: Ма*****, +9929001*****. Send such a value back and the server keeps the old one — only what you retype is changed.',
       noToken: 'No token',
       tokenSet: 'Token saved',
       signedAs: 'Signed in as',
       tokenPh: 'paste a token or log in below',
       useToken: 'Save', forgetToken: 'Forget',
-      aRegister: 'Sign up', aRegisterD: 'A form with a file — multipart/form-data. Empty fields are accepted too.',
+      aRegister: 'Sign up', aRegisterD: 'A form with a file — multipart/form-data. Empty fields are fine, keep the id.',
       aLogin: 'Log in', aLoginD: 'The response carries accessToken, it is saved automatically',
       aMe: 'My profile', aMeD: 'Requires the Authorization: Bearer header',
       aLogout: 'Log out', aLogoutD: 'The token is revoked on the server, the next call returns 401',
@@ -789,14 +789,9 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
   }
 
   /* ---------- аккаунт ---------- */
-  // Вход и токен на этой странице не нужны: тренажёр принимает
-  // POST/PUT/PATCH/DELETE без авторизации. Здесь остаются два запроса,
-  // ради которых студент и приходит: регистрация с файлом и «Личные данные».
-  function authHeaders(extra) {
-    var h = extra || {};
-    if (state.token) h.Authorization = 'Bearer ' + state.token;
-    return h;
-  }
+  // Весь раздел держится на двух запросах: POST /api/users создаёт аккаунт
+  // и сохраняет изменения, DELETE /api/users/{id} удаляет. Токена нет.
+  function authHeaders(extra) { return extra || {}; }
 
   var CHEV = '<span class="cat-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span>';
 
@@ -824,7 +819,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
 
   function authHtml() {
     var register = cardHtml({
-      slug: '__register', color: '#4e9c6b', method: 'POST', path: '/api/auth/register',
+      slug: '__register', color: '#4e9c6b', method: 'POST', path: '/api/users',
       name: T('aRegister'),
       icon: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/>',
       body:
@@ -838,7 +833,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
           '<div class="field"><label>' + esc(T('fAvatar')) + '</label>' +
             '<input type="file" id="reg-avatar" accept="image/*"></div>' +
         '</div>' +
-        urlRow('reg-url', '/api/auth/register') +
+        urlRow('reg-url', '/api/users') +
         '<div class="controls" style="margin-top:12px">' +
           '<button type="button" class="btn btn-go" id="reg-send">' + esc(T('doRegister')) + '</button>' +
           '<button type="button" class="btn btn-ghost" id="reg-clear">' + esc(T('clear')) + '</button>' +
@@ -847,7 +842,7 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
     });
 
     var profile = cardHtml({
-      slug: '__profile', color: '#8a6bc0', method: 'PATCH', path: '/api/users/{id}',
+      slug: '__profile', color: '#8a6bc0', method: 'POST', path: '/api/users/{id}',
       name: T('aProfile'),
       icon: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
       body:
@@ -863,8 +858,8 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
         '</div>' +
         urlRow('pro-url', '/api/users/{id}') +
         '<div class="controls" style="margin-top:12px">' +
-          '<button type="button" class="btn btn-ghost" id="pro-load">' + esc(T('doLoad')) + '</button>' +
           '<button type="button" class="btn btn-go" id="pro-save">' + esc(T('doSave')) + '</button>' +
+          '<button type="button" class="btn btn-ghost" id="pro-delete">' + esc(T('doDelete')) + '</button>' +
         '</div>' +
         '<div class="note" style="margin-top:11px">' + esc(T('maskNote')) + '</div>' +
         '<div class="out" id="pro-out" style="margin-top:12px"></div>'
@@ -909,12 +904,11 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
 
     $('#reg-send').addEventListener('click', function () {
       var form = formOf('reg', ['fullName', 'tel', 'email', 'password', 'address']);
-      sendAuth(this, '#reg-out', location.origin + '/api/auth/register', { method: 'POST', body: form })
+      sendAuth(this, '#reg-out', location.origin + '/api/users', { method: 'POST', body: form })
         .then(function (payload) {
-          // сразу подставляем выданный id в «Личные данные» — так удобнее
+          // выданный id сразу подставляем в «Личные данные» — так удобнее
           var d = payload && payload.data;
-          if (d && d.id) $('#pro-id').value = d.id;
-          if (d && d.accessToken) state.token = d.accessToken;
+          if (d && d.id) { $('#pro-id').value = d.id; paintProfileUrl(); }
         });
     });
 
@@ -927,8 +921,8 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
     });
 
     function profileUrl() {
-      var id = String($('#pro-id').value || '').trim() || '1';
-      return location.origin + '/api/users/' + encodeURIComponent(id);
+      var id = String($('#pro-id').value || '').trim();
+      return location.origin + '/api/users' + (id ? '/' + encodeURIComponent(id) : '');
     }
     function paintProfileUrl() {
       var url = profileUrl();
@@ -938,20 +932,17 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
     $('#pro-id').addEventListener('input', paintProfileUrl);
     paintProfileUrl();
 
-    $('#pro-load').addEventListener('click', function () {
-      sendAuth(this, '#pro-out', profileUrl(), { headers: { Accept: 'application/json' } })
-        .then(function (payload) {
-          var d = payload && payload.data;
-          if (!d) return;
-          $('#pro-fullName').value = d.fullName || '';
-          $('#pro-tel').value = d.tel || '';
-          $('#pro-address').value = d.address || '';
-        });
-    });
-
     $('#pro-save').addEventListener('click', function () {
       var form = formOf('pro', ['fullName', 'tel', 'address']);
-      sendAuth(this, '#pro-out', profileUrl(), { method: 'PATCH', body: form });
+      sendAuth(this, '#pro-out', profileUrl(), { method: 'POST', body: form });
+    });
+
+    $('#pro-delete').addEventListener('click', function () {
+      if (!String($('#pro-id').value || '').trim()) {
+        $('#pro-out').innerHTML = '<div class="note">' + esc(T('needId')) + '</div>';
+        return;
+      }
+      sendAuth(this, '#pro-out', profileUrl(), { method: 'DELETE' });
     });
   }
 
@@ -981,9 +972,10 @@ pre.json .n { color: var(--j-num); } pre.json .b { color: var(--j-bool); } pre.j
       ['Upload', 'загрузка файла — так работает поле avatar: фото до 10 МБ, сервер сам обрежет его в квадрат 512×512', 'file upload — the avatar field: a photo up to 10 MB, the server crops it to a 512×512 square']
     ]],
     ['Аккаунт', 'Account', [
-      ['Register', 'POST /api/auth/register — массив полей fullName, tel, email, password, address и файл avatar. Проверок нет: пустые поля и любая почта принимаются', 'POST /api/auth/register — fullName, tel, email, password, address and the avatar file. No validation: empty fields and any email are accepted'],
-      ['Login', 'POST /api/auth/login — находит аккаунт по email и проверяет пароль', 'POST /api/auth/login — finds the account by email and checks the password'],
-      ['Личные данные', 'GET /api/users/{id} заполняет форму, PATCH /api/users/{id} сохраняет её. Тело — тот же FormData', 'GET /api/users/{id} fills the form, PATCH /api/users/{id} saves it. The body is FormData again'],
+      ['Регистрация', 'POST /api/users — поля fullName, tel, email, password, address и файл avatar. Проверок нет: пустые поля и любая почта принимаются', 'POST /api/users — fullName, tel, email, password, address and the avatar file. No validation: empty fields and any email are accepted'],
+      ['id', 'из ответа возьмите id и сохраните его: без него не сохранить изменения и не удалить аккаунт', 'take the id from the response and keep it: without it you cannot save changes or delete the account'],
+      ['Личные данные', 'тот же POST /api/users, только с id — тогда он не создаёт новый аккаунт, а сохраняет изменения', 'the same POST /api/users but with an id — then it saves changes instead of creating a new account'],
+      ['Удалить', 'DELETE /api/users/{id} — убирает аккаунт вместе с фотографией', 'DELETE /api/users/{id} — removes the account together with the photo'],
       ['Звёздочки', 'личные данные приходят закрытыми: Ма*****, +9929001*****. Вернёте такое значение обратно — сервер оставит прежнее', 'personal data comes back masked: Ма*****, +9929001*****. Send it back and the server keeps the old value'],
       ['userId', 'передали userId при создании записи — только с ним её и удалите. Чужую запись удалить нельзя', 'pass userId when creating a record and you need the same userId to delete it. You cannot delete someone else’s']
     ]],

@@ -186,12 +186,12 @@ const PNG_2x2 = Buffer.from(
   check('заголовки безопасности', r.headers.get('x-content-type-options') === 'nosniff' &&
     r.headers.get('x-frame-options') === 'DENY' && !!r.headers.get('x-ratelimit-limit'));
 
-  // ---------- регистрация ----------
-  r = await req('POST', '/api/auth/register', { body: {} });
+  // ---------- аккаунт: создание ----------
+  r = await req('POST', '/api/users', { body: {} });
   check('пустая регистрация → 201, массив приходит пустым', r.status === 201 &&
     r.json.data.id > 0 && r.json.data.fullName === '' && r.json.data.email === '', r.json && r.json.error);
 
-  r = await req('POST', '/api/auth/register', { body: { fullName: 'X', email: 'не-почта', password: '1' } });
+  r = await req('POST', '/api/users', { body: { fullName: 'X', email: 'не-почта', password: '1' } });
   check('любая почта и короткий пароль принимаются', r.status === 201, r.json && r.json.error);
 
   const email = `student${Date.now()}@karapuz.tj`;
@@ -201,9 +201,9 @@ const PNG_2x2 = Buffer.from(
     password: 'ExamplePassword123!', address: 'Душанбе, улица Рудаки 25'
   }, { name: 'avatar', filename: 'foto.png', type: 'image/png', data: PNG_2x2 });
 
-  r = await req('POST', '/api/auth/register', { form: mp.body, headers: { 'Content-Type': mp.type } });
+  r = await req('POST', '/api/users', { form: mp.body, headers: { 'Content-Type': mp.type } });
   const me = r.json && r.json.data;
-  check('POST /api/auth/register (multipart + фото)', r.status === 201 && me && me.id > 0, r.json && r.json.error);
+  check('POST /api/users (multipart + фото)', r.status === 201 && me && me.id > 0, r.json && r.json.error);
   check('телефон закрыт пятью звёздочками', me && me.tel === '+9929001*****', me && me.tel);
   check('имя закрыто', me && me.fullName === 'Ма*****', me && me.fullName);
   check('email закрыт, домен виден', me && /^stu\*{5}@karapuz\.tj$/.test(me.email), me && me.email);
@@ -217,61 +217,47 @@ const PNG_2x2 = Buffer.from(
   check('GET /api/users/{id}/avatar — квадратный jpeg', r.status === 200 &&
     r.headers.get('content-type') === 'image/jpeg', r.headers.get('content-type'));
 
-  r = await req('POST', '/api/auth/register', { body: { email, fullName: 'Тёзка', password: '1' } });
+  r = await req('POST', '/api/users', { body: { email, fullName: 'Тёзка', password: '1' } });
   check('повтор email не ошибка — это тренажёр', r.status === 201, r.status);
 
   const bigMp = multipart({ fullName: 'Большой' },
     { name: 'avatar', filename: 'big.png', type: 'image/png', data: Buffer.concat([PNG_2x2, Buffer.alloc(11 * 1024 * 1024, 1)]) });
-  r = await req('POST', '/api/auth/register', { form: bigMp.body, headers: { 'Content-Type': bigMp.type } });
+  r = await req('POST', '/api/users', { form: bigMp.body, headers: { 'Content-Type': bigMp.type } });
   check('файл больше 10 МБ → 413', r.status === 413, r.status);
 
   const evilMp = multipart({ fullName: 'Опасный' },
     { name: 'avatar', filename: 'shell.php', type: 'image/png', data: Buffer.from('<?php system($_GET[0]); ?>            ') });
-  r = await req('POST', '/api/auth/register', { form: evilMp.body, headers: { 'Content-Type': evilMp.type } });
+  r = await req('POST', '/api/users', { form: evilMp.body, headers: { 'Content-Type': evilMp.type } });
   check('не картинка → 415', r.status === 415, r.status);
 
-  // ---------- вход ----------
-  r = await req('POST', '/api/auth/login', { body: { email, password: 'ExamplePassword123!' } });
-  check('POST /api/auth/login', r.status === 200 && r.json.data.id === userId && !!r.json.data.accessToken, r.json && r.json.error);
-
-  r = await req('POST', '/api/auth/login', { body: { email, password: 'неверный' } });
-  check('неверный пароль → 401', r.status === 401 && r.json.error.code === 'INVALID_CREDENTIALS');
-
-  r = await req('GET', '/api/auth/me');
-  check('/api/auth/me убран → 404 с подсказкой', r.status === 404 && r.json.errors[0].includes('/api/users/'), r.json && r.json.errors);
-
-  // ---------- личные данные ----------
-  r = await req('GET', `/api/users/${userId}`);
-  const before = r.json.data;
-  check('GET /api/users/{id} — заполняем форму', r.status === 200 && before.id === userId);
-
+  // ---------- аккаунт: сохранение изменений ----------
   const save = multipart({
-    fullName: before.fullName,           // вернули как есть — закрытое значение
-    tel: before.tel,                     // тоже закрытое
+    fullName: me.fullName,               // вернули закрытое значение как есть
+    tel: me.tel,                         // тоже закрытое
     address: 'Москва, ул. Московская 25-45'
   });
-  r = await req('PATCH', `/api/users/${userId}`, { form: save.body, headers: { 'Content-Type': save.type } });
+  r = await req('POST', `/api/users/${userId}`, { form: save.body, headers: { 'Content-Type': save.type } });
   const after = r.json.data;
-  check('PATCH /api/users/{id} — «Сохранить изменения»', r.status === 200 && after.address === 'Мос*****', after && after.address);
+  check('POST /api/users/{id} — «Сохранить изменения»', r.status === 200 && after.address === 'Мос*****', after && after.address);
   check('закрытые значения не затирают данные', after && after.tel === '+9929001*****' &&
     Array.isArray(after.unchanged) && after.unchanged.includes('tel'), after && after.unchanged);
 
-  r = await req('PATCH', `/api/users/${userId}`, { body: { tel: '+992918777666' } });
-  check('новый телефон записывается', r.status === 200 && r.json.data.tel === '+9929187*****', r.json.data && r.json.data.tel);
+  r = await req('POST', '/api/users', { body: { id: userId, tel: '+992918777666' } });
+  check('id можно прислать и в теле запроса', r.status === 200 && r.json.data.tel === '+9929187*****', r.json.data && r.json.data.tel);
 
-  r = await req('PUT', `/api/users/${userId}`, { body: { fullName: 'Сафаров Мансур' } });
-  check('PUT /api/users/{id} работает так же', r.status === 200 && r.json.data.fullName === 'Са*****');
-
-  const newPhoto = multipart({}, { name: 'avatar', filename: 'new.png', type: 'image/png', data: PNG_2x2 });
-  r = await req('PATCH', `/api/users/${userId}`, { form: newPhoto.body, headers: { 'Content-Type': newPhoto.type } });
+  const newPhoto = multipart({ id: String(userId) }, { name: 'avatar', filename: 'new.png', type: 'image/png', data: PNG_2x2 });
+  r = await req('POST', '/api/users', { form: newPhoto.body, headers: { 'Content-Type': newPhoto.type } });
   check('фото меняется тем же запросом', r.status === 200 && /\/avatar$/.test(r.json.data.avatar));
 
-  r = await req('GET', '/api/users?pageSize=100');
-  check('GET /api/users открыт и знает про лимит', r.status === 200 && r.json.limit === 50 &&
-    !JSON.stringify(r.json).includes('passwordHash'));
+  r = await req('POST', '/api/users/999999', { body: { fullName: 'Никто' } });
+  check('сохранение в несуществующий id → 404', r.status === 404);
 
-  r = await req('GET', '/api/users/999999');
-  check('чужой несуществующий id → 404', r.status === 404);
+  // ---------- убранные запросы ----------
+  r = await req('GET', '/api/users');
+  check('GET /api/users убран → 405 с подсказкой', r.status === 405 && r.json.errors[0].includes('POST /api/users'), r.json && r.json.errors);
+
+  r = await req('POST', '/api/auth/register', { body: {} });
+  check('старый /api/auth/register больше не существует', r.status === 404 || r.status === 405, r.status);
 
   // ---------- запись без токена ----------
   r = await req('POST', '/api/products', {
@@ -362,14 +348,17 @@ const PNG_2x2 = Buffer.from(
   r = await req('DELETE', `/api/users/${userId}`);
   check('DELETE /api/users/{id}', r.status === 200);
 
-  r = await req('GET', `/api/users/${userId}`);
-  check('удалённый аккаунт → 404', r.status === 404);
+  r = await req('DELETE', `/api/users/${userId}`);
+  check('повторное удаление → 404', r.status === 404);
 
   // ---------- спецификация и страницы ----------
   r = await req('GET', '/api/swagger.json');
   const spec = r.json;
   check('GET /api/swagger.json', r.status === 200 && spec.openapi && !spec.data);
-  check('в спецификации нет /api/auth/me', !spec.paths['/api/auth/me'] && !!spec.paths['/api/auth/register']);
+  check('в спецификации остались только два запроса аккаунта',
+    !!spec.paths['/api/users'].post && !!spec.paths['/api/users/{id}'].delete &&
+    !spec.paths['/api/users'].get && !spec.paths['/api/auth/register'],
+    Object.keys(spec.paths).filter(p => p.includes('users')));
   check('операции без замков', Object.values(spec.paths)
     .every(ops => Object.values(ops).every(op => !op.security)));
 
