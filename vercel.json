@@ -6,7 +6,7 @@
     },
     {
       "source": "/docs",
-      "destination": "/index.html"
+      "destination": "/docs.html"
     },
     {
       "source": "/api/swagger.json",

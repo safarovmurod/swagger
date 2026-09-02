@@ -44,7 +44,12 @@ const server = http.createServer(async (req, res) => {
   }
 
   // статика
-  const file = pathname === '/' || pathname === '/swagger' ? 'index.html' : pathname.slice(1);
+  // те же адреса, что и на Vercel: / и /swagger — Swagger UI,
+  // /docs — страница каталога
+  let file;
+  if (pathname === '/' || pathname === '/swagger') file = 'index.html';
+  else if (pathname === '/docs') file = 'docs.html';
+  else file = pathname.slice(1);
   const filePath = path.join(ROOT, file);
   if (filePath.startsWith(ROOT) && fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
     res.setHeader('Content-Type', MIME[path.extname(filePath)] || 'application/octet-stream');
