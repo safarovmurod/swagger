@@ -1,0 +1,21 @@
+{
+  "name": "karapuz-api",
+  "version": "3.2.0",
+  "description": "Карапуз — учебный REST API интернет-магазина детских товаров: каталог, блог, отзывы, регистрация с загрузкой аватара, вход по JWT и разграничение прав",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev-server.js",
+    "generate": "node scripts/generate-dataset.js",
+    "check": "node scripts/check.js",
+    "test:api": "node scripts/test-api.js",
+    "links": "node scripts/links.js"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "dependencies": {
+    "jimp": "^1.6.1",
+    "pg": "^8.23.0"
+  }
+}

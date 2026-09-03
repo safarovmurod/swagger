@@ -1,0 +1,269 @@
+#!/usr/bin/env node
+// ============================================================
+// Проверка целостности каталога и спецификации.
+//   node scripts/check.js
+// Возвращает код 1, если найдена хотя бы одна ошибка.
+// ============================================================
+const { categories, products, promotions, blog, subcategories } = require('../lib/data');
+
+const errors = [];
+const warns = [];
+const fail = (m) => errors.push(m);
+const warn = (m) => warns.push(m);
+
+// --- категории и подкатегории ---
+const catIds = new Set();
+categories.forEach(c => {
+  if (catIds.has(c.id)) fail(`Дублирующийся id категории: ${c.id}`);
+  catIds.add(c.id);
+  ['name', 'slug', 'description', 'image'].forEach(f => {
+    if (!c[f]) fail(`Категория ${c.id}: пустое поле ${f}`);
+  });
+  if (!c.subcategories.length) fail(`Категория ${c.id} «${c.name}» без подкатегорий`);
+});
+
+const subIds = new Set();
+subcategories.forEach(s => {
+  if (subIds.has(s.id)) fail(`Дублирующийся id подкатегории: ${s.id}`);
+  subIds.add(s.id);
+  if (!s.name || !s.slug) fail(`Подкатегория ${s.id}: пустое имя или slug`);
+});
+
+// --- товары ---
+const ids = new Set(), slugs = new Set();
+products.forEach(p => {
+  if (ids.has(p.id)) fail(`Дублирующийся id товара: ${p.id}`);
+  ids.add(p.id);
+  if (slugs.has(p.slug)) fail(`Дублирующийся slug товара: ${p.slug}`);
+  slugs.add(p.slug);
+
+  ['name', 'image', 'description', 'brand', 'country', 'article', 'ageGroup'].forEach(f => {
+    if (!p[f]) fail(`Товар ${p.id}: пустое поле ${f}`);
+  });
+  if (!(p.price > 0)) fail(`Товар ${p.id}: некорректная цена ${p.price}`);
+  if (p.isPromo && !(p.oldPrice > p.price)) fail(`Товар ${p.id}: акция без корректной старой цены`);
+  if (!p.isPromo && p.oldPrice) warn(`Товар ${p.id}: старая цена без флага акции`);
+  if (!catIds.has(p.categoryId)) fail(`Товар ${p.id}: неизвестная категория ${p.categoryId}`);
+  if (!subIds.has(p.subcategoryId)) fail(`Товар ${p.id}: неизвестная подкатегория ${p.subcategoryId}`);
+  if (!p.images || p.images.length < 1) fail(`Товар ${p.id}: пустой массив images`);
+  if (Object.keys(p.characteristics || {}).length < 3) fail(`Товар ${p.id}: меньше трёх характеристик`);
+  if (!p.colorOptions.length) fail(`Товар ${p.id}: не указаны цвета`);
+  if (!p.materials.length) fail(`Товар ${p.id}: не указаны материалы`);
+  if (p.description.includes('undefined')) fail(`Товар ${p.id}: «undefined» в описании`);
+
+  const avg = p.reviews.length
+    ? Math.round((p.reviews.reduce((s, r) => s + r.rating, 0) / p.reviews.length) * 10) / 10 : 0;
+  if (p.rating !== avg) fail(`Товар ${p.id}: рейтинг ${p.rating} не совпадает со средним по отзывам ${avg}`);
+  if (p.reviewCount !== p.reviews.length) fail(`Товар ${p.id}: reviewCount не совпадает с числом отзывов`);
+  p.reviews.forEach(r => {
+    if (!r.author || !r.comment) fail(`Товар ${p.id}: отзыв ${r.id} без автора или текста`);
+    if (r.rating < 1 || r.rating > 5) fail(`Товар ${p.id}: отзыв ${r.id} с рейтингом ${r.rating}`);
+  });
+});
+
+// --- id отзывов сквозные: по ним работает /api/reviews/{id} ---
+const reviewIds = new Set();
+products.forEach(p => (p.reviews || []).forEach(r => {
+  if (reviewIds.has(r.id)) fail(`Дублирующийся id отзыва: ${r.id} (товар ${p.id})`);
+  reviewIds.add(r.id);
+  if (r.productId !== p.id) fail(`Отзыв ${r.id}: productId ${r.productId} не совпадает с товаром ${p.id}`);
+}));
+
+// --- по 20 товаров в каждой подкатегории ---
+subcategories.forEach(s => {
+  const n = products.filter(p => p.subcategoryId === s.id).length;
+  if (n !== 20) fail(`Подкатегория ${s.id} «${s.name}»: ${n} товаров вместо 20`);
+});
+
+// --- slug категории не должен перекрывать служебные пути /api/... ---
+const { RESERVED_SLUGS: RESERVED } = require('../lib/router');
+const seenSlugs = new Set();
+categories.forEach(c => {
+  if (RESERVED.includes(c.slug)) fail(`Категория ${c.id} «${c.name}»: slug «${c.slug}» перекрывает служебный путь /api/${c.slug}`);
+  if (seenSlugs.has(c.slug)) fail(`Дублирующийся slug категории: ${c.slug}`);
+  seenSlugs.add(c.slug);
+  const subSlugs = new Set();
+  c.subcategories.forEach(sc => {
+    if (subSlugs.has(sc.slug)) fail(`Категория «${c.name}»: дублирующийся slug подкатегории ${sc.slug}`);
+    subSlugs.add(sc.slug);
+  });
+});
+
+// --- акции: по одной на категорию ---
+categories.forEach(c => {
+  const n = promotions.filter(p => p.categoryId === c.id).length;
+  if (n !== 1) fail(`Категория ${c.id} «${c.name}»: акций ${n}, ожидается 1`);
+});
+promotions.forEach(pr => {
+  ['title', 'description', 'content', 'image', 'slug'].forEach(f => {
+    if (!pr[f]) fail(`Акция ${pr.id}: пустое поле ${f}`);
+  });
+  if (pr.content.length < 200) fail(`Акция ${pr.id}: слишком короткий текст`);
+  if (!pr.products.length) fail(`Акция ${pr.id}: нет товаров`);
+  pr.products.forEach(id => {
+    const p = products.find(x => x.id === id);
+    if (!p) fail(`Акция ${pr.id}: ссылка на несуществующий товар ${id}`);
+    else if (p.categoryId !== pr.categoryId) fail(`Акция ${pr.id} («${pr.categoryName}») ссылается на товар ${id} из категории «${p.categoryName}»`);
+    else if (!p.isPromo) fail(`Акция ${pr.id}: товар ${id} без флага акции`);
+  });
+});
+
+// --- картинки: только свой эндпоинт, никаких внешних ссылок ---
+const { resolve: resolveRoute } = require('../lib/router');
+const fsCheck = require('fs');
+const pathCheck = require('path');
+function checkImage(url, owner) {
+  if (!url) return fail(`${owner}: пустая ссылка на картинку`);
+  if (/^https?:\/\//.test(url)) return fail(`${owner}: внешняя ссылка на картинку ${url} — она может отдать 404`);
+  if (url.indexOf('/assets/products/') === 0) {
+    const file = pathCheck.join(__dirname, '..', url.split('?')[0]);
+    if (!fsCheck.existsSync(file)) fail(`${owner}: файла ${url} нет в репозитории`);
+    return;
+  }
+  if (url.indexOf('/api/images/') !== 0) return fail(`${owner}: непонятная ссылка на картинку ${url}`);
+  const slug = url.replace('/api/images/', '').split('?')[0];
+  if (!resolveRoute(['images', slug])) fail(`${owner}: роутер не разберёт ${url}`);
+}
+products.forEach(p => {
+  checkImage(p.image, `Товар ${p.id}`);
+  (p.images || []).forEach((u, i) => checkImage(u, `Товар ${p.id}, картинка ${i + 1}`));
+});
+categories.forEach(c => {
+  checkImage(c.image, `Категория ${c.name}`);
+  c.subcategories.forEach(sc => checkImage(sc.image, `Подкатегория ${sc.name}`));
+});
+promotions.forEach(pr => checkImage(pr.image, `Акция ${pr.id}`));
+blog.forEach(b => {
+  checkImage(b.image, `Статья ${b.id}`);
+  (b.images || []).forEach((u, i) => checkImage(u, `Статья ${b.id}, картинка ${i + 1}`));
+  if (b.author && b.author.avatar) checkImage(b.author.avatar, `Автор статьи ${b.id}`);
+  (b.sections || []).forEach((sec, i) => {
+    if (sec.type === 'image') checkImage(sec.url, `Статья ${b.id}, блок ${i + 1}`);
+  });
+});
+
+// --- тексты не должны повторяться от категории к категории ---
+function uniq(label, values) {
+  const seen = new Map();
+  values.forEach(function (v) {
+    const key = String(v.text || '').trim();
+    if (!key) return;
+    if (seen.has(key)) fail(`${label}: одинаковый текст у «${seen.get(key)}» и «${v.owner}»`);
+    else seen.set(key, v.owner);
+  });
+}
+uniq('Текст акции', promotions.map(p => ({ text: p.content, owner: p.categoryName })));
+uniq('Описание акции', promotions.map(p => ({ text: p.description, owner: p.categoryName })));
+uniq('Заголовок акции', promotions.map(p => ({ text: p.title, owner: p.categoryName })));
+uniq('Описание категории', categories.map(c => ({ text: c.description, owner: c.name })));
+uniq('Справка категории', categories.map(c => ({ text: c.info && c.info.note, owner: c.name })));
+uniq('Условия доставки', categories.map(c => ({ text: c.info && c.info.delivery, owner: c.name })));
+uniq('Описание подкатегории', categories.flatMap(c => c.subcategories.map(sc => ({ text: sc.description, owner: c.name + ' / ' + sc.name }))));
+
+categories.forEach(c => {
+  if (!c.info) fail(`Категория ${c.id} «${c.name}»: нет блока info`);
+  else ['note', 'howToChoose', 'delivery', 'warranty', 'payment'].forEach(f => {
+    if (!c.info[f]) fail(`Категория ${c.id} «${c.name}»: пустое info.${f}`);
+  });
+  c.subcategories.forEach(sc => {
+    if (!sc.description) fail(`Подкатегория ${sc.id} «${sc.name}»: нет описания`);
+    else if (sc.description.length < 60) fail(`Подкатегория ${sc.id} «${sc.name}»: слишком короткое описание`);
+  });
+});
+
+// --- блог ---
+const blogSlugs = new Set();
+blog.forEach(b => {
+  ['title', 'slug', 'excerpt', 'content', 'image', 'date'].forEach(f => {
+    if (!b[f]) fail(`Статья ${b.id}: пустое поле ${f}`);
+  });
+  if (blogSlugs.has(b.slug)) fail(`Дублирующийся slug статьи: ${b.slug}`);
+  blogSlugs.add(b.slug);
+  if (b.content.length < 600) fail(`Статья ${b.id} «${b.title}»: текст всего ${b.content.length} символов — это заготовка, а не статья`);
+  if (!b.images || b.images.length < 2) fail(`Статья ${b.id} «${b.title}»: нужно минимум две иллюстрации`);
+  if (!b.quote) fail(`Статья ${b.id} «${b.title}»: нет выделенной цитаты`);
+  if (!b.tags || !b.tags.length) fail(`Статья ${b.id} «${b.title}»: нет тегов`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(b.date)) fail(`Статья ${b.id}: дата «${b.date}» не в формате ГГГГ-ММ-ДД`);
+  if (!(b.readingTime > 0)) fail(`Статья ${b.id}: не указано время чтения`);
+  if (b.categoryId && !catIds.has(b.categoryId)) fail(`Статья ${b.id}: неизвестная категория ${b.categoryId}`);
+});
+// у каждой статьи должно быть, из чего собрать страницу целиком
+blog.forEach(b => {
+  if (!b.description || b.description.length < 80) fail(`Статья ${b.id} «${b.title}»: слишком короткое description`);
+  if (!b.author || !b.author.name || !b.author.role) fail(`Статья ${b.id} «${b.title}»: не указан автор`);
+  if (!b.author || !b.author.avatar) fail(`Статья ${b.id} «${b.title}»: у автора нет аватара`);
+  if (!b.highlights || b.highlights.length < 3) fail(`Статья ${b.id} «${b.title}»: нужно три тезиса в highlights`);
+  if (!b.sections || b.sections.length < 3) fail(`Статья ${b.id} «${b.title}»: нет блоков sections для страницы`);
+  if (b.sections && !b.sections.some(x => x.type === 'image')) fail(`Статья ${b.id} «${b.title}»: в sections нет иллюстрации`);
+  if (b.sections && !b.sections.some(x => x.type === 'quote')) fail(`Статья ${b.id} «${b.title}»: в sections нет цитаты`);
+  if (b.isPublished !== true) fail(`Статья ${b.id} «${b.title}»: не помечена как опубликованная`);
+  if (!/^\d{4}-\d{2}-\d{2}T/.test(String(b.createdAt))) fail(`Статья ${b.id}: createdAt не в формате ISO`);
+});
+uniq('Описание статьи', blog.map(b => ({ text: b.description, owner: b.title })));
+const allHighlights = blog.flatMap(b => (b.highlights || []).map(h => ({ text: h, owner: b.title })));
+uniq('Тезис статьи', allHighlights);
+
+if (blog.length < 24) fail(`Статей в блоге ${blog.length} — на сайте их две страницы по 12, нужно минимум 24`);
+uniq('Текст статьи', blog.map(b => ({ text: b.content, owner: b.title })));
+uniq('Цитата статьи', blog.map(b => ({ text: b.quote, owner: b.title })));
+uniq('Анонс статьи', blog.map(b => ({ text: b.excerpt, owner: b.title })));
+
+// --- спецификация: каждый путь должен разбираться роутером ---
+const { resolve, KNOWN_PATHS } = require('../lib/router');
+const specPaths = [];
+const collector = {
+  setHeader() {}, end(json) { const spec = JSON.parse(json); specPaths.push(...Object.keys(spec.paths)); }
+};
+require('../lib/handlers/swagger.js')({ headers: { host: 'localhost:3000' } }, collector);
+
+specPaths.forEach(sp => {
+  const segments = sp.replace(/^\/api\/?/, '').split('/').filter(Boolean)
+    .map(seg => seg.replace(/^\{.+\}$/, '1'));
+  if (!resolve(segments)) fail(`Путь ${sp} из спецификации не разбирается роутером`);
+});
+// Эти маршруты работают, но на странице их нет намеренно:
+// в разделе аккаунта студенту нужен ровно один запрос, а каталог перечислен
+// поимённо (/api/detskaya-mebel/krovatki), поэтому общие адреса со скобками
+// в спецификацию не попадают.
+const HIDDEN = ['/api/swagger.json', '/api/users/{id}', '/api/users/{id}/avatar',
+  '/api/{category}', '/api/{category}/{subcategory}'];
+KNOWN_PATHS.forEach(kp => {
+  if (HIDDEN.includes(kp)) return;
+  if (!specPaths.includes(kp)) warn(`Маршрут ${kp} есть в роутере, но не описан в спецификации`);
+});
+
+// весь каталог должен быть перечислен в спецификации поимённо — иначе новая
+// категория появится в данных, но не появится на странице
+categories.forEach(c => {
+  if (!specPaths.includes(`/api/${c.slug}`)) fail(`Категория «${c.name}»: нет пути /api/${c.slug} в спецификации`);
+  c.subcategories.forEach(sc => {
+    if (!specPaths.includes(`/api/${c.slug}/${sc.slug}`)) fail(`Подкатегория «${sc.name}»: нет пути /api/${c.slug}/${sc.slug} в спецификации`);
+  });
+});
+
+// --- секреты не должны попадать ни в код, ни в репозиторий ---
+const fsEnv = require('fs');
+const rootDir = require('path').join(__dirname, '..');
+if (!fsEnv.existsSync(require('path').join(rootDir, '.env.example'))) {
+  fail('Нет .env.example — непонятно, какие переменные окружения нужны проекту');
+}
+const gitignore = fsEnv.readFileSync(require('path').join(rootDir, '.gitignore'), 'utf8');
+if (!/^\.env$/m.test(gitignore)) fail('.env не указан в .gitignore — секреты могут попасть в репозиторий');
+
+// --- на бесплатном тарифе Vercel не больше 12 serverless-функций ---
+const apiDir = require('path').join(__dirname, '..', 'api');
+const fnCount = require('fs').readdirSync(apiDir)
+  .filter(f => f.endsWith('.js') && !f.startsWith('_')).length;
+if (fnCount > 12) fail(`serverless-функций ${fnCount} — на бесплатном тарифе Vercel деплой упадёт (лимит 12)`);
+
+// --- итог ---
+const subCount = subcategories.length;
+console.log(`Категорий: ${categories.length}  подкатегорий: ${subCount}  товаров: ${products.length}  акций: ${promotions.length}  статей: ${blog.length}`);
+console.log(`Путей в спецификации: ${specPaths.length}  serverless-функций: ${fnCount} из 12`);
+warns.forEach(w => console.log('⚠  ' + w));
+if (errors.length) {
+  console.log(`\n✘ Найдено ошибок: ${errors.length}`);
+  errors.slice(0, 40).forEach(e => console.log('  - ' + e));
+  process.exit(1);
+}
+console.log('\n✔ Проверка пройдена, ошибок нет');
