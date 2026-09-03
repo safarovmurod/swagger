@@ -54989,10 +54989,10 @@
     "slug": "natalya-gafurova",
     "avatar": "/api/images/author-natalya-gafurova.svg"
    },
-   "image": "/api/images/post-pitanie-v-pervom-trimestre.svg",
+   "image": "/assets/products/tovar-nedeli-nuovita-day-offer-1.png",
    "images": [
-    "/api/images/post-pitanie-v-pervom-trimestre.svg",
-    "/api/images/post-pitanie-v-pervom-trimestre.svg?variant=2"
+    "/assets/products/tovar-nedeli-nuovita-day-offer-1.png",
+    "/assets/products/tovar-nedeli-munchkin-day-offer-5.png"
    ],
    "imageAlt": "Питание в I триместре",
    "tags": [
@@ -55019,7 +55019,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-pitanie-v-pervom-trimestre.svg?variant=2",
+     "url": "/assets/products/tovar-nedeli-munchkin-day-offer-5.png",
      "alt": "Питание в I триместре"
     },
     {
@@ -55064,10 +55064,10 @@
     "slug": "anna-kovaleva",
     "avatar": "/api/images/author-anna-kovaleva.svg"
    },
-   "image": "/api/images/post-skidki-na-detskoe-pitanie.svg",
+   "image": "/assets/products/tovar-nedeli-chicco-top-week-2.png",
    "images": [
-    "/api/images/post-skidki-na-detskoe-pitanie.svg",
-    "/api/images/post-skidki-na-detskoe-pitanie.svg?variant=2"
+    "/assets/products/tovar-nedeli-chicco-top-week-2.png",
+    "/assets/products/tovar-nedeli-babyono-hot-price-8.png"
    ],
    "imageAlt": "Вкусные скидки до -25% на всё детское питание",
    "tags": [
@@ -55094,7 +55094,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-skidki-na-detskoe-pitanie.svg?variant=2",
+     "url": "/assets/products/tovar-nedeli-babyono-hot-price-8.png",
      "alt": "Вкусные скидки до -25% на всё детское питание"
     },
     {
@@ -55139,10 +55139,10 @@
     "slug": "anna-kovaleva",
     "avatar": "/api/images/author-anna-kovaleva.svg"
    },
-   "image": "/api/images/post-kak-vybrat-pervuyu-kolyasku.svg",
+   "image": "/assets/products/kolyaska-progulochnaya-happy-baby-sport-181.png",
    "images": [
-    "/api/images/post-kak-vybrat-pervuyu-kolyasku.svg",
-    "/api/images/post-kak-vybrat-pervuyu-kolyasku.svg?variant=2"
+    "/assets/products/kolyaska-progulochnaya-happy-baby-sport-181.png",
+    "/assets/products/kolyaska-transformer-nuovita-carro-3-v-1-201.png"
    ],
    "imageAlt": "Как выбрать первую коляску",
    "tags": [
@@ -55169,7 +55169,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-kak-vybrat-pervuyu-kolyasku.svg?variant=2",
+     "url": "/assets/products/kolyaska-transformer-nuovita-carro-3-v-1-201.png",
      "alt": "Как выбрать первую коляску"
     },
     {
@@ -55218,10 +55218,10 @@
     "slug": "irina-soboleva",
     "avatar": "/api/images/author-irina-soboleva.svg"
    },
-   "image": "/api/images/post-razvivayushchie-igrushki-0-6.svg",
+   "image": "/assets/products/nabor-k-vypiske-roxy-kids-podarok-malyshu-41.png",
    "images": [
-    "/api/images/post-razvivayushchie-igrushki-0-6.svg",
-    "/api/images/post-razvivayushchie-igrushki-0-6.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-roxy-kids-podarok-malyshu-41.png",
+    "/assets/products/nabor-k-vypiske-babyono-newborn-set-49.png"
    ],
    "imageAlt": "Развивающие игрушки для малыша 0-6 месяцев",
    "tags": [
@@ -55248,7 +55248,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-razvivayushchie-igrushki-0-6.svg?variant=2",
+     "url": "/assets/products/nabor-k-vypiske-babyono-newborn-set-49.png",
      "alt": "Развивающие игрушки для малыша 0-6 месяцев"
     },
     {
@@ -55293,10 +55293,10 @@
     "slug": "sergey-loginov",
     "avatar": "/api/images/author-sergey-loginov.svg"
    },
-   "image": "/api/images/post-kak-vybrat-avtokreslo.svg",
+   "image": "/assets/products/avtokreslo-chicco-primo-viaggio-241.png",
    "images": [
-    "/api/images/post-kak-vybrat-avtokreslo.svg",
-    "/api/images/post-kak-vybrat-avtokreslo.svg?variant=2"
+    "/assets/products/avtokreslo-chicco-primo-viaggio-241.png",
+    "/assets/products/avtokreslo-maxi-cosi-king-ii-261.png"
    ],
    "imageAlt": "Безопасность в автомобиле: выбираем автокресло",
    "tags": [
@@ -55323,7 +55323,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-kak-vybrat-avtokreslo.svg?variant=2",
+     "url": "/assets/products/avtokreslo-maxi-cosi-king-ii-261.png",
      "alt": "Безопасность в автомобиле: выбираем автокресло"
     },
     {
@@ -55372,10 +55372,10 @@
     "slug": "anna-kovaleva",
     "avatar": "/api/images/author-anna-kovaleva.svg"
    },
-   "image": "/api/images/post-gotovim-detskuyu-komnatu.svg",
+   "image": "/assets/products/krovatka-feretti-incanto-61.png",
    "images": [
-    "/api/images/post-gotovim-detskuyu-komnatu.svg",
-    "/api/images/post-gotovim-detskuyu-komnatu.svg?variant=2"
+    "/assets/products/krovatka-feretti-incanto-61.png",
+    "/assets/products/pelenalnyy-komod-papaloni-bambino-121.png"
    ],
    "imageAlt": "Готовим детскую комнату к появлению малыша",
    "tags": [
@@ -55402,7 +55402,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-gotovim-detskuyu-komnatu.svg?variant=2",
+     "url": "/assets/products/pelenalnyy-komod-papaloni-bambino-121.png",
      "alt": "Готовим детскую комнату к появлению малыша"
     },
     {
@@ -55451,10 +55451,10 @@
     "slug": "madina-rahimova",
     "avatar": "/api/images/author-madina-rahimova.svg"
    },
-   "image": "/api/images/post-pervyy-prikorm.svg",
+   "image": "/assets/products/tovar-nedeli-chicco-hot-price-10.png",
    "images": [
-    "/api/images/post-pervyy-prikorm.svg",
-    "/api/images/post-pervyy-prikorm.svg?variant=2"
+    "/assets/products/tovar-nedeli-chicco-hot-price-10.png",
+    "/assets/products/tovar-nedeli-canpol-babies-fresh-deal-16.png"
    ],
    "imageAlt": "Первый прикорм: когда и с чего начать",
    "tags": [
@@ -55481,7 +55481,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-pervyy-prikorm.svg?variant=2",
+     "url": "/assets/products/tovar-nedeli-canpol-babies-fresh-deal-16.png",
      "alt": "Первый прикорм: когда и с чего начать"
     },
     {
@@ -55530,10 +55530,10 @@
     "slug": "irina-soboleva",
     "avatar": "/api/images/author-irina-soboleva.svg"
    },
-   "image": "/api/images/post-kak-ukachat-malysha.svg",
+   "image": "/assets/products/kolybel-maman-amelia-81.png",
    "images": [
-    "/api/images/post-kak-ukachat-malysha.svg",
-    "/api/images/post-kak-ukachat-malysha.svg?variant=2"
+    "/assets/products/kolybel-maman-amelia-81.png",
+    "/assets/products/lyulka-babyton-sonno-101.png"
    ],
    "imageAlt": "5 способов укачать малыша",
    "tags": [
@@ -55560,7 +55560,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-kak-ukachat-malysha.svg?variant=2",
+     "url": "/assets/products/lyulka-babyton-sonno-101.png",
      "alt": "5 способов укачать малыша"
     },
     {
@@ -55609,10 +55609,10 @@
     "slug": "anna-kovaleva",
     "avatar": "/api/images/author-anna-kovaleva.svg"
    },
-   "image": "/api/images/post-zimnyaya-odezhda-dlya-malysha.svg",
+   "image": "/assets/products/nabor-k-vypiske-kroshka-ya-pervye-dni-42.png",
    "images": [
-    "/api/images/post-zimnyaya-odezhda-dlya-malysha.svg",
-    "/api/images/post-zimnyaya-odezhda-dlya-malysha.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-kroshka-ya-pervye-dni-42.png",
+    "/assets/products/nabor-k-vypiske-kroshka-ya-nezhnost-45.png"
    ],
    "imageAlt": "Зимняя одежда для малыша: гид",
    "tags": [
@@ -55639,7 +55639,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-zimnyaya-odezhda-dlya-malysha.svg?variant=2",
+     "url": "/assets/products/nabor-k-vypiske-kroshka-ya-nezhnost-45.png",
      "alt": "Зимняя одежда для малыша: гид"
     },
     {
@@ -55688,10 +55688,10 @@
     "slug": "anna-kovaleva",
     "avatar": "/api/images/author-anna-kovaleva.svg"
    },
-   "image": "/api/images/post-kak-vybrat-krovatku.svg",
+   "image": "/assets/products/krovatka-baby-italia-natural-62.png",
    "images": [
-    "/api/images/post-kak-vybrat-krovatku.svg",
-    "/api/images/post-kak-vybrat-krovatku.svg?variant=2"
+    "/assets/products/krovatka-baby-italia-natural-62.png",
+    "/assets/products/pelenalnyy-komod-kubanlesstroy-bambino-122.png"
    ],
    "imageAlt": "Как выбрать кроватку для новорождённого",
    "tags": [
@@ -55718,7 +55718,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-kak-vybrat-krovatku.svg?variant=2",
+     "url": "/assets/products/pelenalnyy-komod-kubanlesstroy-bambino-122.png",
      "alt": "Как выбрать кроватку для новорождённого"
     },
     {
@@ -55767,10 +55767,10 @@
     "slug": "madina-rahimova",
     "avatar": "/api/images/author-madina-rahimova.svg"
    },
-   "image": "/api/images/post-gigiena-novorozhdennogo.svg",
+   "image": "/assets/products/tovar-nedeli-maman-top-week-3.png",
    "images": [
-    "/api/images/post-gigiena-novorozhdennogo.svg",
-    "/api/images/post-gigiena-novorozhdennogo.svg?variant=2"
+    "/assets/products/tovar-nedeli-maman-top-week-3.png",
+    "/assets/products/tovar-nedeli-roxy-kids-day-offer-4.png"
    ],
    "imageAlt": "Гигиена новорождённого: пошаговое руководство",
    "tags": [
@@ -55797,7 +55797,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-gigiena-novorozhdennogo.svg?variant=2",
+     "url": "/assets/products/tovar-nedeli-roxy-kids-day-offer-4.png",
      "alt": "Гигиена новорождённого: пошаговое руководство"
     },
     {
@@ -55846,10 +55846,10 @@
     "slug": "anna-kovaleva",
     "avatar": "/api/images/author-anna-kovaleva.svg"
    },
-   "image": "/api/images/post-podarki-dlya-molodoy-mamy.svg",
+   "image": "/assets/products/nabor-k-vypiske-mamulyandiya-komplekt-mamy-43.png",
    "images": [
-    "/api/images/post-podarki-dlya-molodoy-mamy.svg",
-    "/api/images/post-podarki-dlya-molodoy-mamy.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-mamulyandiya-komplekt-mamy-43.png",
+    "/assets/products/nabor-k-vypiske-munchkin-komplekt-mamy-46.png"
    ],
    "imageAlt": "Топ-10 подарков для молодой мамы",
    "tags": [
@@ -55876,7 +55876,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-podarki-dlya-molodoy-mamy.svg?variant=2",
+     "url": "/assets/products/nabor-k-vypiske-munchkin-komplekt-mamy-46.png",
      "alt": "Топ-10 подарков для молодой мамы"
     },
     {
@@ -55921,10 +55921,10 @@
     "slug": "anna-kovaleva",
     "avatar": "/api/images/author-anna-kovaleva.svg"
    },
-   "image": "/api/images/post-kolyaska-dlya-dvoyni.svg",
+   "image": "/assets/products/kolyaska-dlya-dvoyni-chicco-twin-221.png",
    "images": [
-    "/api/images/post-kolyaska-dlya-dvoyni.svg",
-    "/api/images/post-kolyaska-dlya-dvoyni.svg?variant=2"
+    "/assets/products/kolyaska-dlya-dvoyni-chicco-twin-221.png",
+    "/assets/products/kolyaska-dlya-dvoyni-adamex-gemini-222.png"
    ],
    "imageAlt": "Коляска для двойни: рядом или паровозиком",
    "tags": [
@@ -55951,7 +55951,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-kolyaska-dlya-dvoyni.svg?variant=2",
+     "url": "/assets/products/kolyaska-dlya-dvoyni-adamex-gemini-222.png",
      "alt": "Коляска для двойни: рядом или паровозиком"
     },
     {
@@ -55996,10 +55996,10 @@
     "slug": "natalya-gafurova",
     "avatar": "/api/images/author-natalya-gafurova.svg"
    },
-   "image": "/api/images/post-chto-vzyat-v-roddom.svg",
+   "image": "/assets/products/nabor-k-vypiske-babyono-start-47.png",
    "images": [
-    "/api/images/post-chto-vzyat-v-roddom.svg",
-    "/api/images/post-chto-vzyat-v-roddom.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-babyono-start-47.png",
+    "/assets/products/nabor-k-vypiske-canpol-babies-newborn-set-50.png"
    ],
    "imageAlt": "Что взять в роддом: список по пунктам",
    "tags": [
@@ -56026,7 +56026,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-chto-vzyat-v-roddom.svg?variant=2",
+     "url": "/assets/products/nabor-k-vypiske-canpol-babies-newborn-set-50.png",
      "alt": "Что взять в роддом: список по пунктам"
     },
     {
@@ -56071,10 +56071,10 @@
     "slug": "anna-kovaleva",
     "avatar": "/api/images/author-anna-kovaleva.svg"
    },
-   "image": "/api/images/post-skolko-odezhdy-novorozhdennomu.svg",
+   "image": "/assets/products/nabor-k-vypiske-roxy-kids-nezhnost-48.png",
    "images": [
-    "/api/images/post-skolko-odezhdy-novorozhdennomu.svg",
-    "/api/images/post-skolko-odezhdy-novorozhdennomu.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-roxy-kids-nezhnost-48.png",
+    "/assets/products/nabor-k-vypiske-roxy-kids-baby-box-51.png"
    ],
    "imageAlt": "Пелёнки, распашонки, боди: сколько чего нужно",
    "tags": [
@@ -56101,7 +56101,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-skolko-odezhdy-novorozhdennomu.svg?variant=2",
+     "url": "/assets/products/nabor-k-vypiske-roxy-kids-baby-box-51.png",
      "alt": "Пелёнки, распашонки, боди: сколько чего нужно"
     },
     {
@@ -56146,10 +56146,10 @@
     "slug": "olga-vereshchagina",
     "avatar": "/api/images/author-olga-vereshchagina.svg"
    },
-   "image": "/api/images/post-molokootsos-ruchnoy-ili-elektricheskiy.svg",
+   "image": "/assets/products/tovar-nedeli-nuovita-star-price-6.png",
    "images": [
-    "/api/images/post-molokootsos-ruchnoy-ili-elektricheskiy.svg",
-    "/api/images/post-molokootsos-ruchnoy-ili-elektricheskiy.svg?variant=2"
+    "/assets/products/tovar-nedeli-nuovita-star-price-6.png",
+    "/assets/products/tovar-nedeli-nuovita-prime-week-11.png"
    ],
    "imageAlt": "Молокоотсос: ручной или электрический",
    "tags": [
@@ -56176,7 +56176,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-molokootsos-ruchnoy-ili-elektricheskiy.svg?variant=2",
+     "url": "/assets/products/tovar-nedeli-nuovita-prime-week-11.png",
      "alt": "Молокоотсос: ручной или электрический"
     },
     {
@@ -56221,10 +56221,10 @@
     "slug": "madina-rahimova",
     "avatar": "/api/images/author-madina-rahimova.svg"
    },
-   "image": "/api/images/post-kak-podobrat-razmer-podguznikov.svg",
+   "image": "/assets/products/tovar-nedeli-roxy-kids-best-choice-7.png",
    "images": [
-    "/api/images/post-kak-podobrat-razmer-podguznikov.svg",
-    "/api/images/post-kak-podobrat-razmer-podguznikov.svg?variant=2"
+    "/assets/products/tovar-nedeli-roxy-kids-best-choice-7.png",
+    "/assets/products/tovar-nedeli-roxy-kids-star-price-12.png"
    ],
    "imageAlt": "Подгузники: как подобрать размер и не переплатить",
    "tags": [
@@ -56251,7 +56251,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-kak-podobrat-razmer-podguznikov.svg?variant=2",
+     "url": "/assets/products/tovar-nedeli-roxy-kids-star-price-12.png",
      "alt": "Подгузники: как подобрать размер и не переплатить"
     },
     {
@@ -56296,10 +56296,10 @@
     "slug": "sergey-loginov",
     "avatar": "/api/images/author-sergey-loginov.svg"
    },
-   "image": "/api/images/post-kogda-peresazhivat-v-gruppu-1.svg",
+   "image": "/assets/products/avtokreslo-recaro-privia-242.png",
    "images": [
-    "/api/images/post-kogda-peresazhivat-v-gruppu-1.svg",
-    "/api/images/post-kogda-peresazhivat-v-gruppu-1.svg?variant=2"
+    "/assets/products/avtokreslo-recaro-privia-242.png",
+    "/assets/products/avtokreslo-peg-perego-sirona-s-262.png"
    ],
    "imageAlt": "Когда пересаживать ребёнка в кресло группы 1",
    "tags": [
@@ -56326,7 +56326,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-kogda-peresazhivat-v-gruppu-1.svg?variant=2",
+     "url": "/assets/products/avtokreslo-peg-perego-sirona-s-262.png",
      "alt": "Когда пересаживать ребёнка в кресло группы 1"
     },
     {
@@ -56371,10 +56371,10 @@
     "slug": "irina-soboleva",
     "avatar": "/api/images/author-irina-soboleva.svg"
    },
-   "image": "/api/images/post-igrushki-6-12-mesyacev.svg",
+   "image": "/assets/products/nabor-k-vypiske-sofuto-newborn-set-52.png",
    "images": [
-    "/api/images/post-igrushki-6-12-mesyacev.svg",
-    "/api/images/post-igrushki-6-12-mesyacev.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-sofuto-newborn-set-52.png",
+    "/assets/products/nabor-k-vypiske-mamulyandiya-pervyy-den-53.png"
    ],
    "imageAlt": "Развитие ребёнка 6-12 месяцев: какие игрушки нужны",
    "tags": [
@@ -56401,7 +56401,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-igrushki-6-12-mesyacev.svg?variant=2",
+     "url": "/assets/products/nabor-k-vypiske-mamulyandiya-pervyy-den-53.png",
      "alt": "Развитие ребёнка 6-12 месяцев: какие игрушки нужны"
     },
     {
@@ -56450,10 +56450,10 @@
     "slug": "sergey-loginov",
     "avatar": "/api/images/author-sergey-loginov.svg"
    },
-   "image": "/api/images/post-bezopasnaya-komnata-dlya-polzuna.svg",
+   "image": "/assets/products/krovatka-papaloni-dream-63.png",
    "images": [
-    "/api/images/post-bezopasnaya-komnata-dlya-polzuna.svg",
-    "/api/images/post-bezopasnaya-komnata-dlya-polzuna.svg?variant=2"
+    "/assets/products/krovatka-papaloni-dream-63.png",
+    "/assets/products/pelenalnyy-komod-micuna-dzhuliya-123.png"
    ],
    "imageAlt": "Как обустроить безопасную комнату для ползающего малыша",
    "tags": [
@@ -56480,7 +56480,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-bezopasnaya-komnata-dlya-polzuna.svg?variant=2",
+     "url": "/assets/products/pelenalnyy-komod-micuna-dzhuliya-123.png",
      "alt": "Как обустроить безопасную комнату для ползающего малыша"
     },
     {
@@ -56533,10 +56533,10 @@
     "slug": "madina-rahimova",
     "avatar": "/api/images/author-madina-rahimova.svg"
    },
-   "image": "/api/images/post-progulki-zimoy.svg",
+   "image": "/assets/products/nabor-k-vypiske-munchkin-newborn-set-54.png",
    "images": [
-    "/api/images/post-progulki-zimoy.svg",
-    "/api/images/post-progulki-zimoy.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-munchkin-newborn-set-54.png",
+    "/assets/products/nabor-k-vypiske-kroshka-ya-start-55.png"
    ],
    "imageAlt": "Прогулки зимой: сколько гулять и при какой температуре",
    "tags": [
@@ -56563,7 +56563,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-progulki-zimoy.svg?variant=2",
+     "url": "/assets/products/nabor-k-vypiske-kroshka-ya-start-55.png",
      "alt": "Прогулки зимой: сколько гулять и при какой температуре"
     },
     {
@@ -56612,10 +56612,10 @@
     "slug": "anna-kovaleva",
     "avatar": "/api/images/author-anna-kovaleva.svg"
    },
-   "image": "/api/images/post-stulchik-dlya-kormleniya.svg",
+   "image": "/assets/products/tovar-nedeli-roxy-kids-prime-week-13.png",
    "images": [
-    "/api/images/post-stulchik-dlya-kormleniya.svg",
-    "/api/images/post-stulchik-dlya-kormleniya.svg?variant=2"
+    "/assets/products/tovar-nedeli-roxy-kids-prime-week-13.png",
+    "/assets/products/tovar-nedeli-munchkin-smart-buy-14.png"
    ],
    "imageAlt": "Стульчик для кормления: с какого возраста и какой выбрать",
    "tags": [
@@ -56642,7 +56642,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-stulchik-dlya-kormleniya.svg?variant=2",
+     "url": "/assets/products/tovar-nedeli-munchkin-smart-buy-14.png",
      "alt": "Стульчик для кормления: с какого возраста и какой выбрать"
     },
     {
@@ -56691,10 +56691,10 @@
     "slug": "madina-rahimova",
     "avatar": "/api/images/author-madina-rahimova.svg"
    },
-   "image": "/api/images/post-kupanie-novorozhdennogo.svg",
+   "image": "/assets/products/tovar-nedeli-lorelli-prime-week-15.png",
    "images": [
-    "/api/images/post-kupanie-novorozhdennogo.svg",
-    "/api/images/post-kupanie-novorozhdennogo.svg?variant=2"
+    "/assets/products/tovar-nedeli-lorelli-prime-week-15.png",
+    "/assets/products/tovar-nedeli-happy-baby-prime-week-17.png"
    ],
    "imageAlt": "Купание новорождённого: температура, время, средства",
    "tags": [
@@ -56721,7 +56721,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-kupanie-novorozhdennogo.svg?variant=2",
+     "url": "/assets/products/tovar-nedeli-happy-baby-prime-week-17.png",
      "alt": "Купание новорождённого: температура, время, средства"
     },
     {
@@ -56770,10 +56770,10 @@
     "slug": "irina-soboleva",
     "avatar": "/api/images/author-irina-soboleva.svg"
    },
-   "image": "/api/images/post-pervye-knizhki-i-muzykalnye-igrushki.svg",
+   "image": "/assets/products/nabor-k-vypiske-canpol-babies-pervyy-den-56.png",
    "images": [
-    "/api/images/post-pervye-knizhki-i-muzykalnye-igrushki.svg",
-    "/api/images/post-pervye-knizhki-i-muzykalnye-igrushki.svg?variant=2"
+    "/assets/products/nabor-k-vypiske-canpol-babies-pervyy-den-56.png",
+    "/assets/products/nabor-k-vypiske-canpol-babies-baby-box-58.png"
    ],
    "imageAlt": "Первые книжки и музыкальные игрушки: что берут чаще всего",
    "tags": [
@@ -56800,7 +56800,7 @@
     },
     {
      "type": "image",
-     "url": "/api/images/post-pervye-knizhki-i-muzykalnye-igrushki.svg?variant=2",
+     "url": "/assets/products/nabor-k-vypiske-canpol-babies-baby-box-58.png",
      "alt": "Первые книжки и музыкальные игрушки: что берут чаще всего"
     },
     {
